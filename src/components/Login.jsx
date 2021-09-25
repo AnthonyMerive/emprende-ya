@@ -13,6 +13,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import GoogleIcon from '@mui/icons-material/Google';
 
 //Funcion Copyright:
 
@@ -96,27 +97,40 @@ export default function Login() {
               id="password"
               autoComplete="current-password"
             />
-
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Recuerdame"
-            />
+            
+            <Grid container justifyContent="flex-end">
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Recuerdame"
+              />
+            </Grid>
 
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{
-                mt: 3,
+                mt: 2,
+                bgcolor: '#F36E6E'
+              }}
+              endIcon={<GoogleIcon />}
+            >
+              Ingresa con Google
+
+            </Button>
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                mt: 2,
                 mb: 2
               }}
+              endIcon={<LoginIcon />}
             >
               entrar
-              <LoginIcon
-                sx={{
-                  ml: 1,
-                }}
-              />
+
             </Button>
 
             <Grid container>
