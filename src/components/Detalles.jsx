@@ -59,7 +59,7 @@ export default function Detalles() {
             prefijo: '57',
             telefono: '3202312631',
             correo: 'ilan@gmail.com',
-            foto: ''
+            foto: 'https://mui.com/static/images/avatar/1.jpg'
         },
     }
 
