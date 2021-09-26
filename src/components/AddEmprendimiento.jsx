@@ -27,7 +27,7 @@ export default function AddEmprendimiento() {
             <Container component="main" maxWidth="md">
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 10,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -71,7 +71,7 @@ export default function AddEmprendimiento() {
                                 width: '100%'
                             }}
                         >
-                            <AddToPhotosIcon sx={{color:'#299ac1'}}/>
+                            <AddToPhotosIcon sx={{color:'#299ac1',marginRight:'10px', fontSize:'35px'}} onClick={handleClickFiles}/>
                             <TextField
                                 margin="normal"
                                 fullWidth
@@ -92,7 +92,10 @@ export default function AddEmprendimiento() {
                             />
                         </Box>
 
-                        <Button variant="contained">Publicar</Button>
+                        <Button 
+                        variant="contained"
+                        sx={{marginBottom:10}}
+                        >Publicar</Button>
 
 
                     </Box>
