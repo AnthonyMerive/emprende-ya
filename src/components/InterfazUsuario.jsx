@@ -44,6 +44,9 @@ function stringAvatar(name) {
     return {
         sx: {
             bgcolor: stringToColor(name),
+            width: 80,
+            height: 80,
+            fontSize: 36
         },
         children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
@@ -54,7 +57,7 @@ export default function InterfazUsuario() {
     const perfil = {
         nombre: 'Ilan',
         apellido: 'Diaz',
-        foto: '',
+        foto: 'https://mui.com/static/images/avatar/1.jpg',
         correo: 'ilan@gmail.com',
         prefijo: '57',
         telefono: '3202312631'
@@ -83,9 +86,12 @@ export default function InterfazUsuario() {
                         Perfil
                     </Typography>
 
+
                     {perfil.foto ?
-                        <Avatar alt={`${perfil.nombre} ${perfil.apellido}`} src={`${perfil.foto}`} />
+                        <Avatar alt={`${perfil.nombre} ${perfil.apellido}`} src={`${perfil.foto}`}
+                            sx={{ width: 80, height: 80 }} />
                         :
+
                         <Avatar alt={`${perfil.nombre} ${perfil.apellido}`}
 
                             {...stringAvatar(`${perfil.nombre} ${perfil.apellido}`)}
@@ -93,7 +99,10 @@ export default function InterfazUsuario() {
                         />
                     }
 
-                    <Box>
+                    <Box sx={{
+                        mt: 1,
+
+                    }}>
 
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -135,7 +144,7 @@ export default function InterfazUsuario() {
                                 }}
                                 endIcon={<AutorenewIcon />}
                             >
-                            actualizar perfil
+                                actualizar perfil
 
                             </Button>
 
@@ -159,9 +168,9 @@ export default function InterfazUsuario() {
                         </Grid>
 
                         <Grid container justifyContent="center"
-                        sx={{
-                            mt: 3,
-                        }}>
+                            sx={{
+                                mt: 3,
+                            }}>
                             <Grid item>
                                 <Link href="#" variant="body2">
                                     ¿Problemas con tu cuenta?
