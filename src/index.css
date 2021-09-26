@@ -1,0 +1,25 @@
+*{
+    margin:0;
+    padding:0;
+    top:0;
+    box-sizing: border-box;
+}
+body{
+    width:100vw;
+}
+
+.gradient-background{
+    background: linear-gradient(#1976d2, #fff);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-landing{
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,.5));
+    width: 100%;
+}
