@@ -18,7 +18,7 @@ import { Button, Popover } from '@mui/material';
 export default function NavBar() {
 
     const notification = 0
-    const autenticacion = true
+    const autenticacion = false
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -35,8 +35,10 @@ export default function NavBar() {
 
     return (
         <div>
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="fixed">
+            <Box>
+                <AppBar position="fixed"
+                    sx={{ boxShadow: 'none' }}
+                >
                     {/* duplicar toolbar */}
                     {
                         autenticacion ? <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -49,27 +51,44 @@ export default function NavBar() {
                                 <MenuIcon />
                             </IconButton>
 
+                            <Tabs
+                                textColor="secondary"
+                                indicatorColor="secondary"
+                                aria-label="secondary tabs example"
+                            >
+                                <Tab value="one" label="Categoria uno" />
+                                <Tab value="two" label="Categoria dos" />
+                                <Tab value="three" label="Categoria tres" />
+                            </Tabs>
+
 
                             <Tabs>
                                 {
-                                    notification >= 1 ? <Tab icon={
-                                        <Badge
-                                            onClick={handleClick}
-                                            badgeContent={notification} color="error" >
-                                            <NotificationsIcon sx={{ color: 'white' }} />
-                                        </Badge>}
-                                    /> : <Tab icon={
-                                        <Badge
-                                            onClick={handleClick}
-                                        >
-                                            <NotificationsIcon sx={{ color: 'white' }} />
-                                        </Badge>}
-                                    />
+                                    notification >= 1 ?
+                                        
+
+                                        <Tab icon={
+                                            <Badge
+                                                onClick={handleClick}
+                                                badgeContent={notification} color="error" >
+                                                <NotificationsIcon sx={{ color: 'white' }} />
+                                            </Badge>}
+                                        /> : <Tab icon={
+                                            <Badge
+                                                onClick={handleClick}
+                                            >
+                                                <NotificationsIcon sx={{ color: 'white' }} />
+                                            </Badge>}
+                                        />
                                 }
                                 <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
                                 <Tab icon={<AccountCircleIcon sx={{ color: 'white' }} />} />
                             </Tabs>
-                        </Toolbar> : <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        </Toolbar> 
+
+                        : 
+
+                        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                             <IconButton
                                 size="large"
                                 edge="start"
@@ -81,7 +100,7 @@ export default function NavBar() {
                             </IconButton>
 
 
-                            <Tabs>
+                            <Tabs >
                                 <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
                                 <Tab icon={<Button sx={{ color: 'white' }} variant="outlined">Login</Button>} />
                                 <Tab icon={<Button sx={{ color: 'white' }} variant="outlined">Registro</Button>} />
