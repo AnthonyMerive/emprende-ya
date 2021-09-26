@@ -1,11 +1,10 @@
 import React from 'react'
-import Register from '../components/Register'
-import Login from '../components/Login'
+import InterfazUsuario from '../components/InterfazUsuario'
 
 export default function AppRouter() {
     return (<>
             
-        <Login />
+        <InterfazUsuario />
 
         </>)
 }
