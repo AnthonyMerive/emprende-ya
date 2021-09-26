@@ -7,16 +7,17 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 
 export default function LandingPage() {
     return (
-        <div>
+        <>
             <div className="gradient-background">
                 <Grid container spacing={2} sx={{alignItems: 'center', marginTop:'-100px'}}>
                     <Grid item xs={12} md={6}>
                         <Container>
-                            <Typography gutterBottom variant="h2" component="div">
+                            <Typography  variant="h4" >
                                 El emprendimiento que tanto esperabas, al alcance un click
                             </Typography>
                             <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Publica tu emprendimiento</Button>
@@ -84,7 +85,7 @@ export default function LandingPage() {
                     </Grid>
                 </Grid>
             </Container>
-        </div>
+        </>
 
     )
 }

@@ -4,52 +4,36 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="text.secondary">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 export default function Footer() {
     return (
         <div>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    // minHeight: '100vh',
-                }}
-            >
-                <CssBaseline />
-                
-                <Box
-                    component="footer"
-                    
-                    sx={{
-                        py: 3,
-                        px: 2,
-                        mt: 'auto',
-                        backgroundColor: (theme) =>
-                            theme.palette.mode === 'light'
-                                ? theme.palette.grey[200]
-                                : theme.palette.grey[800],
-                    }}
-                >
-                    <Container maxWidth="sm">
-                        <Typography variant="body1">
-                            My sticky footer can be found here.
-                        </Typography>
-                        <Copyright />
-                    </Container>
-                </Box>
+            <Box>
+                <Container sx={{marginBottom:3}}>
+                    <Grid sx={{display:'flex', textAlign: 'center'}}>
+                        <Grid item xs={12} md={4} borderRight={1}>
+                            asd
+                            <Divider/>
+                            asd
+                            
+                        </Grid>
+
+                        
+                        
+                        <Grid item xs={12} md={4}>
+                            asd
+                            
+                        </Grid>
+
+                        <Grid item xs={12} md={4}>
+                            asd
+                            
+                        </Grid>
+                    </Grid>
+                </Container>
             </Box>
         </div>
     )

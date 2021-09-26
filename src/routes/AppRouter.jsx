@@ -14,7 +14,7 @@ export default function AppRouter() {
             {/* <Cards /> */}
             {/* <SidebarPerfil /> */}
             {/* <AddEmprendimiento /> */}
-            <Footer />
+            {/* <Footer /> */}
             
 
 
