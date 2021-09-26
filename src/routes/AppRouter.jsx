@@ -1,10 +1,10 @@
 import React from 'react'
-import InterfazUsuario from '../components/InterfazUsuario'
+import Detalles from '../components/Detalles'
 
 export default function AppRouter() {
     return (<>
             
-        <InterfazUsuario />
+        <Detalles />
 
         </>)
 }
