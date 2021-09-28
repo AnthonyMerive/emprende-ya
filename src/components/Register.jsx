@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import LoginIcon from '@mui/icons-material/Login';
 import GoogleIcon from '@mui/icons-material/Google';
+import { useForm } from '../hooks/useForm'
+import { useDispatch } from 'react-redux'
+import { registerSincrono } from '../actions/actionRegister'
 
 function Copyright(props) {
     return (
@@ -38,6 +41,23 @@ const theme = createTheme({
 });
 
 export default function Register() {
+
+    const dispatch = useDispatch();
+
+    const [values, handleInputChange, reset] = useForm({
+        email: '',
+        password: '',
+        nombreCompleto: '',
+        telefono: ''
+    })
+
+    const { email, password, nombreCompleto, telefono } = values;
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        dispatch(registerSincrono(nombreCompleto, email, password, telefono))
+        reset();
+    }
 
 
     return (
@@ -70,29 +90,22 @@ export default function Register() {
                     <Box
                         component="form"
                         noValidate
-                        sx={{ mt: 3 }}>
+                        sx={{ mt: 3 }}
+                        onSubmit={handleRegister}
+                    >
 
                         <Grid container spacing={1}>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     autoComplete="fname"
-                                    name="firstName"
+                                    name="nombreCompleto"
+                                    value={nombreCompleto}
+                                    onChange={handleInputChange}
                                     required
                                     fullWidth
                                     id="firstName"
-                                    label="Nombre"
+                                    label="Nombre Completo"
                                     autoFocus
-                                />
-                            </Grid>
-
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Apellido"
-                                    name="lastName"
-                                    autoComplete="lname"
                                 />
                             </Grid>
 
@@ -103,6 +116,8 @@ export default function Register() {
                                     id="email"
                                     label="Correo Electronico"
                                     name="email"
+                                    value={email}
+                                    onChange={handleInputChange}
                                     autoComplete="email"
                                 />
                             </Grid>
@@ -112,26 +127,21 @@ export default function Register() {
                                     required
                                     fullWidth
                                     name="password"
+                                    value={password}
+                                    onChange={handleInputChange}
                                     label="Contraseña"
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
                                 />
                             </Grid>
-                            <Grid item xs={2}>
-                                <TextField
-                                    fullWidth
-                                    name="prefijo"
-                                    label="+"
-                                    type="text"
-                                    id="prefijo"
-                                    autoComplete="57"
-                                />
-                            </Grid>
-                            <Grid item xs={10}>
+
+                            <Grid item xs={12}>
                                 <TextField
                                     fullWidth
                                     name="telefono"
+                                    value={telefono}
+                                    onChange={handleInputChange}
                                     label="Telefono Celular"
                                     type="text"
                                     id="telefono"
@@ -141,31 +151,33 @@ export default function Register() {
 
                         </Grid>
 
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ mt: 3, 
-                                        bgcolor: '#F36E6E'
-                                    }}
-                                    endIcon={<GoogleIcon/>}
-                                >
-                                    Registrate con Google
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{
+                                mt: 3,
+                                bgcolor: '#F36E6E'
+                            }}
+                            endIcon={<GoogleIcon />}
+                        >
+                            Registrate con Google
 
-                                </Button>
+                        </Button>
 
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{
-                                         mt: 2,
-                                         mb: 2}}
-                                    endIcon={<LoginIcon/>}
-                                >
-                                    Enviar
-    
-                                </Button>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{
+                                mt: 2,
+                                mb: 2
+                            }}
+                            endIcon={<LoginIcon />}
+                        >
+                            Enviar
+
+                        </Button>
 
                         <Grid container justifyContent="flex-end">
                             <Grid item>

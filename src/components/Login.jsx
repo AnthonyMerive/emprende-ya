@@ -14,6 +14,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GoogleIcon from '@mui/icons-material/Google';
+import { useForm } from '../hooks/useForm'
+import { useDispatch } from 'react-redux'
+import { loginEmailPassword, loginGoogle } from '../actions/actionLogin'
 
 //Funcion Copyright:
 
@@ -47,111 +50,136 @@ const theme = createTheme({
 
 export default function Login() {
 
+  const dispatch = useDispatch();
+
+  const [values, handleInputChange, reset] = useForm({
+    email: '',
+    password: ''
+  })
+
+  const { email, password } = values;
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(loginEmailPassword(email, password))
+    reset();
+  }
+
+  const handleGoogle = () => {
+    dispatch(loginGoogle(email, password))
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
 
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-
-          <Avatar sx={{
-            m: 1,
-            bgcolor: '#299ac1'
-          }}
-          >
-            {/* incono */}
-            <PersonIcon />
-
-          </Avatar>
-
-          <Typography component="h1" variant="h5">
-            LOGIN
-          </Typography>
-
           <Box
-            component="form"
-            noValidate
-            sx={{ mt: 1 }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
           >
-            <TextField
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Correo Electronico"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              name="password"
-              label="Contraseña"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            
-            <Grid container justifyContent="flex-end">
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recuerdame"
+
+            <Avatar sx={{
+              m: 1,
+              bgcolor: '#299ac1'
+            }}
+            >
+              {/* incono */}
+              <PersonIcon />
+
+            </Avatar>
+
+            <Typography component="h1" variant="h5">
+              LOGIN
+            </Typography>
+
+            <Box
+              onSubmit={handleLogin}
+              component="form"
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <TextField
+                margin="normal"
+                fullWidth
+                id="email"
+                label="Correo Electronico"
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={handleInputChange}
+                autoFocus
               />
-            </Grid>
+              <TextField
+                margin="normal"
+                fullWidth
+                name="password"
+                label="Contraseña"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={handleInputChange}
+              />
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 2,
-                bgcolor: '#F36E6E'
-              }}
-              endIcon={<GoogleIcon />}
-            >
-              Ingresa con Google
-
-            </Button>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 2,
-                mb: 2
-              }}
-              endIcon={<LoginIcon />}
-            >
-              entrar
-
-            </Button>
-
-            <Grid container>
-
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  ¿Olvido su contraseña?
-                </Link>
+              <Grid container justifyContent="flex-end">
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Recuerdame"
+                />
               </Grid>
 
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"¿No tienes cuenta? Registrate"}
-                </Link>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                onClick={handleGoogle}
+                sx={{
+                  mt: 2,
+                  bgcolor: '#F36E6E'
+                }}
+                endIcon={<GoogleIcon />}
+              >
+                Ingresa con Google
+
+              </Button>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 2,
+                  mb: 2
+                }}
+                endIcon={<LoginIcon />}
+              >
+                entrar
+
+              </Button>
+
+              <Grid container>
+
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    ¿Olvido su contraseña?
+                  </Link>
+                </Grid>
+
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    {"¿No tienes cuenta? Registrate"}
+                  </Link>
+                </Grid>
+
               </Grid>
 
-            </Grid>
+            </Box>
 
           </Box>
-
-        </Box>
 
         <Copyright sx={{ mt: 8, mb: 4 }} />
 
