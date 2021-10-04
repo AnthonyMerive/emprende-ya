@@ -25,6 +25,15 @@ export default function NavBar(props) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const [value, setValue] = React.useState('one');
+    const [cate, setCate] = React.useState('one');
+    const handleCateChange = (event, newValue) => {
+        setCate(newValue);
+    };
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
     };
@@ -59,6 +68,8 @@ export default function NavBar(props) {
                                     textColor="secondary"
                                     indicatorColor="secondary"
                                     aria-label="secondary tabs example"
+                                    value={cate}
+                                    onChange={handleCateChange}
                                 >
                                     <Tab value="one" label="Categoria uno" />
                                     <Tab value="two" label="Categoria dos" />
@@ -66,54 +77,62 @@ export default function NavBar(props) {
                                 </Tabs>
 
 
-                                <Tabs>
+                                <Box>
                                     {
-
                                         notification >= 1 ?
-
-
-                                            <Tab icon={
+                                            <IconButton
+                                                // size="large"
+                                                edge="start"
+                                                color="inherit"
+                                                aria-label="menu"
+                                                sx={{}}
+                                                onClick={handleClick}
+                                            >
                                                 <Badge
-                                                    onClick={handleClick}
                                                     badgeContent={notification} color="error" >
                                                     <NotificationsIcon sx={{ color: 'white' }} />
-                                                </Badge>}
-                                            />
+                                                </Badge>
+                                            </IconButton>
                                             :
-                                            <Tab icon={
-                                                <Badge
-                                                    onClick={handleClick}
-                                                >
+                                            <IconButton
+                                                // size="large"
+                                                edge="start"
+                                                color="inherit"
+                                                aria-label="menu"
+                                                sx={{}}
+                                                onClick={handleClick}
+                                            >
+                                                <Badge>
                                                     <NotificationsIcon sx={{ color: 'white' }} />
-                                                </Badge>}
-                                            />
-
+                                                </Badge>
+                                            </IconButton>
                                     }
-                                    <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
-                                    <Tab onClick={() => setShowInterfaz(true)} icon={<AccountCircleIcon sx={{ color: 'white' }} />} />
-                                </Tabs>
+                                    <IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton>
+                                    <IconButton onClick={() => setShowInterfaz(true)}><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
+
+                                </Box>
                             </Toolbar>
 
                             :
 
-                            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <IconButton
-                                    size="large"
-                                    edge="start"
-                                    color="inherit"
-                                    aria-label="menu"
-                                // sx={{ mr: 2 }}
-                                >
-                                    <MenuIcon />
-                                </IconButton>
+                            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: "center" }}>
+                                <Box>
+                                    <IconButton
+                                        // size="large"
+                                        edge="start"
+                                        color="inherit"
+                                        aria-label="menu"
+                                        sx={{}}
+                                    >
+                                        <MenuIcon />
+                                    </IconButton>
+                                </Box>
+                                <Box>
 
+                                    <Button onClick={() => setShowLogin(true)} sx={{ color: 'white' }} variant="outlined">Login</Button>
+                                    <Button onClick={() => setShowRegister(true)} sx={{ color: 'white' }} variant="outlined">Registro</Button>
 
-                                <Tabs >
-                                    <Tab onClick={() => setShowLogin(true)} icon={<Button sx={{ color: 'white' }} variant="outlined">Login</Button>} />
-                                    <Tab onClick={() => setShowRegister(true)} icon={<Button sx={{ color: 'white' }} variant="outlined">Registro</Button>} />
-
-                                </Tabs>
-
+                                </Box>
                             </Toolbar>
                     }
 
@@ -143,8 +162,8 @@ export default function NavBar(props) {
                 showLogin={showLogin}
                 setShowRegister={setShowRegister}
                 showRegister={showRegister}
-                setShowInterfaz = {setShowInterfaz}
-                showInterfaz = {showInterfaz}
+                setShowInterfaz={setShowInterfaz}
+                showInterfaz={showInterfaz}
                 auth={autenticacion}
             />
         </div>
