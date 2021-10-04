@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material';
-import { Button, TextField, Typography, Container, Box } from '@mui/material';
+import { Button, TextField, Typography, Container, Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import { useForm } from '../hooks/useForm'
+import { fileUpload } from '../Helpers/FileUpload';
+import { useDispatch, useSelector } from 'react-redux';
+import { crearEmprendimientos } from '../actions/actionAddEmp';
 
 
 const theme = createTheme({
@@ -18,10 +22,56 @@ const theme = createTheme({
 
 
 export default function AddEmprendimiento() {
+    const user = useSelector(user => user.login)
+    let userId = user.uid || '';
+
+    const dispatch = useDispatch()
+    const [images, setImages] = useState({});
+
+    const [values, setValues, handleInputChange, reset] = useForm({
+        nombre: '',
+        descripcion: '',
+        categoria: '',
+        imagenes: ''
+    })
+
+    const { nombre, descripcion, categoria, imagenes } = values
+
+    console.log(nombre, descripcion, categoria, imagenes)
+
 
     const handleClickFiles = () => {
         document.querySelector('#inputFileChanger').click()
     }
+
+    const handleUploadImage = (e) => {
+        const files = e.target.files
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i]
+            fileUpload(file)
+                .then(resp => {
+                    images[i] = resp
+                    setValues({
+                        ...values,
+                        ['imagenes']:images
+                    })
+                }).catch(err => {
+                    console.log(err.message)
+                })
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log('funcion')
+        dispatch(crearEmprendimientos(nombre, descripcion, categoria, imagenes, userId))
+    }
+
+
+
+
+
+
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="md">
@@ -30,10 +80,12 @@ export default function AddEmprendimiento() {
                         marginTop: 10,
                         display: 'flex',
                         flexDirection: 'column',
-                        alignItems: 'center',
+                        alignItems: 'center'
                     }}
+                    component="form"
+                    // onSubmit={handleSubmit}
                 >
-                    <AddBusinessIcon sx={{fontSize:'60px',color:'#299ac1'}}/>
+                    <AddBusinessIcon sx={{ fontSize: '60px', color: '#299ac1' }} />
                     <Typography component="h1" variant="h5">
                         Agrega un nuevo emprendimiento
                     </Typography>
@@ -49,7 +101,8 @@ export default function AddEmprendimiento() {
                             fullWidth
                             id="text"
                             label="Nombre del emprendimiento"
-                            name="nombEmprend"
+                            name="nombre"
+                            onChange={handleInputChange}
                             autoComplete={false}
                             autoFocus
                         />
@@ -58,9 +111,27 @@ export default function AddEmprendimiento() {
                             label="Descripción del emprendimiento"
                             multiline
                             minRows={8}
+                            name="descripcion"
+                            onChange={handleInputChange}
                             fullWidth
                             margin="normal"
                         />
+
+                        <InputLabel id="categoria">Categorias</InputLabel>
+                        <Select
+                            labelId="categoria"
+                            id="demo-simple-select"
+                            value={values.categoria}
+                            name="categoria"
+                            onChange={handleInputChange}
+                            fullWidth
+                        >
+                            <MenuItem value={'reparacion y mantenimiento'}>Reparacion y mantenimiento</MenuItem>
+                            <MenuItem value={'tecnologia'}>Tecnologia</MenuItem>
+                            <MenuItem value={'otros'}>Otros</MenuItem>
+                        </Select>
+
+
 
 
                         <Box
@@ -71,30 +142,35 @@ export default function AddEmprendimiento() {
                                 width: '100%'
                             }}
                         >
-                            <AddToPhotosIcon sx={{color:'#299ac1',marginRight:'10px', fontSize:'35px'}} onClick={handleClickFiles}/>
+                            <AddToPhotosIcon sx={{ color: '#299ac1', marginRight: '10px', fontSize: '35px' }} onClick={handleClickFiles} />
                             <TextField
                                 margin="normal"
                                 fullWidth
                                 id="text"
                                 label="Seleccionar imagenes del emprendimiento"
-                                name="nombEmprend"
                                 autoComplete={false}
                                 autoFocus
                                 readOnly={true}
                                 onClick={handleClickFiles}
-                                value={'aqui va la url de la imagen cloudinary'}
+                                value={`Has seleccionado ${Object.keys(imagenes).length} archivos`}
                                 disabled
                             />
                             <input
                                 type="file"
                                 id='inputFileChanger'
+                                multiple
+                                accept="image/*"
                                 hidden
+                                name="imagenes"
+                                onChange={handleUploadImage}
                             />
                         </Box>
 
-                        <Button 
-                        variant="contained"
-                        sx={{marginBottom:10}}
+                        <Button
+                            type="button"
+                            variant="contained"
+                            sx={{ marginBottom: 10 }}
+                            onClick={handleSubmit}
                         >Publicar</Button>
 
 

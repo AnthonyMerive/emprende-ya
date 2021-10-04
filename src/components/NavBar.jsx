@@ -42,6 +42,16 @@ export default function NavBar(props) {
         setAnchorEl(null);
     };
 
+    const [value, setValue] = React.useState('one');
+    const [cate, setCate] = React.useState('one');
+
+    const handleCateChange = (event, newValue) => {
+        setCate(newValue);
+    };
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
@@ -75,7 +85,6 @@ export default function NavBar(props) {
                                     <Tab value="two" label="Categoria dos" />
                                     <Tab value="three" label="Categoria tres" />
                                 </Tabs>
-
 
                                 <Box>
                                     {

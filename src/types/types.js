@@ -4,3 +4,7 @@ export const types = {
     logout: 'logout',
     actualiza: 'acatualizado'
 }
+
+export const typesEmprendimiento = {
+    agregar:'agregar'
+}

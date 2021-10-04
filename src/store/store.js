@@ -3,12 +3,15 @@ import {loginReducer} from '../reducers/loginReducer'
 import {registerReducer} from '../reducers/registerReducer'
 import { obtenerLocalStorage, guardarLocalStorage}from '../localStorage'
 import thunk from 'redux-thunk';
-
+import { addEmpReducer } from '../reducers/addEmpReducer';
+// combina los reducer existentes
 const reducers = combineReducers({
 
     login: loginReducer,
-    register: registerReducer
-
+    register: registerReducer,
+    agregarEmp:addEmpReducer
+    //aca se agregarian los demas productos
+    //como un objeto
 })
 
 const composeEnhancers = (typeof window !== 'undefined' &&
