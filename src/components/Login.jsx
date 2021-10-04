@@ -52,7 +52,7 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
-  const [values, handleInputChange, reset] = useForm({
+  const [values, handleInputChange,handleFileChange, reset] = useForm({
     email: '',
     password: ''
   })
@@ -62,7 +62,7 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(loginEmailPassword(email, password))
-    reset();
+    // reset();
   }
 
   const handleGoogle = () => {
