@@ -3,12 +3,12 @@ import { GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCQgy8LGYLD9_iROZtkR4MDzGJglKZ0_Zw",
-  authDomain: "login-redux-21b77.firebaseapp.com",
-  projectId: "login-redux-21b77",
-  storageBucket: "login-redux-21b77.appspot.com",
-  messagingSenderId: "656590112328",
-  appId: "1:656590112328:web:0553c06affeb842c42fa7d"
+  apiKey: "AIzaSyBDzP2BTRNdLqusZm7AqaEvYuYzX6kx_Kw",
+  authDomain: "emprende-ya-7f495.firebaseapp.com",
+  projectId: "emprende-ya-7f495",
+  storageBucket: "emprende-ya-7f495.appspot.com",
+  messagingSenderId: "622274255185",
+  appId: "1:622274255185:web:bbabe55064b8a6c0885b70"
 };
 
 const app = initializeApp(firebaseConfig);
