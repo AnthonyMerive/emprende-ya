@@ -18,7 +18,7 @@ import { Button, Popover } from '@mui/material';
 export default function NavBar() {
 
     const notification = 0
-    const autenticacion = false
+    const autenticacion = true
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -28,6 +28,16 @@ export default function NavBar() {
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const [value, setValue] = React.useState('one');
+    const [cate, setCate] = React.useState('one');
+
+    const handleCateChange = (event, newValue) => {
+        setCate(newValue);
+    };
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
     const open = Boolean(anchorEl);
@@ -41,73 +51,89 @@ export default function NavBar() {
                 >
                     {/* duplicar toolbar */}
                     {
-                        autenticacion ? <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                        autenticacion ?
+                            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="menu"
+                                >
+                                    <MenuIcon />
+                                </IconButton>
 
-                            <Tabs
-                                textColor="secondary"
-                                indicatorColor="secondary"
-                                aria-label="secondary tabs example"
-                            >
-                                <Tab value="one" label="Categoria uno" />
-                                <Tab value="two" label="Categoria dos" />
-                                <Tab value="three" label="Categoria tres" />
-                            </Tabs>
+                                <Tabs
+                                    textColor="secondary"
+                                    indicatorColor="secondary"
+                                    aria-label="secondary tabs example"
+                                    value={cate}
+                                    onChange={handleCateChange}
+                                >
+                                    <Tab value="one" label="Categoria uno" />
+                                    <Tab value="two" label="Categoria dos" />
+                                    <Tab value="three" label="Categoria tres" />
+                                </Tabs>
 
-
-                            <Tabs>
-                                {
-                                    notification >= 1 ?
-                                        
-
-                                        <Tab icon={
-                                            <Badge
-                                                onClick={handleClick}
-                                                badgeContent={notification} color="error" >
-                                                <NotificationsIcon sx={{ color: 'white' }} />
-                                            </Badge>}
-                                        /> : <Tab icon={
-                                            <Badge
+                                <Box>
+                                    {
+                                        notification >= 1 ?
+                                            <IconButton
+                                                // size="large"
+                                                edge="start"
+                                                color="inherit"
+                                                aria-label="menu"
+                                                sx={{}}
                                                 onClick={handleClick}
                                             >
-                                                <NotificationsIcon sx={{ color: 'white' }} />
-                                            </Badge>}
-                                        />
-                                }
-                                <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
-                                <Tab icon={<AccountCircleIcon sx={{ color: 'white' }} />} />
-                            </Tabs>
-                        </Toolbar> 
+                                                <Badge
+                                                    badgeContent={notification} color="error" >
+                                                    <NotificationsIcon sx={{ color: 'white' }} />
+                                                </Badge>
+                                            </IconButton>
+                                            :
+                                            <IconButton
+                                                // size="large"
+                                                edge="start"
+                                                color="inherit"
+                                                aria-label="menu"
+                                                sx={{}}
+                                                onClick={handleClick}
+                                            >
+                                                <Badge>
+                                                    <NotificationsIcon sx={{ color: 'white' }} />
+                                                </Badge>
+                                            </IconButton>
+                                    }
+                                    <IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton>
+                                    <IconButton><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
+                                </Box>
 
-                        : 
+                            </Toolbar>
 
-                        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                            // sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                            :
+
+                            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: "center" }}>
+                                <Box>
+                                    <IconButton
+                                        // size="large"
+                                        edge="start"
+                                        color="inherit"
+                                        aria-label="menu"
+                                        sx={{}}
+                                    >
+                                        <MenuIcon />
+                                    </IconButton>
+                                </Box>
 
 
-                            <Tabs >
-                                <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
-                                <Tab icon={<Button sx={{ color: 'white' }} variant="outlined">Login</Button>} />
-                                <Tab icon={<Button sx={{ color: 'white' }} variant="outlined">Registro</Button>} />
+                                <Box>
+                                    <Button sx={{ color: 'white' }} variant="outlined">Login</Button>
+                                    <Button sx={{ color: 'white' }} variant="outlined">Registro</Button>
+                                </Box>
 
-                            </Tabs>
 
-                        </Toolbar>
+
+                            </Toolbar>
                     }
 
                     <Popover
