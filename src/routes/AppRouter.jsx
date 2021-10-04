@@ -1,21 +1,37 @@
-import { Grid } from '@mui/material'
 import React from 'react'
-import Login from '../components/Login'
-import Register from '../components/Register'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
+import Navbar from '../components/NavBar'
+import LandingPage from '../components/LandingPage'
+import Cards from '../components/Cards'
+import AddEmprendimiento from '../components/AddEmprendimiento'
+import PrivateRoute from './PrivateRoute'
 
 export default function AppRouter() {
 
-    return (
-        <>
-            <Grid container>
-                <Grid item xs={6}>
-                    <Login />
-                </Grid>
+    let auth = false
 
-                <Grid item xs={6}>
-                    <Register />
-                </Grid>
-            </Grid>
-        </>
+    return (
+
+        <Router>
+
+            <Navbar auth={auth} />
+
+            <Switch>
+
+                <PrivateRoute auth={auth} exact path="/agregarProducto" component={AddEmprendimiento} />
+
+                <Route exact path="/" component={LandingPage} />
+
+                <Route exact path="/productos" component={Cards} />
+
+            </Switch>
+
+        </Router>
+
+
     )
 }
