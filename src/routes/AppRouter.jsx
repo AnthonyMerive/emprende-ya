@@ -1,29 +1,34 @@
 import React from 'react'
-<<<<<<< HEAD
-
-=======
 import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect
 } from "react-router-dom";
 import Navbar from '../components/NavBar'
 import LandingPage from '../components/LandingPage'
 import Cards from '../components/Cards'
 import AddEmprendimiento from '../components/AddEmprendimiento'
 import PrivateRoute from './PrivateRoute'
->>>>>>> develop
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 export default function AppRouter() {
 
-    let auth = false
+    const [auth, setAuth] = useState(false)
+
+
+    const usuarioLogeado = useSelector(store => store.login)
+
+    useEffect(() => {
+        usuarioLogeado.uid ?
+            setAuth(true)
+            :
+            setAuth(false)
+    }, [usuarioLogeado])
 
     return (
-<<<<<<< HEAD
-        <>
-           
-        </>
-=======
 
         <Router>
 
@@ -33,15 +38,16 @@ export default function AppRouter() {
 
                 <PrivateRoute auth={auth} exact path="/agregarProducto" component={AddEmprendimiento} />
 
-                <Route exact path="/" component={LandingPage} />
-
-                <Route exact path="/productos" component={Cards} />
+                {auth ?
+                    <Route exact path="/" component={Cards} />
+                    :
+                    <Route exact path="/" component={LandingPage} />
+                }
 
             </Switch>
 
         </Router>
 
 
->>>>>>> develop
     )
 }

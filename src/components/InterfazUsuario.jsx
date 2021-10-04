@@ -1,16 +1,24 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginIcon from '@mui/icons-material/Login';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
-import { stringAvatar } from '../hooks/colorUser'
+import SellIcon from '@mui/icons-material/Sell';
+import { useSelector } from 'react-redux';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { logout } from '../actions/actionLogin'
+import { useDispatch } from 'react-redux';
+import { registerSincrono } from '../actions/actionRegister';
+import { fileUpload } from '../helpers/FileUpload';
+import { addFoto } from '../actions/addFoto'
+import { IconButton } from '@mui/material';
 
 const theme = createTheme({
     palette: {
@@ -23,18 +31,50 @@ const theme = createTheme({
     },
 });
 
+export default function Usuario(props) {
 
+    const perfil = useSelector(store => store.login)
+    const nuevoUsuario = useSelector(store => store.register)
 
-export default function InterfazUsuario() {
+    const dispatch = useDispatch()
 
-    const perfil = {
-        nombre: 'Ilan',
-        apellido: 'Diaz',
-        foto: 'https://mui.com/static/images/avatar/1.jpg',
-        correo: 'ilan@gmail.com',
-        prefijo: '57',
-        telefono: '3202312631'
+    const handleCerrarSesion = () => {
+        dispatch(logout());
+        dispatch(registerSincrono());
+        props.setShowInterfaz(false)
+        localStorage.clear();
     }
+
+    const idPerfil = perfil.id;
+    const idNuevoUsuario = nuevoUsuario.id;
+    const fotoPerfil = perfil.foto;
+    const [imgUrl, setImgUrl] = useState(fotoPerfil)
+
+    useEffect(() => {
+        if (fotoPerfil === null) {
+            alert('cargue una foto de perfil')
+        }
+    }, [idPerfil, idNuevoUsuario, fotoPerfil])
+
+    const handleActualizafoto = () => {
+        document.getElementById('fileSelector').click();
+    }
+
+    const handleFileChanged = (e) => {
+        const file = e.target.files[0];
+        fileUpload(file)
+            .then(resp => {
+                setImgUrl(resp)
+            })
+            .catch(error => {
+                console.log('Vuelva a cargar la imagen');
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        dispatch(addFoto(imgUrl))
+    }, [imgUrl, dispatch])
 
     return (
         <ThemeProvider theme={theme}>
@@ -61,15 +101,26 @@ export default function InterfazUsuario() {
 
 
                     {perfil.foto ?
-                        <Avatar alt={`${perfil.nombre} ${perfil.apellido}`} src={`${perfil.foto}`}
+                        <Avatar alt={perfil.displayName} src={`${perfil.foto}`}
                             sx={{ width: 80, height: 80 }} />
                         :
-
-                        <Avatar alt={`${perfil.nombre} ${perfil.apellido}`}
-
-                            {...stringAvatar(`${perfil.nombre} ${perfil.apellido}`)}
-
-                        />
+                        <div>
+                            <input
+                                id="fileSelector"
+                                type="file"
+                                name="file"
+                                style={{ display: 'none' }}
+                                onChange={handleFileChanged}
+                            />
+                            <IconButton aria-label="actualizaFoto">
+                                <AddPhotoAlternateIcon
+                                    onClick={handleActualizafoto}
+                                    sx={{
+                                        fontSize: "60px",
+                                        color: "#131921"
+                                    }} />
+                            </IconButton>
+                        </div>
                     }
 
                     <Box sx={{
@@ -83,7 +134,7 @@ export default function InterfazUsuario() {
                                     align='center'
                                     component="h2"
                                     variant="h6">
-                                    {`${perfil.nombre} ${perfil.apellido}`}
+                                    {`${perfil.displayName}`}
                                 </Typography>
                             </Grid>
 
@@ -93,15 +144,6 @@ export default function InterfazUsuario() {
                                     component="h2"
                                     variant="subtitle1">
                                     {`${perfil.correo}`}
-                                </Typography>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <Typography
-                                    align='center'
-                                    component="h2"
-                                    variant="subtitle1">
-                                    {`+${perfil.prefijo} ${perfil.telefono}`}
                                 </Typography>
                             </Grid>
 
@@ -115,16 +157,24 @@ export default function InterfazUsuario() {
                                     mt: 3,
                                     color: '#7E8284'
                                 }}
-                                endIcon={<AutorenewIcon />}
+                                endIcon={<SellIcon />}
                             >
-                                actualizar perfil
+                                <Link
+                                    onClick={() => props.setShowInterfaz(false)}
+                                    to="/agregarProducto"
+                                    style={{ textDecoration: 'none', color: 'grey' }}
+                                >
+                                    Agregar Emprendimiento
+                                </Link>
 
                             </Button>
 
                         </Grid>
 
                         <Grid container justifyContent="center">
+
                             <Button
+                                onClick={handleCerrarSesion}
                                 size="small"
                                 type="submit"
                                 variant="contained"
@@ -134,9 +184,14 @@ export default function InterfazUsuario() {
                                 }}
                                 endIcon={<LoginIcon />}
                             >
-                                cerrar sesion
-
+                                <Link
+                                    to="/"
+                                    style={{ textDecoration: 'none', color: 'white' }}
+                                >
+                                    cerrar sesion
+                                </Link>
                             </Button>
+
 
                         </Grid>
 
@@ -145,7 +200,7 @@ export default function InterfazUsuario() {
                                 mt: 3,
                             }}>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link to="/">
                                     ¿Problemas con tu cuenta?
                                 </Link>
                             </Grid>
@@ -158,3 +213,4 @@ export default function InterfazUsuario() {
         </ThemeProvider >
     );
 }
+

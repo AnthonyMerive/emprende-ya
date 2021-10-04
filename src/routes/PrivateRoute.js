@@ -9,7 +9,7 @@ export default function PrivateRoute({ component: AddProducto, ...rest }) {
             rest.auth?
            <AddProducto/>
            :
-           <Redirect to="/productos" />
+           <Redirect to="/" />
         }
         </Route>
 

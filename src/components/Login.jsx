@@ -73,7 +73,6 @@ export default function Login() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-
           <Box
             sx={{
               display: 'flex',

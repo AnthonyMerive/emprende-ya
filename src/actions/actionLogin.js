@@ -1,7 +1,6 @@
 import { types } from '../types/types'
-import { getAuth, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { googleAuth } from '../firebase/firebaseConfig'
-
 //autenticacion google
 
 const auth = getAuth();
@@ -14,17 +13,15 @@ export const loginGoogle = () => {
         )
             .then(({ user }) => {
                 console.log(user)
-                user = user.providerData[0];
-                dispatch(loginSincrono(user.uid, user.displayName, user.phoneNumber, user.photoURL))
-                console.log(`Bienvenido ${user.displayName}`)
+                console.log(user.providerData[0])
+                const data = user.providerData[0];
+                dispatch(loginSincrono(user.uid, data.displayName, data.photoURL, data.email))
             })
             .catch(error => {
                 console.log(error)
             })
     }
 }
-
-//login google
 
 export const loginEmailPassword = (email, password) => {
     return (dispatch) => {
@@ -33,26 +30,42 @@ export const loginEmailPassword = (email, password) => {
             password
         ).then(({ user }) => {
             console.log(user)
-            console.log(user.providerData)
-            user = user.providerData[0];
-            dispatch(loginSincrono(user.uid, user.displayName, user.phoneNumber, user.photoURL))
-            console.log(`Bienvenido ${user.displayName}`)
+            console.log(user.providerData[0])
+            const data = user.providerData[0];
+            dispatch(loginSincrono(user.uid, data.displayName, data.photoURL, data.email))
         }).catch(error => {
             console.log(error)
         })
     }
 }
 
-
-
-export const loginSincrono = (uid, displayName, telefono, foto) => {
+export const loginSincrono = (uid, displayName, foto, correo) => {
     return {
         type: types.login,
         payload: {
             uid,
             displayName,
-            telefono,
-            foto
+            foto,
+            correo
         }
+    }
+}
+
+export const logout = () => {
+
+    return (dispatch) => {
+        signOut(auth)
+            .then(user => {
+                dispatch(logoutSincrono())
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export const logoutSincrono = () => {
+    return {
+        type: types.logout
     }
 }

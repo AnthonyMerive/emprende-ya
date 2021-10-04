@@ -1,4 +1,6 @@
 export const types = {
-    login: 'Inicia Sesion',
-    register: 'Registro'
+    login: 'Login',
+    register: 'register',
+    logout: 'logout',
+    actualiza: 'acatualizado'
 }

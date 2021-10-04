@@ -11,14 +11,17 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
-import AddReactionIcon from '@mui/icons-material/AddReaction';
 import { Button, Popover } from '@mui/material';
+import OffCanvas from './Offcanvas';
 
-export default function NavBar() {
+export default function NavBar(props) {
 
     const notification = 0
-    const autenticacion = false
+    const autenticacion = props.auth
+
+    const [showLogin, setShowLogin] = useState(false)
+    const [showRegister, setShowRegister] = useState(false)
+    const [showInterfaz, setShowInterfaz] = useState(false)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -41,73 +44,77 @@ export default function NavBar() {
                 >
                     {/* duplicar toolbar */}
                     {
-                        autenticacion ? <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                        autenticacion ?
+                            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="menu"
+                                >
+                                    <MenuIcon />
+                                </IconButton>
 
-                            <Tabs
-                                textColor="secondary"
-                                indicatorColor="secondary"
-                                aria-label="secondary tabs example"
-                            >
-                                <Tab value="one" label="Categoria uno" />
-                                <Tab value="two" label="Categoria dos" />
-                                <Tab value="three" label="Categoria tres" />
-                            </Tabs>
-
-
-                            <Tabs>
-                                {
-                                    notification >= 1 ?
-                                        
-
-                                        <Tab icon={
-                                            <Badge
-                                                onClick={handleClick}
-                                                badgeContent={notification} color="error" >
-                                                <NotificationsIcon sx={{ color: 'white' }} />
-                                            </Badge>}
-                                        /> : <Tab icon={
-                                            <Badge
-                                                onClick={handleClick}
-                                            >
-                                                <NotificationsIcon sx={{ color: 'white' }} />
-                                            </Badge>}
-                                        />
-                                }
-                                <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
-                                <Tab icon={<AccountCircleIcon sx={{ color: 'white' }} />} />
-                            </Tabs>
-                        </Toolbar> 
-
-                        : 
-
-                        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                            // sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                                <Tabs
+                                    textColor="secondary"
+                                    indicatorColor="secondary"
+                                    aria-label="secondary tabs example"
+                                >
+                                    <Tab value="one" label="Categoria uno" />
+                                    <Tab value="two" label="Categoria dos" />
+                                    <Tab value="three" label="Categoria tres" />
+                                </Tabs>
 
 
-                            <Tabs >
-                                <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
-                                <Tab icon={<Button sx={{ color: 'white' }} variant="outlined">Login</Button>} />
-                                <Tab icon={<Button sx={{ color: 'white' }} variant="outlined">Registro</Button>} />
+                                <Tabs>
+                                    {
 
-                            </Tabs>
+                                        notification >= 1 ?
 
-                        </Toolbar>
+
+                                            <Tab icon={
+                                                <Badge
+                                                    onClick={handleClick}
+                                                    badgeContent={notification} color="error" >
+                                                    <NotificationsIcon sx={{ color: 'white' }} />
+                                                </Badge>}
+                                            />
+                                            :
+                                            <Tab icon={
+                                                <Badge
+                                                    onClick={handleClick}
+                                                >
+                                                    <NotificationsIcon sx={{ color: 'white' }} />
+                                                </Badge>}
+                                            />
+
+                                    }
+                                    <Tab icon={<HomeIcon sx={{ color: 'white' }} />} />
+                                    <Tab onClick={() => setShowInterfaz(true)} icon={<AccountCircleIcon sx={{ color: 'white' }} />} />
+                                </Tabs>
+                            </Toolbar>
+
+                            :
+
+                            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="menu"
+                                // sx={{ mr: 2 }}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+
+
+                                <Tabs >
+                                    <Tab onClick={() => setShowLogin(true)} icon={<Button sx={{ color: 'white' }} variant="outlined">Login</Button>} />
+                                    <Tab onClick={() => setShowRegister(true)} icon={<Button sx={{ color: 'white' }} variant="outlined">Registro</Button>} />
+
+                                </Tabs>
+
+                            </Toolbar>
                     }
 
                     <Popover
@@ -130,6 +137,16 @@ export default function NavBar() {
                 </AppBar>
 
             </Box>
+
+            <OffCanvas
+                setShowLogin={setShowLogin}
+                showLogin={showLogin}
+                setShowRegister={setShowRegister}
+                showRegister={showRegister}
+                setShowInterfaz = {setShowInterfaz}
+                showInterfaz = {showInterfaz}
+                auth={autenticacion}
+            />
         </div>
     )
 }

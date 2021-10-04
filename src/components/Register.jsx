@@ -14,7 +14,8 @@ import LoginIcon from '@mui/icons-material/Login';
 import GoogleIcon from '@mui/icons-material/Google';
 import { useForm } from '../hooks/useForm'
 import { useDispatch } from 'react-redux'
-import { registerSincrono } from '../actions/actionRegister'
+import { registroEmailPasswordNombre } from '../actions/actionRegister'
+import { loginGoogle } from '../actions/actionLogin';
 
 function Copyright(props) {
     return (
@@ -47,18 +48,24 @@ export default function Register() {
     const [values, handleInputChange, reset] = useForm({
         email: '',
         password: '',
-        nombreCompleto: '',
-        telefono: ''
+        nombreCompleto: ''
     })
 
-    const { email, password, nombreCompleto, telefono } = values;
+    const { email, password, nombreCompleto } = values;
 
     const handleRegister = (e) => {
         e.preventDefault();
-        dispatch(registerSincrono(nombreCompleto, email, password, telefono))
+        dispatch(registroEmailPasswordNombre(
+            nombreCompleto,
+            email,
+            password))
         reset();
+
     }
 
+    const handleGoogle = () => {
+        dispatch(loginGoogle())
+      }
 
     return (
         <ThemeProvider theme={theme}>
@@ -136,32 +143,20 @@ export default function Register() {
                                 />
                             </Grid>
 
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    name="telefono"
-                                    value={telefono}
-                                    onChange={handleInputChange}
-                                    label="Telefono Celular"
-                                    type="text"
-                                    id="telefono"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
-
                         </Grid>
 
                         <Button
-                            type="submit"
+                            type="button"
                             fullWidth
                             variant="contained"
                             sx={{
                                 mt: 3,
                                 bgcolor: '#F36E6E'
                             }}
+                            onClick={handleGoogle}
                             endIcon={<GoogleIcon />}
                         >
-                            Registrate con Google
+                            Continua con Google
 
                         </Button>
 
@@ -178,12 +173,8 @@ export default function Register() {
                             Enviar
 
                         </Button>
-
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    ¿Ya tienes una cuenta? Ingresa
-                                </Link>
                             </Grid>
                         </Grid>
                     </Box>
