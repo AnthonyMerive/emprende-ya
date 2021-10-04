@@ -4,7 +4,7 @@ import { Button, TextField, Typography, Container, Box, InputLabel, MenuItem, Fo
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import { useForm } from '../hooks/useForm'
-import { fileUpload } from '../Helpers/FileUpload';
+import { fileUpload } from '../helpers/FileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { crearEmprendimientos } from '../actions/actionAddEmp';
 
