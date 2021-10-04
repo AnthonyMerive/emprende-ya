@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export const useForm = ( initialState = {} ) => {
     
-    const [formValue, setValues] = useState(initialState);
+    const [values, setValues] = useState(initialState);
     
     const reset = () => {
         setValues( initialState );
@@ -10,10 +10,19 @@ export const useForm = ( initialState = {} ) => {
 
     const handleInputChange = ({ target }) => {
         setValues({
-            ...formValue,
+            ...values,
             [ target.name ]: target.value
         });
     }
 
-    return [ formValue, handleInputChange, reset ];
+    
+    const handleFileChange = ({target})=>{
+        setValues({
+            ...values,
+            [ target.name ]: target.files
+        });
+    }
+   
+
+    return [ values,setValues, handleInputChange,handleFileChange, reset ];
 }
