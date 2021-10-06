@@ -76,7 +76,7 @@ export default function LandingPage() {
                     </Grid>
 
                     <Grid item xs={12} md={6}>
-                        <Card sx={{ minHeight: '450px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} >
+                        <Card sx={{ minHeight: '450px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'  }} >
                             <CardMedia
                                 component="img"
                                 height="270"
