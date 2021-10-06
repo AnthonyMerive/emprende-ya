@@ -8,7 +8,7 @@ export default function LandingPage() {
     const { text } = useTypewriter({
         words: [' El emprendimiento que tanto buscabas',
             'La oportunidad que tanto esperabas',
-            ' Todo al alcance un click'],
+            ' Todo al alcance un click.'],
         loop: 0,
         deleteSpeed: 5,
         typeSpeed: 10,
@@ -18,10 +18,10 @@ export default function LandingPage() {
             <div className="gradient-background">
 
 
-                <Grid container spacing={2} sx={{ alignItems: 'center', marginTop:{xs:-20, sm:-10,md:0}, textAlign:'center' }}>
+                <Grid container spacing={2} sx={{ alignItems: 'center', marginTop:{xs:-10, sm:0,md:-20,lg:-20}, textAlign:'center' }}>
                     <Grid item xs={12} md={6}>
                         <Container>
-                            <Typography variant="h2" sx={{marginBottom:5}} >
+                            <Typography variant="h4" sx={{marginBottom:5, marginTop:{xs:5,md:0}}} >
                                 {text}
                                 <Cursor />
                             </Typography>
