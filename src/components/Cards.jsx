@@ -5,7 +5,8 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Grid from '@mui/material/Grid';
-import {Box, Container} from '@mui/material/';
+import { Box, Container } from '@mui/material/';
+import { Link } from 'react-router-dom';
 
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
@@ -16,24 +17,31 @@ function srcset(image, width, height, rows = 1, cols = 1) {
 }
 
 export default function Cards() {
-  return (
-    <Container sx={{marginTop:2, display:'flex', justifyContent: 'center', alignItems: 'center',}}>
+
+  const [open, setOpen] = React.useState(false);
+
+  return (<>
+
+    <Container sx={{ marginTop: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
       <Grid container  >
-        <Grid item xs={12} sx={{width:'100%', textAlign: 'center'}}>
+        <Grid item xs={12} sx={{ width: '100%', textAlign: 'center' }}>
           <Box sx={{ position: 'sticky', zIndex: '1000' }}>
             <h1>CATEGORIA</h1>
+
           </Box>
           {itemData.map((item) => {
             const cols = item.featured ? 2 : 1;
             const rows = item.featured ? 2 : 2;
             return (
-              <ImageListItem key={item.img} cols={cols} rows={rows} sx={{margin:1}}>
-                <img
-                  {...srcset(item.img, 250, 200, rows, cols)}
-                  alt={item.title}
-                  loading="lazy"
-                  className="img-cards"
-                />
+              <ImageListItem key={item.img} cols={cols} rows={rows} sx={{ margin: 1 }}>
+                {/* <Link to={`detalle/${}`}> */}
+                  <img
+                    {...srcset(item.img, 250, 200, rows, cols)}
+                    alt={item.title}
+                    loading="lazy"
+                    className="img-cards"
+                  />
+                {/* </Link > */}
                 <ImageListItemBar
                   sx={{
                     background:
@@ -55,11 +63,12 @@ export default function Cards() {
               </ImageListItem>
             );
           })}
+
         </Grid>
-        </Grid>
+      </Grid>
     </Container>
 
-  );
+  </>);
 }
 
 const itemData = [
