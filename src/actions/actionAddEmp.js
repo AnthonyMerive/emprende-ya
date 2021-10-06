@@ -4,7 +4,15 @@ import { db } from "../firebase/firebaseConfig";
 import { typesEmprendimiento } from "../types/types"
 
 
-export const crearEmprendimientos = (nombre, descripcion, categoria,imagenes,userId) => {
+export const crearEmprendimientos = (
+    nombre,
+    descripcion,
+    categoria,
+    imagenes,
+    userId,
+    displayName,
+    fotoPerfil,
+    correo) => {
 
     return async (dispatch) => {
         const newEmprendimientos = {
@@ -12,16 +20,19 @@ export const crearEmprendimientos = (nombre, descripcion, categoria,imagenes,use
             descripcion,
             categoria,
             imagenes,
-            userId
+            userId,
+            displayName,
+            fotoPerfil,
+            correo
         }
-        addDoc(collection(db,"Emprendimientos"),newEmprendimientos)
-        .then(resp=>{
-            dispatch(crear(newEmprendimientos))
-            console.log(newEmprendimientos)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+        addDoc(collection(db, "Emprendimientos"), newEmprendimientos)
+            .then(resp => {
+                dispatch(crear(newEmprendimientos))
+                console.log(newEmprendimientos)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 }
 

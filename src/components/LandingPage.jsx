@@ -1,7 +1,16 @@
-import React from 'react'
-import { Grid, Card, CardActions, CardContent, CardMedia, Button, Typography, Container, Box } from '@mui/material';
-import { useTypewriter, Cursor } from 'react-simple-typewriter'
 
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
+import React, { useState } from 'react'
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import OffCanvas from './Offcanvas';
 
 export default function LandingPage() {
 
@@ -13,6 +22,10 @@ export default function LandingPage() {
         deleteSpeed: 5,
         typeSpeed: 10,
     })
+
+    const [showLogin, setShowLogin] = useState(false)
+    const [showRegister, setShowRegister] = useState(false)
+
     return (
         <>
             <div className="gradient-background">
@@ -57,7 +70,7 @@ export default function LandingPage() {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small" variant="contained">Explorar</Button>
+                                <Button onClick={()=>setShowRegister(true)} size="small" variant="contained">Explorar</Button>
                             </CardActions>
                         </Card>
                     </Grid>
@@ -80,13 +93,19 @@ export default function LandingPage() {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button size="small" variant="contained">Publicar un proyecto</Button>
+                                <Button onClick={()=>setShowLogin(true)} size="small" variant="contained">Publicar un proyecto</Button>
                             </CardActions>
                         </Card>
                     </Grid>
                 </Grid>
             </Container>
-        </>
 
+            <OffCanvas
+                setShowLogin={setShowLogin}
+                showLogin={showLogin}
+                setShowRegister={setShowRegister}
+                showRegister={showRegister}
+            />
+        </>
     )
 }

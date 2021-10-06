@@ -23,7 +23,11 @@ const theme = createTheme({
 
 export default function AddEmprendimiento() {
     const user = useSelector(user => user.login)
-    let userId = user.uid || '';
+    const userId = user.uid;
+    const displayName = user.displayName;
+    const fotoPerfil = user.foto;
+    const correo = user.correo;
+
 
     const dispatch = useDispatch()
     const [images, setImages] = useState({});
@@ -53,7 +57,7 @@ export default function AddEmprendimiento() {
                     images[i] = resp
                     setValues({
                         ...values,
-                        ['imagenes']:images
+                        ['imagenes']: images
                     })
                 }).catch(err => {
                     console.log(err.message)
@@ -64,7 +68,15 @@ export default function AddEmprendimiento() {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('funcion')
-        dispatch(crearEmprendimientos(nombre, descripcion, categoria, imagenes, userId))
+        dispatch(crearEmprendimientos(
+            nombre,
+            descripcion,
+            categoria,
+            imagenes,
+            userId,
+            displayName,
+            fotoPerfil,
+            correo))
     }
 
 
@@ -83,7 +95,7 @@ export default function AddEmprendimiento() {
                         alignItems: 'center'
                     }}
                     component="form"
-                    // onSubmit={handleSubmit}
+                // onSubmit={handleSubmit}
                 >
                     <AddBusinessIcon sx={{ fontSize: '60px', color: '#299ac1' }} />
                     <Typography component="h1" variant="h5">
