@@ -11,10 +11,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { Button, Popover } from '@mui/material';
+import { Avatar, Button, Popover } from '@mui/material';
 import OffCanvas from './Offcanvas';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function NavBar(props) {
+
+    const perfil = useSelector(store => store.login)
+
 
     const notification = 0
     const autenticacion = props.auth
@@ -107,9 +112,13 @@ export default function NavBar(props) {
                                                 </Badge>
                                             </IconButton>
                                     }
-                                    <IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton>
-                                    <IconButton onClick={() => setShowInterfaz(true)}><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
+                                    <Link to="/"><IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton></Link>
 
+                                    {perfil.foto ?
+                                        <IconButton><Avatar sx={{ width: 30, height: 30 }} onClick={() => setShowInterfaz(true)} alt={perfil.displayName} src={`${perfil.foto}`}/></IconButton>
+                                        :
+                                        <IconButton onClick={() => setShowInterfaz(true)}><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
+                                    }
                                 </Box>
                             </Toolbar>
 
