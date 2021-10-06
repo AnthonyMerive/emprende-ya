@@ -47,10 +47,11 @@ export default function NavBar(props) {
     const id = open ? 'simple-popover' : undefined;
 
     return (
-        <div>
-            <Box>
-                <AppBar position="fixed"
-                    sx={{ boxShadow: 'none' }}
+        <>
+            <Box sx={{backgroundColor:'red', height:55}} >
+                <AppBar
+                    position="fixed"
+                    sx={{ boxShadow: 'none'}}
                 >
                     {/* duplicar toolbar */}
                     {
@@ -166,6 +167,6 @@ export default function NavBar(props) {
                 showInterfaz={showInterfaz}
                 auth={autenticacion}
             />
-        </div>
+        </>
     )
 }

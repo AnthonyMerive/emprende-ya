@@ -1,46 +1,47 @@
 import React from 'react'
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
+import { Grid, Card, CardActions, CardContent, CardMedia, Button, Typography, Container, Box } from '@mui/material';
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
 
 
 export default function LandingPage() {
+
+    const { text } = useTypewriter({
+        words: [' El emprendimiento que tanto buscabas',
+            'La oportunidad que tanto esperabas',
+            ' Todo al alcance un click'],
+        loop: 0,
+        deleteSpeed: 5,
+        typeSpeed: 10,
+    })
     return (
         <>
             <div className="gradient-background">
-                <Grid container spacing={2} sx={{alignItems: 'center', marginTop:'-100px'}}>
+
+
+                <Grid container spacing={2} sx={{ alignItems: 'center', marginTop:{xs:-20, sm:-10,md:0}, textAlign:'center' }}>
                     <Grid item xs={12} md={6}>
                         <Container>
-                            <Typography  variant="h4" >
-                                El emprendimiento que tanto esperabas, al alcance un click
+                            <Typography variant="h2" sx={{marginBottom:5}} >
+                                {text}
+                                <Cursor />
                             </Typography>
-                            <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Publica tu emprendimiento</Button>
-                            <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Encuentra lo que buscas</Button>
+                            {/* <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Publica tu emprendimiento</Button>
+                            <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Encuentra lo que buscas</Button> */}
                         </Container>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <img className="img-landing"src="https://www.liderdelemprendimiento.com/wp-content/uploads/2021/04/Como-ser-emprendedor-y-no-morir-en-el-intento.png" alt="" />
+                        <img className="img-landing" src="https://www.liderdelemprendimiento.com/wp-content/uploads/2021/04/Como-ser-emprendedor-y-no-morir-en-el-intento.png" alt="" />
                     </Grid>
                 </Grid>
             </div>
 
-
-
-
-
             <Container>
-                <Typography gutterBottom variant="h3" component="div" sx={{marginBottom:-5}}>
+                <Typography gutterBottom variant="h3" component="div" sx={{ marginBottom: -5 }}>
                     ¿Qué puedes hacer en emprendeYA?
                 </Typography>
                 <Grid container spacing={2} sx={{ marginTop: 10, marginBottom: 5 }}>
                     <Grid item xs={12} md={6}>
-                        <Card sx={{ minHeight: '450px', display:'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Card sx={{ minHeight: '450px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
                             <CardMedia
                                 component="img"
                                 height="270"
@@ -62,7 +63,7 @@ export default function LandingPage() {
                     </Grid>
 
                     <Grid item xs={12} md={6}>
-                        <Card sx={{ minHeight: '450px', display:'flex', flexDirection: 'column', justifyContent: 'space-between'}} >
+                        <Card sx={{ minHeight: '450px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} >
                             <CardMedia
                                 component="img"
                                 height="270"
