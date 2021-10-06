@@ -4,5 +4,6 @@ export const types = {
 }
 
 export const typesEmprendimiento = {
-    agregar:'agregar'
+    agregar:'agregar',
+    getEmprendimientos: 'GET Emprendimientos'
 }

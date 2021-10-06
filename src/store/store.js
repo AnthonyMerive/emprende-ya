@@ -9,7 +9,7 @@ const reducers = combineReducers({
 
     login: loginReducer,
     register: registerReducer,
-    agregarEmp:addEmpReducer
+    Emprendimientos:addEmpReducer
     //aca se agregarian los demas productos
     //como un objeto
 })

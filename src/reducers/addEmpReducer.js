@@ -1,12 +1,20 @@
 import { typesEmprendimiento } from "../types/types"
 
+const initialState = {
+    emprendimiento: []
+}
 
-export const addEmpReducer = (state = {}, action) => {
+export const addEmpReducer = (state = initialState, action) => {
     switch (action.type) {
         case typesEmprendimiento.agregar:
             return {
-                emprendimiento: [action.payload]
+                emprendimiento: [...state.emprendimiento, action.payload]
             }
+        case typesEmprendimiento.getEmprend:
+            return{
+                emprendimiento: action.payload
+            }
+        
 
         default:
             return state;

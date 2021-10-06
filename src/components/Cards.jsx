@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -7,6 +7,8 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Grid from '@mui/material/Grid';
 import { Box, Container } from '@mui/material/';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { mostrarAsincronico } from '../actions/actionEmprendimiento';
 
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
@@ -18,7 +20,11 @@ function srcset(image, width, height, rows = 1, cols = 1) {
 
 export default function Cards() {
 
-  const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(mostrarAsincronico())
+  }, [dispatch])
 
   return (<>
 
@@ -35,12 +41,12 @@ export default function Cards() {
             return (
               <ImageListItem key={item.img} cols={cols} rows={rows} sx={{ margin: 1 }}>
                 {/* <Link to={`detalle/${}`}> */}
-                  <img
-                    {...srcset(item.img, 250, 200, rows, cols)}
-                    alt={item.title}
-                    loading="lazy"
-                    className="img-cards"
-                  />
+                <img
+                  {...srcset(item.img, 250, 200, rows, cols)}
+                  alt={item.title}
+                  loading="lazy"
+                  className="img-cards"
+                />
                 {/* </Link > */}
                 <ImageListItemBar
                   sx={{
