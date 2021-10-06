@@ -6,27 +6,27 @@ import { useTypewriter, Cursor } from 'react-simple-typewriter'
 export default function LandingPage() {
 
     const { text } = useTypewriter({
-        words: [' El emprendimiento que tanto buscabas', 
-        'La oportunidad que tanto esperabas', 
-        ' Todo al alcance un click'],
+        words: [' El emprendimiento que tanto buscabas',
+            'La oportunidad que tanto esperabas',
+            ' Todo al alcance un click'],
         loop: 0,
         deleteSpeed: 5,
-        typeSpeed:10,
+        typeSpeed: 10,
     })
     return (
         <>
             <div className="gradient-background">
 
 
-                <Grid container spacing={2} sx={{ alignItems: 'center', marginTop: '-100px' }}>
+                <Grid container spacing={2} sx={{ alignItems: 'center', marginTop:{xs:-20, sm:-10,md:0}, textAlign:'center' }}>
                     <Grid item xs={12} md={6}>
                         <Container>
-                            <Typography variant="h4" >
-                   {text}
+                            <Typography variant="h2" sx={{marginBottom:5}} >
+                                {text}
                                 <Cursor />
                             </Typography>
-                            <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Publica tu emprendimiento</Button>
-                            <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Encuentra lo que buscas</Button>
+                            {/* <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Publica tu emprendimiento</Button>
+                            <Button sx={{ marginRight: 2, marginTop: 2 }} variant="contained">Encuentra lo que buscas</Button> */}
                         </Container>
                     </Grid>
                     <Grid item xs={12} md={6}>
