@@ -5,7 +5,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import {Box, Container} from '@mui/material/';
 
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {
@@ -17,59 +17,48 @@ function srcset(image, width, height, rows = 1, cols = 1) {
 
 export default function Cards() {
   return (
-    <Grid sx={{ display: 'flex', padding: '10px' }}>
-      <Grid item xs={4} md={4} sx={{padding:'10px'}}>
-            <ImageList
-              sx={{
-                
-                height: 450,
-                margin:'auto',
-                // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
-                transform: 'translateZ(0)',
-                marginTop:2             
-               }}
-              rowHeight={200}
-              gap={1}
-            >
-                <Box sx={{position:'sticky', zIndex:'1000'}}>
-                    <h1>CATEGORIA</h1>
-                </Box>
-              {itemData.map((item) => {
-                const cols = item.featured ? 2 : 1;
-                const rows = item.featured ? 2 : 1;
-                return (
-                  <ImageListItem key={item.img} cols={cols} rows={rows}>
-                    <img
-                      {...srcset(item.img, 250, 200, rows, cols)}
-                      alt={item.title}
-                      loading="lazy"
-                    />
-                    <ImageListItemBar
-                      sx={{
-                        background:
-                          'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-                          'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                      }}
-                      title={item.title}
-                      position="top"
-                      actionIcon={
-                        <IconButton
-                          sx={{ color: 'white' }}
-                          aria-label={`star ${item.title}`}
-                        >
-                          <StarBorderIcon />
-                        </IconButton>
-                      }
-                      actionPosition="left"
-                    />
-                  </ImageListItem>
-                );
-              })}
-            </ImageList>
+    <Container sx={{marginTop:2, display:'flex', justifyContent: 'center', alignItems: 'center',}}>
+      <Grid container  >
+        <Grid item xs={12} sx={{width:'100%', textAlign: 'center'}}>
+          <Box sx={{ position: 'sticky', zIndex: '1000' }}>
+            <h1>CATEGORIA</h1>
+          </Box>
+          {itemData.map((item) => {
+            const cols = item.featured ? 2 : 1;
+            const rows = item.featured ? 2 : 2;
+            return (
+              <ImageListItem key={item.img} cols={cols} rows={rows} sx={{margin:1}}>
+                <img
+                  {...srcset(item.img, 250, 200, rows, cols)}
+                  alt={item.title}
+                  loading="lazy"
+                  className="img-cards"
+                />
+                <ImageListItemBar
+                  sx={{
+                    background:
+                      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+                      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
+                  }}
+                  title={item.title}
+                  position="top"
+                  actionIcon={
+                    <IconButton
+                      sx={{ color: 'white' }}
+                      aria-label={`star ${item.title}`}
+                    >
+                      <StarBorderIcon />
+                    </IconButton>
+                  }
+                  actionPosition="left"
+                />
+              </ImageListItem>
+            );
+          })}
         </Grid>
+        </Grid>
+    </Container>
 
-
-    </Grid>
   );
 }
 
@@ -136,4 +125,10 @@ const itemData = [
     title: 'Bike',
     author: '@southside_customs',
   },
+  {
+    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    title: 'Honey',
+    author: '@arwinneil',
+    featured: true,
+  }
 ];
