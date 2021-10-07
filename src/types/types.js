@@ -6,6 +6,11 @@ export const types = {
 }
 
 export const typesEmprendimiento = {
-    agregar:'agregar',
+    agregar: 'agregar',
     getEmprend: 'GET emprendimientos'
+}
+
+export const typesMensajes = {
+    enviar: 'mensaje nuevo',
+    mostrar: 'mostrar mensajes'
 }

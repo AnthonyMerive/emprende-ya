@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { db } from "../firebase/firebaseConfig";
 import { typesEmprendimiento } from "../types/types"
 
-
 export const crearEmprendimientos = (
     nombre,
     descripcion,
@@ -35,8 +34,6 @@ export const crearEmprendimientos = (
             })
     }
 }
-
-
 
 export const crear = (emprendimiento) => {
     return {

@@ -21,7 +21,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import ModalDetalle from './ModalDetalle';
-
+import OffCanvas from './Offcanvas'
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -49,6 +49,7 @@ export default function Detalles({ data }) {
     const [expanded, setExpanded] = React.useState(false);
     const [openModal, setOpenModal] = React.useState(false);
     const [dataImg, setDataImg] = React.useState('')
+    const [showEnviar, setShowEnviar] = React.useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -56,6 +57,10 @@ export default function Detalles({ data }) {
 
     const handleModal = () =>{
         setOpenModal(true)
+    }
+
+    const handleCorreo = () =>{
+        setShowEnviar(true)
     }
 
     let avatar = ''
@@ -156,7 +161,7 @@ export default function Detalles({ data }) {
                                         display:'flex',
                                         justifyContent:'center'
                                     }}>
-                                        <Button variant="contained">Enviar Mensaje</Button>
+                                        <Button onClick={handleCorreo} variant="contained">Enviar Mensaje</Button>
                                         <Button variant="contained" onClick={handleModal}>Ver mas imagenes</Button>
                                     </Box>
                                 </Grid>
@@ -165,7 +170,19 @@ export default function Detalles({ data }) {
                         </CardContent>
                     </Collapse>
                 </Card>
-                <ModalDetalle openModal={openModal} setOpenModal={setOpenModal} data={data.imagenes}/>
+                <ModalDetalle
+                openModal={openModal} 
+                setOpenModal={setOpenModal} 
+                data={data.imagenes}
+                />
+
+                <OffCanvas 
+                displayName={data.displayName} 
+                correo={data.correo} 
+                foto={data.fotoPerfil}
+                setShowEnviar={setShowEnviar}
+                showEnviar={showEnviar}
+                />
             </Container>
         </ThemeProvider>
     );

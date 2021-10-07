@@ -6,6 +6,7 @@ import Register from './Register'
 import { IconButton } from '@mui/material';
 import { Box } from '@mui/system';
 import { useEffect, useState } from 'react';
+import EnviarMensaje from './EnviarMensaje';
 
 export default function OffCanvas(props) {
 
@@ -50,6 +51,24 @@ export default function OffCanvas(props) {
             </Box>
             {
                 <InterfazUsuario setShowInterfaz={props.setShowInterfaz} />
+            }
+        </SwipeableDrawer>
+
+        <SwipeableDrawer
+            anchor={'left'}
+            open={props.showEnviar}
+        >
+            <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+                <IconButton onClick={() => props.setShowEnviar(false)} aria-label="delete">
+                    <HighlightOffIcon />
+                </IconButton>
+            </Box>
+            {
+                <EnviarMensaje 
+                displayName={props.displayName} 
+                correo={props.correo} 
+                foto={props.foto}
+                />
             }
         </SwipeableDrawer>
 
