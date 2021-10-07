@@ -82,7 +82,7 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
     title: 'Breakfast',
     author: '@bkristastucchio',
-    featured: true,
+    // featured: true,
   },
   {
     img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
@@ -108,7 +108,7 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
     title: 'Honey',
     author: '@arwinneil',
-    featured: true,
+    // featured: true,
   },
   {
     img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
@@ -144,6 +144,6 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
     title: 'Honey',
     author: '@arwinneil',
-    featured: true,
+    // featured: true,
   }
 ];
