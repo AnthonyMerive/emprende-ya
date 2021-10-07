@@ -13,13 +13,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
 import { stringAvatar } from '../hooks/colorUser';
 import { Container, Divider, Grid } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Button} from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
+import ModalDetalle from './ModalDetalle';
 
 
 const ExpandMore = styled((props) => {
@@ -44,50 +45,27 @@ const theme = createTheme({
     },
 });
 
-export default function Detalles() {
+export default function Detalles({ data }) {
     const [expanded, setExpanded] = React.useState(false);
-
-    const publicacion = {
-        id: '123456',
-        emprendimiento: 'Miel de abeja artesanal',
-        detalles: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, minus. Sed officia odio deserunt, necessitatibus, magnam ullam tempore sint architecto, neque praesentium velit quo quas commodi corrupti qui eos quae.',
-        fecha: '14-10-2021',
-        imagen: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=500&h=400&fit=crop&auto=format',
-        usuario: {
-            nombre: 'Ilan',
-            apellido: 'Diaz',
-            prefijo: '57',
-            telefono: '3202312631',
-            correo: 'ilan@gmail.com',
-            foto: 'https://mui.com/static/images/avatar/1.jpg'
-        },
-    }
+    const [openModal, setOpenModal] = React.useState(false);
+    const [dataImg, setDataImg] = React.useState('')
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
-    let avatar = ''
-
-    if (publicacion.usuario.foto !== '') {
-
-        avatar =
-            <Tooltip title={`${publicacion.usuario.nombre} ${publicacion.usuario.apellido}`} placement="bottom-start">
-                <Avatar alt={`${publicacion.usuario.nombre} ${publicacion.usuario.apellido}`} src={`${publicacion.usuario.foto}`}
-                    sx={{ width: 80, height: 80 }} />
-            </Tooltip>
-
-    } else {
-
-        avatar =
-            <Tooltip title={`${publicacion.usuario.nombre} ${publicacion.usuario.apellido}`} placement="bottom-start">
-                <Avatar alt={`${publicacion.usuario.nombre} ${publicacion.usuario.apellido}`}
-
-                    {...stringAvatar(`${publicacion.usuario.nombre} ${publicacion.usuario.apellido}`)}
-
-                />
-            </Tooltip>
+    const handleModal = () =>{
+        setOpenModal(true)
     }
+
+    let avatar = ''
+    avatar =
+        <Tooltip title={`${data.displayName} `} placement="bottom-start">
+            <Avatar alt={`${data.displayName} `} src={`${data.fotoPerfil}`}
+                sx={{ width: 40, height: 40 }} />
+        </Tooltip>
+
+
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -114,25 +92,22 @@ export default function Detalles() {
 
                         avatar={avatar}
 
-                        action={
-                            <IconButton aria-label="cerrar">
-                                <CloseIcon />
-                            </IconButton>
-                        }
-                        title={<Typography variant="h6"><strong>{publicacion.emprendimiento}</strong></Typography>}
-                        subheader={<Typography variant="body2" sx={{ color: '#CAC8C8' }}>Fecha: {publicacion.fecha}</Typography>}
+                        title={<Typography variant="h6"><strong>{data.nombre}</strong></Typography>}
+                        subheader={<Typography variant="body2" sx={{ color: '#CAC8C8' }}>Fecha: {'dd/mm/aaaa'}</Typography>}
                     />
 
                     <CardMedia
                         component="img"
-                        height="194"
-                        image={publicacion.imagen}
-                        alt={publicacion.emprendimiento}
+                        width="250"
+                        height="250"
+                        image={data.imagenes[0]}
+                        alt={data.nombre}
+                        sx={{objectFit:'contain', padding:2}}
                     />
 
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
-                            {publicacion.detalles}
+                            {data.descripcion}
                         </Typography>
                     </CardContent>
 
@@ -151,7 +126,7 @@ export default function Detalles() {
                     </CardActions>
 
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <Divider variant="middle" />
+                        <Divider variant="middle" />
                         <CardContent>
                             <Grid container spacing={3}>
                                 <Grid item xs={2}>
@@ -160,15 +135,8 @@ export default function Detalles() {
                                             <ChatIcon />
                                         </IconButton>
 
-                                        <IconButton aria-label="contactar" aria-describedby={id} onClick={handleClick}>
-                                            <PhoneIcon />
-                                        </IconButton>
 
-                                        <Popper id={id} open={open} anchorEl={anchorEl}>
-                                            <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
-                                                +{publicacion.usuario.prefijo} {publicacion.usuario.telefono}
-                                            </Box>
-                                        </Popper>
+                                        
                                     </Box>
                                 </Grid>
 
@@ -178,14 +146,26 @@ export default function Detalles() {
                                     }}>
                                         <Typography paragraph><strong>Contacto:</strong></Typography>
                                         <Typography paragraph>
-                                            <strong>{publicacion.usuario.nombre} {publicacion.usuario.apellido}</strong> ({publicacion.usuario.correo})
+                                            <strong>{data.displayName} </strong> ({data.correo})
                                         </Typography>
                                     </Box>
                                 </Grid>
+                                <Grid item xs={12}>
+                                    <Box sx={{
+                                        mt: 1,
+                                        display:'flex',
+                                        justifyContent:'center'
+                                    }}>
+                                        <Button variant="contained">Enviar Mensaje</Button>
+                                        <Button variant="contained" onClick={handleModal}>Ver mas imagenes</Button>
+                                    </Box>
+                                </Grid>
+                                
                             </Grid>
                         </CardContent>
                     </Collapse>
                 </Card>
+                <ModalDetalle openModal={openModal} setOpenModal={setOpenModal} data={data.imagenes}/>
             </Container>
         </ThemeProvider>
     );
