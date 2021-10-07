@@ -77,6 +77,7 @@ export default function AddEmprendimiento() {
             displayName,
             fotoPerfil,
             correo))
+
     }
 
 

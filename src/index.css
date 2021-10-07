@@ -6,6 +6,7 @@
 }
 body{
     width:100vw;
+    overflow-x: hidden;
 }
 
 .gradient-background{
@@ -21,9 +22,4 @@ body{
 .img-landing{
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,.5));
     width: 100%;
-}
-
-.img-cards{
-    object-fit:cover;
-    width:100%;
 }

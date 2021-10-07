@@ -9,71 +9,40 @@ import { Box, Container } from '@mui/material/';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { mostrarAsincronico } from '../actions/actionEmprendimiento';
+import { useSelector } from 'react-redux';
+import ListSubheader from '@mui/material/ListSubheader';
+import InfoIcon from '@mui/icons-material/Info';
 
-function srcset(image, width, height, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${height * rows
-      }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
+import Detalles from './Detalles'
+
+
 
 export default function Cards() {
 
   const dispatch = useDispatch();
+  const emprendimientos = useSelector(state => state.Emprendimientos)
+  const { emprendimiento } = emprendimientos
+
+  console.log(emprendimiento)
 
   useEffect(() => {
     dispatch(mostrarAsincronico())
   }, [dispatch])
 
-  return (<>
+  return (
+    <Container>
 
-    <Container sx={{ marginTop: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-      <Grid container  >
-        <Grid item xs={12} sx={{ width: '100%', textAlign: 'center' }}>
-          <Box sx={{ position: 'sticky', zIndex: '1000' }}>
-            <h1>CATEGORIA</h1>
-
-          </Box>
-          {itemData.map((item) => {
-            const cols = item.featured ? 2 : 1;
-            const rows = item.featured ? 2 : 2;
-            return (
-              <ImageListItem key={item.img} cols={cols} rows={rows} sx={{ margin: 1 }}>
-                {/* <Link to={`detalle/${}`}> */}
-                <img
-                  {...srcset(item.img, 250, 200, rows, cols)}
-                  alt={item.title}
-                  loading="lazy"
-                  className="img-cards"
-                />
-                {/* </Link > */}
-                <ImageListItemBar
-                  sx={{
-                    background:
-                      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-                      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
-                  }}
-                  title={item.title}
-                  position="top"
-                  actionIcon={
-                    <IconButton
-                      sx={{ color: 'white' }}
-                      aria-label={`star ${item.title}`}
-                    >
-                      <StarBorderIcon />
-                    </IconButton>
-                  }
-                  actionPosition="left"
-                />
-              </ImageListItem>
-            );
-          })}
-
-        </Grid>
+      <Grid container spacing={2} >
+        
+          {
+            emprendimiento.map((data,index)=>(
+              <Grid item xs={4} key={index}><Detalles data={data}/></Grid>
+            ))
+          }
+        
       </Grid>
-    </Container>
 
+<<<<<<< HEAD
   </>);
 }
 
@@ -147,3 +116,8 @@ const itemData = [
     // featured: true,
   }
 ];
+=======
+    </Container>
+  );
+}
+>>>>>>> develop

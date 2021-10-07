@@ -15,6 +15,7 @@ import { Avatar, Button, Popover } from '@mui/material';
 import OffCanvas from './Offcanvas';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Notifications from './Notifications'
 
 export default function NavBar(props) {
 
@@ -160,7 +161,7 @@ export default function NavBar(props) {
                             horizontal: 'right',
                         }}
                     >
-                        <Typography sx={{ p: 2 }}>AQUI VAN LAS NOTIFICACIONES</Typography>
+                        <Typography sx={{ p: 2 }}><Notifications/></Typography>
                     </Popover>
 
                 </AppBar>
