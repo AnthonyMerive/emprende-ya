@@ -23,7 +23,7 @@ export default function Cards() {
   const emprendimientos = useSelector(state => state.Emprendimientos)
   const { emprendimiento } = emprendimientos
 
-  console.log(emprendimiento)
+
 
   useEffect(() => {
     dispatch(mostrarAsincronico())
@@ -36,7 +36,7 @@ export default function Cards() {
         
           {
             emprendimiento.map((data,index)=>(
-              <Grid item xs={4} key={index}><Detalles data={data}/></Grid>
+              <Grid item xs={12} sm={6} md={4} key={index}><Detalles data={data}/></Grid>
             ))
           }
         

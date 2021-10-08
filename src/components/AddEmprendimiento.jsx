@@ -8,6 +8,8 @@ import { fileUpload } from '../helpers/FileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { crearEmprendimientos } from '../actions/actionAddEmp';
 
+const date = new Date()
+console.log(date)
 
 const theme = createTheme({
     palette: {
@@ -41,7 +43,6 @@ export default function AddEmprendimiento() {
 
     const { nombre, descripcion, categoria, imagenes } = values
 
-    console.log(nombre, descripcion, categoria, imagenes)
 
 
     const handleClickFiles = () => {
@@ -79,7 +80,6 @@ export default function AddEmprendimiento() {
             correo))
 
     }
-
 
 
 
@@ -188,6 +188,7 @@ export default function AddEmprendimiento() {
 
 
                     </Box>
+ 
                 </Box>
             </Container>
         </ThemeProvider>

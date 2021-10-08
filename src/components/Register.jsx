@@ -45,7 +45,7 @@ export default function Register() {
 
     const dispatch = useDispatch();
 
-    const [values, handleInputChange, reset] = useForm({
+    const [values, setValues, handleInputChange, handleFileChange, reset] = useForm({
         email: '',
         password: '',
         nombreCompleto: ''
@@ -65,7 +65,7 @@ export default function Register() {
 
     const handleGoogle = () => {
         dispatch(loginGoogle())
-      }
+    }
 
     return (
         <ThemeProvider theme={theme}>

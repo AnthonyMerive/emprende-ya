@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { db } from "../firebase/firebaseConfig";
 import { typesEmprendimiento } from "../types/types"
 
+const date = new Date()
+
 
 export const crearEmprendimientos = (
     nombre,
@@ -23,7 +25,8 @@ export const crearEmprendimientos = (
             userId,
             displayName,
             fotoPerfil,
-            correo
+            correo,
+            fechaCreacion : date
         }
         addDoc(collection(db, "Emprendimientos"), newEmprendimientos)
             .then(resp => {
