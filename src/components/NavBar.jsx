@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,18 +16,20 @@ import OffCanvas from './Offcanvas';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Notifications from './Notifications'
+import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
 export default function NavBar(props) {
 
     const perfil = useSelector(store => store.login)
-
-
-    const notification = 0
+    const mensajes = useSelector(store => store.Mensajes)
+    const msj = mensajes.mensajes
     const autenticacion = props.auth
 
+    let contador=0
     const [showLogin, setShowLogin] = useState(false)
     const [showRegister, setShowRegister] = useState(false)
     const [showInterfaz, setShowInterfaz] = useState(false)
+    const [notification, setNotification] = useState(contador)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -48,16 +50,27 @@ export default function NavBar(props) {
         setAnchorEl(null);
     };
 
+    useEffect(() => {
+
+        msj.map(msjs=>{
+            if(!msjs.leido){
+                contador++
+            }
+            setNotification(contador)
+        })
+        
+    }, [msj, setNotification, contador])
+
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
     return (
         <>
-            <Box sx={{backgroundColor:'red', height:55}} >
+            <Box sx={{ backgroundColor: 'red', height: 55 }} >
                 <AppBar
                     position="fixed"
-                    sx={{ boxShadow: 'none'}}
+                    sx={{ boxShadow: 'none' }}
                 >
                     {/* duplicar toolbar */}
                     {
@@ -117,7 +130,7 @@ export default function NavBar(props) {
                                     <Link to="/"><IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton></Link>
 
                                     {perfil.foto ?
-                                        <IconButton><Avatar sx={{ width: 30, height: 30 }} onClick={() => setShowInterfaz(true)} alt={perfil.displayName} src={`${perfil.foto}`}/></IconButton>
+                                        <IconButton><Avatar sx={{ width: 30, height: 30 }} onClick={() => setShowInterfaz(true)} alt={perfil.displayName} src={`${perfil.foto}`} /></IconButton>
                                         :
                                         <IconButton onClick={() => setShowInterfaz(true)}><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
                                     }
@@ -161,7 +174,23 @@ export default function NavBar(props) {
                             horizontal: 'right',
                         }}
                     >
-                        <Typography sx={{ p: 2 }}><Notifications/></Typography>
+                        <Typography sx={{ p: 2 }}>
+                            {
+                                    mensajes.mensajes.length > 0 ?
+
+                                    mensajes.mensajes.map(msj =>
+
+                                        <Notifications
+                                            foto={msj.fotoEnvia}
+                                            nombre={msj.nombreEnvia}
+                                            emprendimiento={msj.emprendimiento}
+                                        />
+                                    )
+                                    :
+                                    <h5>Sin mensajes </h5>
+
+                            }
+                        </Typography>
                     </Popover>
 
                 </AppBar>

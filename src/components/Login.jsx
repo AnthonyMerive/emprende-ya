@@ -52,13 +52,14 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
-  const [values, handleInputChange,handleFileChange, reset] = useForm({
+  const [values, setValues, handleInputChange, handleFileChange, reset] = useForm({
     email: '',
     password: ''
   })
 
   const { email, password } = values;
 
+  console.log(values)
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(loginEmailPassword(email, password))

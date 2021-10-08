@@ -15,11 +15,12 @@ import { useSelector } from 'react-redux';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { logout } from '../actions/actionLogin'
 import { useDispatch } from 'react-redux';
-import { registerSincrono } from '../actions/actionRegister';
+import { resetRegister } from '../actions/actionRegister';
 import { fileUpload } from '../helpers/FileUpload';
 import { addFoto } from '../actions/addFoto'
 import { IconButton } from '@mui/material';
-import { mostrarMensajesSincrono } from '../actions/actionMensajes';
+import { resetMensajes } from '../actions/actionMensajes';
+import { resetEmprendimientos } from '../actions/actionEmprendimiento';
 
 const theme = createTheme({
     palette: {
@@ -41,8 +42,9 @@ export default function Usuario(props) {
 
     const handleCerrarSesion = () => {
         dispatch(logout());
-        dispatch(registerSincrono());
-        dispatch(mostrarMensajesSincrono())
+        dispatch(resetRegister())
+        dispatch(resetEmprendimientos())
+        dispatch(resetMensajes())
         props.setShowInterfaz(false)
         localStorage.clear();
     }

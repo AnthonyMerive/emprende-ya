@@ -21,3 +21,11 @@ export const mostrarSincrono = (emprendimientos) => {
         payload: emprendimientos
     }
 }
+
+export const resetEmprendimientos = () => {
+    return {
+        type: typesEmprendimiento.reset,
+        payload: []
+    }
+}
+

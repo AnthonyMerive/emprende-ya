@@ -13,6 +13,13 @@ export const registerReducer = (state = {}, action) => {
 
             }
 
+            case types.reset:
+
+            return {
+        
+            }
+            
+
         default:
             return state;
     }

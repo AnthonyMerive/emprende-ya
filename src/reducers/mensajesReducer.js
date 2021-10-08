@@ -11,10 +11,16 @@ export const mensajesReducer = (state = initialState, action) => {
                 mensajes: [...state.mensajes, action.payload]
             }
         case typesMensajes.mostrar:
-            return{
+            return {
                 mensajes: action.payload
             }
-        
+
+        case typesMensajes.reset:
+            return {
+                mensajes: action.payload
+            }
+
+
 
         default:
             return state;

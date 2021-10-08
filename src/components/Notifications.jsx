@@ -9,20 +9,20 @@ import Divider from '@mui/material/Divider';
 
 
 
-export default function Notifications() {
-    const user = useSelector(state => state.login)
+export default function Notifications(props) {
+    // const user = useSelector(state => state.login)
 
-    console.log(user)
+    // console.log(user)
 
     return (
         <Box>
             <Stack direction="row">
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom:2 }}>
-                    <Avatar alt={user.displayName} src={user.foto} sx={{ marginRight: 2 }} />
-                    <Typography variant="body2">{user.displayName}</Typography>
+                    <Avatar alt={props.nombre} src={props.foto} sx={{ marginRight: 2 }} />
+                    <Typography variant="body2">{props.nombre}</Typography>
                 </Box>
             </Stack>
-            <Typography variant="body1">{'Desea Contactarte por tu emprendimiento "Abejas"' }</Typography>
+            <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"` }</Typography>
             <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end' }}>{'Hace 2 minutos'}</Typography>
             <Divider />
         </Box>

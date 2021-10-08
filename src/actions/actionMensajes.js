@@ -46,10 +46,8 @@ export const mostrarMensajesAsincronico = (correo) => {
         const coleccion = collection(db, "Mensajes")
         const q = query(coleccion, where("correoRecibe", "==", correo))
         const result = await getDocs(q)
-        console.log(result)
         const mensajes = [];
         result.forEach((document) => {
-            console.log(document.data())
             mensajes.push({
                 ...document.data()
             })
@@ -62,6 +60,13 @@ export const mostrarMensajesSincrono = (mensajes) => {
     return {
         type: typesMensajes.mostrar,
         payload: mensajes
+    }
+}
+
+export const resetMensajes = () => {
+    return {
+        type: typesMensajes.reset,
+        payload: []
     }
 }
 

@@ -16,9 +16,6 @@ import InfoIcon from '@mui/icons-material/Info';
 import Detalles from './Detalles'
 import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
-
-
-
 export default function Cards() {
 
   const dispatch = useDispatch();
@@ -29,11 +26,11 @@ export default function Cards() {
   const { emprendimiento } = emprendimientos
 
   useEffect(() => {
-    dispatch(mostrarAsincronico())
-    if(id){
-    dispatch(mostrarMensajesAsincronico(correo))
+    if (id) {
+      dispatch(mostrarAsincronico())
+      dispatch(mostrarMensajesAsincronico(correo))
     }
-  }, [dispatch, 
+  }, [dispatch,
     correo,
     id
   ])
@@ -42,16 +39,16 @@ export default function Cards() {
     <Container>
 
       <Grid container spacing={2} >
-        
-          {
-            emprendimiento.map((data,index)=>(
-              <Grid item xs={4} key={index}><Detalles data={data}/></Grid>
-            ))
-          }
-        
+
+        {
+          emprendimiento.map((data, index) => (
+            <Grid item xs={4} key={index}><Detalles data={data} /></Grid>
+          ))
+        }
+
       </Grid>
 
-      
+
 
     </Container>
   );

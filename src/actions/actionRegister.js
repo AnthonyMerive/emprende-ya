@@ -1,5 +1,5 @@
 import { types } from '../types/types'
-import { getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 export const registroEmailPasswordNombre = (name, email, password) => {
     return (dispatch) => {
@@ -12,7 +12,7 @@ export const registroEmailPasswordNombre = (name, email, password) => {
             await updateProfile(auth.currentUser, {
                 displayName: name,
             })
-   
+
             dispatch(registerSincrono(user.uid, user.displayName, user.email))
 
         }).catch(error => {
@@ -31,5 +31,11 @@ export const registerSincrono = (uid, displayName, email) => {
             displayName,
             email,
         }
+    }
+}
+
+export const resetRegister = () => {
+    return {
+        type: types.reset
     }
 }
