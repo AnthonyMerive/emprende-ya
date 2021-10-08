@@ -25,6 +25,8 @@ export default function Cards() {
   const correo = perfil.correo
   const { emprendimiento } = emprendimientos
 
+
+
   useEffect(() => {
     if (id) {
       dispatch(mostrarAsincronico())
@@ -39,13 +41,13 @@ export default function Cards() {
     <Container>
 
       <Grid container spacing={2} >
-
-        {
-          emprendimiento.map((data, index) => (
-            <Grid item xs={4} key={index}><Detalles data={data} /></Grid>
-          ))
-        }
-
+        
+          {
+            emprendimiento.map((data,index)=>(
+              <Grid item xs={12} sm={6} md={4} key={index}><Detalles data={data}/></Grid>
+            ))
+          }
+        
       </Grid>
 
 

@@ -22,6 +22,8 @@ import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import ModalDetalle from './ModalDetalle';
 import OffCanvas from './Offcanvas'
+import moment from 'moment';
+import 'moment/locale/es';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -50,6 +52,10 @@ export default function Detalles({ data }) {
     const [openModal, setOpenModal] = React.useState(false);
     const [dataImg, setDataImg] = React.useState('')
     const [showEnviar, setShowEnviar] = React.useState(false);
+
+    moment.locale('es');
+
+    console.log(moment(data.fechaCreacion.toDate()).calendar().charAt(0).toUpperCase())
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -98,7 +104,7 @@ export default function Detalles({ data }) {
                         avatar={avatar}
 
                         title={<Typography variant="h6"><strong>{data.nombre}</strong></Typography>}
-                        subheader={<Typography variant="body2" sx={{ color: '#CAC8C8' }}>Fecha: {'dd/mm/aaaa'}</Typography>}
+                        subheader={<Typography variant="caption" sx={{ color: '#CAC8C8'}}>{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
                     />
 
                     <CardMedia
@@ -125,12 +131,13 @@ export default function Detalles({ data }) {
                             onClick={handleExpandClick}
                             aria-expanded={expanded}
                             aria-label="show more"
+                            onClick={handleModal}
                         >
                             <ExpandMoreIcon />
                         </ExpandMore>
                     </CardActions>
 
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <Divider variant="middle" />
                         <CardContent>
                             <Grid container spacing={3}>
@@ -168,13 +175,8 @@ export default function Detalles({ data }) {
                                 
                             </Grid>
                         </CardContent>
-                    </Collapse>
+                    </Collapse> */}
                 </Card>
-                <ModalDetalle
-                openModal={openModal} 
-                setOpenModal={setOpenModal} 
-                data={data.imagenes}
-                />
 
                 <OffCanvas 
                 displayName={data.displayName} 
@@ -184,6 +186,7 @@ export default function Detalles({ data }) {
                 setShowEnviar={setShowEnviar}
                 showEnviar={showEnviar}
                 />
+                <ModalDetalle openModal={openModal} setOpenModal={setOpenModal} data={data.imagenes} infoCard={data}/>
             </Container>
         </ThemeProvider>
     );
