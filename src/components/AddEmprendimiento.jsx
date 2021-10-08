@@ -81,13 +81,6 @@ export default function AddEmprendimiento() {
 
     }
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> anthony
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="md">
