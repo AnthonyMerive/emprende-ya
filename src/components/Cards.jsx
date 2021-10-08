@@ -24,15 +24,19 @@ export default function Cards() {
   const dispatch = useDispatch();
   const emprendimientos = useSelector(state => state.Emprendimientos)
   const perfil = useSelector(store => store.login)
+  const id = perfil.uid
   const correo = perfil.correo
   const { emprendimiento } = emprendimientos
 
-  console.log(emprendimiento)
-
   useEffect(() => {
     dispatch(mostrarAsincronico())
+    if(id){
     dispatch(mostrarMensajesAsincronico(correo))
-  }, [dispatch, correo])
+    }
+  }, [dispatch, 
+    correo,
+    id
+  ])
 
   return (
     <Container>

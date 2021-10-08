@@ -19,6 +19,7 @@ import { registerSincrono } from '../actions/actionRegister';
 import { fileUpload } from '../helpers/FileUpload';
 import { addFoto } from '../actions/addFoto'
 import { IconButton } from '@mui/material';
+import { mostrarMensajesSincrono } from '../actions/actionMensajes';
 
 const theme = createTheme({
     palette: {
@@ -41,6 +42,7 @@ export default function Usuario(props) {
     const handleCerrarSesion = () => {
         dispatch(logout());
         dispatch(registerSincrono());
+        dispatch(mostrarMensajesSincrono())
         props.setShowInterfaz(false)
         localStorage.clear();
     }

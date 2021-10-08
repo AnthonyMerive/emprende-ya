@@ -12,7 +12,9 @@ export const enviarMensajeAsincrono = (
     correoRecibe,
     // fechaEnvio,
     titulo,
-    mensaje) => {
+    mensaje,
+    leido,
+    emprendimiento) => {
 
     return async (dispatch) => {
         const newMensaje = {
@@ -24,11 +26,12 @@ export const enviarMensajeAsincrono = (
             correoRecibe,
             // fechaEnvio,
             titulo,
-            mensaje
+            mensaje,
+            leido,
+            emprendimiento
         }
         addDoc(collection(db, "Mensajes"), newMensaje)
             .then(resp => {
-                dispatch(enviarMensajeSincrono(newMensaje))
                 console.log(newMensaje)
             })
             .catch(err => {
@@ -37,20 +40,16 @@ export const enviarMensajeAsincrono = (
     }
 }
 
-export const enviarMensajeSincrono = (mensaje) => {
-    return {
-        type: typesMensajes.enviar,
-        payload: mensaje
-    }
-}
 
 export const mostrarMensajesAsincronico = (correo) => {
     return async (dispatch) => {
         const coleccion = collection(db, "Mensajes")
         const q = query(coleccion, where("correoRecibe", "==", correo))
         const result = await getDocs(q)
+        console.log(result)
         const mensajes = [];
         result.forEach((document) => {
+            console.log(document.data())
             mensajes.push({
                 ...document.data()
             })

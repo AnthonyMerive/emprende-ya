@@ -26,7 +26,7 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
     width: 22,
     height: 22,
     border: `2px solid ${theme.palette.background.paper}`,
-  }));
+}));
 
 export default function EnviarMensaje(props) {
     const user = useSelector(user => user.login)
@@ -44,6 +44,8 @@ export default function EnviarMensaje(props) {
         nombreRecibe: props.displayName,
         fotoRecibe: props.foto,
         correoRecibe: props.correo,
+        emprendimiento: props.emprendimiento,
+        leido: false,
         // fechaEnvio: '',
         titulo: '',
         mensaje: ''
@@ -57,7 +59,9 @@ export default function EnviarMensaje(props) {
         correoRecibe,
         fotoRecibe,
         titulo,
-        mensaje } = values
+        mensaje,
+        leido,
+        emprendimiento } = values
 
     console.log(values)
 
@@ -74,7 +78,9 @@ export default function EnviarMensaje(props) {
             correoRecibe,
             // fechaEnvio,
             titulo,
-            mensaje))
+            mensaje,
+            leido,
+            emprendimiento))
 
     }
 
@@ -89,8 +95,8 @@ export default function EnviarMensaje(props) {
                     }}
                     component="form"
                 // onSubmit={handleSubmit}
-                >                    
-                        <Avatar sx={{mb:2}} alt={`${props.displayName}`} src={`${props.foto}`} />
+                >
+                    <Avatar sx={{ mb: 2 }} alt={`${props.displayName}`} src={`${props.foto}`} />
 
                     <Typography component="h1" variant="h6">
                         Contactar a {props.displayName}

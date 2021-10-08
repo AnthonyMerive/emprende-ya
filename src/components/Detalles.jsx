@@ -180,6 +180,7 @@ export default function Detalles({ data }) {
                 displayName={data.displayName} 
                 correo={data.correo} 
                 foto={data.fotoPerfil}
+                emprendimiento={data.nombre}
                 setShowEnviar={setShowEnviar}
                 showEnviar={showEnviar}
                 />
