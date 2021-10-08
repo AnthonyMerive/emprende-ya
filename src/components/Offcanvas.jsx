@@ -69,6 +69,7 @@ export default function OffCanvas(props) {
                 correo={props.correo} 
                 foto={props.foto}
                 emprendimiento={props.emprendimiento}
+                setShowEnviar={props.setShowEnviar}
                 />
             }
         </SwipeableDrawer>

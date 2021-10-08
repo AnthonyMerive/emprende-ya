@@ -31,18 +31,9 @@ export default function NavBar(props) {
     const [showInterfaz, setShowInterfaz] = useState(false)
     const [notification, setNotification] = useState(contador)
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const [value, setValue] = React.useState('one');
-    const [cate, setCate] = React.useState('one');
-    const handleCateChange = (event, newValue) => {
-        setCate(newValue);
-    };
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-    const handleClick = (e) => {
+    const [anchorEl, setAnchorEl] = React.useState(null);   
+   
+    const handleOpen = (e) => {
         setAnchorEl(e.currentTarget);
     };
 
@@ -72,7 +63,7 @@ export default function NavBar(props) {
                     position="fixed"
                     sx={{ boxShadow: 'none' }}
                 >
-                    {/* duplicar toolbar */}
+                 
                     {
                         autenticacion ?
                             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -82,22 +73,11 @@ export default function NavBar(props) {
                                     color="inherit"
                                     aria-label="menu"
                                 >
-                                    <MenuIcon />
+                                    EmprendeYA
                                 </IconButton>
 
-                                <Tabs
-                                    textColor="secondary"
-                                    indicatorColor="secondary"
-                                    aria-label="secondary tabs example"
-                                    value={cate}
-                                    onChange={handleCateChange}
-                                >
-                                    <Tab value="one" label="Categoria uno" />
-                                    <Tab value="two" label="Categoria dos" />
-                                    <Tab value="three" label="Categoria tres" />
-                                </Tabs>
 
-                                <Box>
+                                <Box /* sx={{display:{xs:'none',md:'block'}}} */>
                                     {
                                         notification >= 1 ?
                                             <IconButton
@@ -106,7 +86,7 @@ export default function NavBar(props) {
                                                 color="inherit"
                                                 aria-label="menu"
                                                 sx={{}}
-                                                onClick={handleClick}
+                                                onClick={handleOpen}
                                             >
                                                 <Badge
                                                     badgeContent={notification} color="error" >
@@ -120,7 +100,7 @@ export default function NavBar(props) {
                                                 color="inherit"
                                                 aria-label="menu"
                                                 sx={{}}
-                                                onClick={handleClick}
+                                                onClick={handleOpen}
                                             >
                                                 <Badge>
                                                     <NotificationsIcon sx={{ color: 'white' }} />
