@@ -3,8 +3,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Redirect
-} from "react-router-dom";
+} 
+from "react-router-dom";
 import Navbar from '../components/NavBar'
 import LandingPage from '../components/LandingPage'
 import Cards from '../components/Cards'
@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoute'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import Footer from '../components/Footer'
 
 export default function AppRouter() {
 
@@ -45,6 +46,8 @@ export default function AppRouter() {
                 }
 
             </Switch>
+
+            <Footer />
 
         </Router>
 
