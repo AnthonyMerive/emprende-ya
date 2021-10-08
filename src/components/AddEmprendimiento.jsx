@@ -80,11 +80,6 @@ export default function AddEmprendimiento() {
 
     }
 
-
-
-
-
-
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="md">

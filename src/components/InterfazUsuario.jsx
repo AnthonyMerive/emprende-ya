@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginIcon from '@mui/icons-material/Login';
-import SellIcon from '@mui/icons-material/Sell';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import { useSelector } from 'react-redux';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { logout } from '../actions/actionLogin'
@@ -161,14 +161,14 @@ export default function Usuario(props) {
                                     mt: 3,
                                     color: '#7E8284'
                                 }}
-                                endIcon={<SellIcon />}
+                                endIcon={<BusinessCenterIcon />}
                             >
                                 <Link
                                     onClick={() => props.setShowInterfaz(false)}
-                                    to="/agregarProducto"
+                                    to="/misProductos"
                                     style={{ textDecoration: 'none', color: 'grey' }}
                                 >
-                                    Agregar Emprendimiento
+                                    Mis Emprendimientos
                                 </Link>
 
                             </Button>

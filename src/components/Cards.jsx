@@ -12,7 +12,6 @@ import { mostrarAsincronico } from '../actions/actionEmprendimiento';
 import { useSelector } from 'react-redux';
 import ListSubheader from '@mui/material/ListSubheader';
 import InfoIcon from '@mui/icons-material/Info';
-
 import Detalles from './Detalles'
 import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
@@ -42,13 +41,11 @@ export default function Cards() {
 
         {
           emprendimiento.map((data, index) => (
-            <Grid item xs={4} key={index}><Detalles data={data} /></Grid>
+            <Grid item xs={12} sm={6} md={4} key={index}><Detalles data={data}/></Grid>
           ))
         }
 
       </Grid>
-
-
 
     </Container>
   );
