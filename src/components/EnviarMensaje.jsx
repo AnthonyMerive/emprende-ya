@@ -82,11 +82,14 @@ export default function EnviarMensaje(props) {
             leido,
             emprendimiento))
 
+            props.setShowEnviar(false)
+
     }
 
+
     return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="md">
+        <ThemeProvider theme={theme} >
+            <Container component="main" maxWidth="md" >
                 <Box
                     sx={{
                         display: 'flex',
