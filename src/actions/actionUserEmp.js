@@ -47,7 +47,8 @@ export const actualizarAsincrono = (nombre, descripcion, categoria, imagenes, us
 
         const docRef = await doc(db, `Emprendimientos`, `${id}`);
 
-        await updateDoc(docRef, {nombre: nombre,
+        await updateDoc(docRef, {
+            nombre: nombre,
             descripcion: descripcion,
             categoria: categoria,
             imagenes: imagenes,
@@ -55,14 +56,30 @@ export const actualizarAsincrono = (nombre, descripcion, categoria, imagenes, us
             displayName: displayName,
             fotoPerfil: fotoPerfil,
             correo: correo,
-            fechaCreacion: new Date()})
+            fechaCreacion: new Date()
+        })
     }
 }
 
 
 export const actualizarSincrono = (userEmp) => {
-    return {
+    return {    
         type: typesUserEmp.actualiza,
+        payload: userEmp
+    }
+}
+
+export const eliminarAsincrono = (id) => {
+    return  async (dispatch,getState) => {
+        await deleteDoc(doc(db, `Emprendimientos`, `${id}`));
+    }    
+}
+
+
+
+export const eliminarSincrono = (userEmp) => {
+    return {
+        type: typesUserEmp.eliminar,
         payload: userEmp
     }
 }

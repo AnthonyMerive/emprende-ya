@@ -61,7 +61,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
             let file = files[i]
             fileUpload(file)
                 .then(resp => {
-                    images[i + Object.keys(data.imagenes).length] = resp
+                    images[i + (Object.keys(data.imagenes).length -1)] = resp
                     console.log(resp)
                     setValues({
                         ...values,
@@ -82,6 +82,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
         e.preventDefault()
         console.log('funcion')
         dispatch(actualizarAsincrono(nombre, descripcion, categoria, imagenes, userId, displayName, fotoPerfil, correo, id))
+        setOpenModal(false)
 
 
     }
