@@ -3,12 +3,11 @@ import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { Container, Divider, Grid } from '@mui/material';
+import { Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Tooltip from '@mui/material/Tooltip';
@@ -54,10 +53,6 @@ export default function Detalles({ data }) {
 
     const handleModal = () => {
         setOpenModal(true)
-    }
-
-    const handleCorreo = () => {
-        setShowEnviar(true)
     }
 
     let avatar = ''

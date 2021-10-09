@@ -5,18 +5,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import Badge from '@mui/material/Badge';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import { Avatar, Button, Popover } from '@mui/material';
 import OffCanvas from './Offcanvas';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Notifications from './Notifications'
-import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
 export default function NavBar(props) {
 
@@ -90,7 +87,7 @@ export default function NavBar(props) {
                                             >
                                                 <Badge
                                                     badgeContent={notification} color="error" >
-                                                    <NotificationsIcon sx={{ color: 'white' }} />
+                                                    <MailOutlineIcon sx={{ color: 'white' }} />
                                                 </Badge>
                                             </IconButton>
                                             :
@@ -103,7 +100,7 @@ export default function NavBar(props) {
                                                 onClick={handleOpen}
                                             >
                                                 <Badge>
-                                                    <NotificationsIcon sx={{ color: 'white' }} />
+                                                    <MailOutlineIcon sx={{ color: 'white' }} />
                                                 </Badge>
                                             </IconButton>
                                     }

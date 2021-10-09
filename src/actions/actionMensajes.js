@@ -1,5 +1,4 @@
-import { addDoc, collection, getDocs, where, updateDoc, doc, deleteDoc, query } from "@firebase/firestore";
-import { useSelector } from "react-redux";
+import { addDoc, collection, getDocs, where, query } from "@firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { typesMensajes } from "../types/types"
 

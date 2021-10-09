@@ -1,7 +1,6 @@
 import { types } from '../types/types'
 import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { googleAuth } from '../firebase/firebaseConfig'
-//autenticacion google
 
 const auth = getAuth();
 
