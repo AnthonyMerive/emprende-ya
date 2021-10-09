@@ -12,7 +12,7 @@ ReactDOM.render(
     <Provider store={store}>
     
       <AppRouter />
-      <Footer />
+      <Footer/>
     </Provider>
 
   </React.StrictMode>,

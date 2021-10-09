@@ -12,9 +12,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export default function Footer() {
 
-    return (<>
-       
-        <div >
+    return (<div className="footer">
             <Box sx={{ width: "100%", mt: 5, borderTop: "solid 1px white", bgcolor: "#EAEAEA", color: "#5B5B5B" }}>
                 <Container sx={{ mt: 3 }}>
                     <Grid container sx={{ textAlign: 'center', pb: 3 }}>
@@ -44,6 +42,5 @@ export default function Footer() {
                     </Grid>
                 </Container>
             </Box>
-        </div>
-    </>)
+    </div>)
 }

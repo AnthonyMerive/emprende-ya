@@ -26,9 +26,9 @@ export default function LandingPage() {
     const [showRegister, setShowRegister] = useState(false)
 
     return (
-        <>
-            <div className="gradient-background">
+        <div className="landing">
 
+            <div className="gradient-background">
 
                 <Grid container spacing={2} sx={{ alignItems: 'center', marginTop:{xs:-10, sm:0,md:-20,lg:-20}, textAlign:'center' }}>
                     <Grid item xs={12} md={6}>
@@ -105,6 +105,6 @@ export default function LandingPage() {
                 setShowRegister={setShowRegister}
                 showRegister={showRegister}
             />
-        </>
+        </div>
     )
 }
