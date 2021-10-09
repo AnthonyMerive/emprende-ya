@@ -46,7 +46,7 @@ export default function Detalles({ data }) {
 
     moment.locale('es');
 
-    console.log(moment(data.fechaCreacion.toDate()).calendar().charAt(0).toUpperCase())
+    console.log(moment(data.fechaCreacion.toDate()).calendar().toUpperCase())
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -68,6 +68,7 @@ export default function Detalles({ data }) {
         </Tooltip>
 
     return (
+        
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />

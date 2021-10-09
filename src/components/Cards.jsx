@@ -40,15 +40,6 @@ export default function Cards() {
     <Container>
 
       <Grid container spacing={2} >
-<<<<<<< HEAD
-        
-          {
-            emprendimiento.map((data,index)=>(
-              <Grid item xs={12} sm={6} md={4} key={index}><Detalles data={data}/></Grid>
-            ))
-          }
-        
-=======
 
         {
           emprendimiento.map((data, index) => (
@@ -56,7 +47,6 @@ export default function Cards() {
           ))
         }
 
->>>>>>> anthony
       </Grid>
 
     </Container>

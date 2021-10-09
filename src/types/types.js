@@ -17,3 +17,9 @@ export const typesMensajes = {
     mostrar: 'mostrar mensajes',
     reset: 'reset mensajes'
 }
+
+export const typesUserEmp = {
+    mostrar: 'GET user emprendimientos',
+    actualizar:'actualizar',
+    eliminar:'eliminar'
+}

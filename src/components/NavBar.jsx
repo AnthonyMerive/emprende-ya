@@ -9,14 +9,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Badge from '@mui/material/Badge';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import { Avatar, Button, Popover } from '@mui/material';
 import OffCanvas from './Offcanvas';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Notifications from './Notifications'
-import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
 export default function NavBar(props) {
 
@@ -58,7 +55,7 @@ export default function NavBar(props) {
 
     return (
         <>
-            <Box sx={{ backgroundColor: 'red', height: 55 }} >
+            <Box sx={{ backgroundColor: '', height: 55 }} >
                 <AppBar
                     position="fixed"
                     sx={{ boxShadow: 'none' }}

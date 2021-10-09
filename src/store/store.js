@@ -5,13 +5,15 @@ import { obtenerLocalStorage, guardarLocalStorage}from '../localStorage'
 import thunk from 'redux-thunk';
 import { addEmpReducer } from '../reducers/addEmpReducer';
 import { mensajesReducer } from '../reducers/mensajesReducer';
+import { userEmpReducer } from '../reducers/userEmpReducer';
 // combina los reducer existentes
 const reducers = combineReducers({
 
     login: loginReducer,
     register: registerReducer,
     Emprendimientos:addEmpReducer,
-    Mensajes: mensajesReducer
+    Mensajes: mensajesReducer,
+    userEmp: userEmpReducer
     //aca se agregarian los demas productos
     //como un objeto
 })

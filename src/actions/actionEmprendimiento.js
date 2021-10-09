@@ -1,6 +1,6 @@
 import { collection, getDocs, } from "@firebase/firestore"
 import { db } from "../firebase/firebaseConfig"
-import {typesEmprendimiento} from '../types/types'
+import { typesEmprendimiento } from '../types/types'
 
 export const mostrarAsincronico = () => {
     return async (dispatch) => {
@@ -8,7 +8,8 @@ export const mostrarAsincronico = () => {
         const emprendimientos = [];
         datos.forEach((document) => {
             emprendimientos.push({
-                    ...document.data()
+                id: document.id,
+                ...document.data()
             })
         })
         dispatch(mostrarSincrono(emprendimientos))

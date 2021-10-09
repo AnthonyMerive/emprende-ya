@@ -26,7 +26,7 @@ export const crearEmprendimientos = (
             displayName,
             fotoPerfil,
             correo,
-            fechaCreacion : date
+            fechaCreacion : new Date()
         }
         addDoc(collection(db, "Emprendimientos"), newEmprendimientos)
             .then(resp => {

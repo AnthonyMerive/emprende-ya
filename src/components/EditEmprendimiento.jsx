@@ -7,7 +7,8 @@ import { useForm } from '../hooks/useForm'
 import { fileUpload } from '../helpers/FileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { crearEmprendimientos } from '../actions/actionAddEmp';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { actualizarAsincrono } from '../actions/actionUserEmp';
 
 const date = new Date()
 
@@ -24,32 +25,34 @@ const theme = createTheme({
 })
 
 
-export default function AddEmprendimiento() {
-    const user = useSelector(user => user.login)
-    const userId = user.uid;
-    const displayName = user.displayName;
-    const fotoPerfil = user.foto;
-    const correo = user.correo;
-    const history = useHistory()
-
+export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
+    
+    
 
 
     const dispatch = useDispatch()
-    const [images, setImages] = useState({});
+    const [images, setImages] = useState(data.imagenes);
 
     const [values, setValues, handleInputChange, reset] = useForm({
-        nombre: '',
-        descripcion: '',
-        categoria: '',
-        imagenes: ''
+        nombre: data.nombre,
+        descripcion: data.descripcion,
+        categoria: data.categoria,
+        imagenes: '',
+        userId:data.userId,
+        displayName: data.displayName,
+        fotoPerfil: data.fotoPerfil,
+        correo: data.correo,
+        id: data.id,
     })
 
-    const { nombre, descripcion, categoria, imagenes } = values
+    let {nombre, descripcion, categoria, imagenes, userId, displayName, fotoPerfil, correo, id } = values
+
+
 
 
 
     const handleClickFiles = () => {
-        document.querySelector('#inputFileChanger').click()
+        document.querySelector('#inputFileChangerEdit').click()
     }
 
     const handleUploadImage = (e) => {
@@ -58,7 +61,8 @@ export default function AddEmprendimiento() {
             let file = files[i]
             fileUpload(file)
                 .then(resp => {
-                    images[i] = resp
+                    images[i + Object.keys(data.imagenes).length] = resp
+                    console.log(resp)
                     setValues({
                         ...values,
                         ['imagenes']: images
@@ -69,20 +73,16 @@ export default function AddEmprendimiento() {
         }
     }
 
+    console.log(id)
+
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('funcion')
-        dispatch(crearEmprendimientos(
-            nombre,
-            descripcion,
-            categoria,
-            imagenes,
-            userId,
-            displayName,
-            fotoPerfil,
-            correo))
+        dispatch(actualizarAsincrono(nombre, descripcion, categoria, imagenes, userId, displayName, fotoPerfil, correo, id))
 
-            history.replace('/')
 
     }
 
@@ -167,7 +167,7 @@ export default function AddEmprendimiento() {
                             />
                             <input
                                 type="file"
-                                id='inputFileChanger'
+                                id='inputFileChangerEdit'
                                 multiple
                                 accept="image/*"
                                 hidden
@@ -185,7 +185,7 @@ export default function AddEmprendimiento() {
 
 
                     </Box>
- 
+
                 </Box>
             </Container>
         </ThemeProvider>
