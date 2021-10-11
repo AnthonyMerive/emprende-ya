@@ -11,13 +11,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export default function Footer() {
-    return (
-        <div>
+
+    return (<div className="footer">
             <Box sx={{ width: "100%", mt: 5, borderTop: "solid 1px white", bgcolor: "#EAEAEA", color: "#5B5B5B" }}>
                 <Container sx={{ mt: 3 }}>
-                    <Grid container sx={{textAlign: 'center', pb: 3}}>
+                    <Grid container sx={{ textAlign: 'center', pb: 3 }}>
                         <Grid item xs={12} md={6}>
-                            <Container sx={{ display: 'flex', justifyContent:{xs:'center', md:'flex-start'}}}>
+                            <Container sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                                 <Typography variant="h6" color="text.secondary" align="center">
                                     {'Copyright © '}
                                     <Link color="inherit" href="https://github.com/AnthonyMerive/emprende-ya">
@@ -26,22 +26,21 @@ export default function Footer() {
                                     {new Date().getFullYear()}
                                     {'.'}
                                 </Typography>
- 
+
                             </Container>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <Container sx={{ display: 'flex', justifyContent:{xs:'center', md:'flex-end'}  }}>
-                                <FacebookIcon sx={{ cursor:"pointer", fontSize: "35px", ml: 1 }}/>
-                                <TwitterIcon sx={{ cursor:"pointer", fontSize: "35px", ml: 1 }}/>
-                                <InstagramIcon sx={{ cursor:"pointer", fontSize: "35px", ml: 1 }}/>
-                                <GitHubIcon sx={{ cursor:"pointer", fontSize: "35px", ml: 1 }}/>
-                                <LinkedInIcon sx={{ cursor:"pointer", fontSize: "35px", ml: 1 }}/>
+                            <Container sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
+                                <FacebookIcon sx={{ cursor: "pointer", fontSize: "35px", ml: 1 }} />
+                                <TwitterIcon sx={{ cursor: "pointer", fontSize: "35px", ml: 1 }} />
+                                <InstagramIcon sx={{ cursor: "pointer", fontSize: "35px", ml: 1 }} />
+                                <GitHubIcon sx={{ cursor: "pointer", fontSize: "35px", ml: 1 }} />
+                                <LinkedInIcon sx={{ cursor: "pointer", fontSize: "35px", ml: 1 }} />
                             </Container>
                         </Grid>
                     </Grid>
                 </Container>
             </Box>
-        </div>
-    )
+    </div>)
 }

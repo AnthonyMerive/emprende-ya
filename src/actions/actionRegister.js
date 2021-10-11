@@ -14,7 +14,7 @@ export const registroEmailPasswordNombre = (name, email, password) => {
             })
 
             dispatch(registerSincrono(user.uid, user.displayName, user.email))
-
+            
         }).catch(error => {
             console.log(error)
         })

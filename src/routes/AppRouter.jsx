@@ -4,7 +4,7 @@ import {
     Switch,
     Route,
 }
-from "react-router-dom";
+    from "react-router-dom";
 import Navbar from '../components/NavBar'
 import LandingPage from '../components/LandingPage'
 import Cards from '../components/Cards'
@@ -14,7 +14,6 @@ import PrivateRoute from './PrivateRoute'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Footer from '../components/Footer'
 import BotonAddEmp from '../components/BotonAddEmp';
 
 export default function AppRouter() {
@@ -40,7 +39,7 @@ export default function AppRouter() {
             <Switch>
 
                 <PrivateRoute auth={auth} exact path="/agregarProducto" component={AddEmprendimiento} />
-                
+
                 <PrivateRoute auth={auth} exact path="/misProductos" component={MisEmprendimientos} />
 
                 {auth ?
@@ -48,13 +47,12 @@ export default function AppRouter() {
                     :
                     <Route exact path="/" component={LandingPage} />
                 }
-
+                
             </Switch>
 
-            {auth&&
+            {auth &&
                 <BotonAddEmp />
             }
-            <Footer />
 
         </Router>
 

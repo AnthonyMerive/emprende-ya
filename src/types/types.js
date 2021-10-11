@@ -7,7 +7,6 @@ export const types = {
 }
 
 export const typesEmprendimiento = {
-    agregar: 'agregar',
     getEmprend: 'GET emprendimientos',
     reset: 'reset emprendimientos'
 }

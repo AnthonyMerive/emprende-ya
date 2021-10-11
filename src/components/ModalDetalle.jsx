@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Grid, Container, Tooltip, Avatar, Divider } from '@mui/material';
+import { Box, Container, Tooltip, Avatar, Divider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -35,7 +35,7 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
             M.Materialbox.init(imageAction, {});
         }
 
-    }, [currentImage])
+    }, [currentImage,data])
 
     const handleEnviar = () =>{
         setOpenModal(!openModal)
@@ -71,7 +71,7 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
 
                         {
                             Object.values(data).map((item, index) => (
-                                <img width="70" src={item} onClick={() => { setCurrentImage(item) }} />
+                                <img width="70" src={item} onClick={() => { setCurrentImage(item) }} alt=""/>
                             ))
                         }
                     </Box>

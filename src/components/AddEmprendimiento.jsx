@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material';
 import { Button, TextField, Typography, Container, Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
@@ -7,10 +7,8 @@ import { useForm } from '../hooks/useForm'
 import { fileUpload } from '../helpers/FileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { crearEmprendimientos } from '../actions/actionAddEmp';
-import {useHistory} from 'react-router-dom'
-
-const date = new Date()
-
+import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 
 const theme = createTheme({
     palette: {
@@ -23,16 +21,14 @@ const theme = createTheme({
     }
 })
 
-
 export default function AddEmprendimiento() {
     const user = useSelector(user => user.login)
     const userId = user.uid;
     const displayName = user.displayName;
     const fotoPerfil = user.foto;
     const correo = user.correo;
+    const date = new Date()
     const history = useHistory()
-
-
 
     const dispatch = useDispatch()
     const [images, setImages] = useState({});
@@ -41,10 +37,11 @@ export default function AddEmprendimiento() {
         nombre: '',
         descripcion: '',
         categoria: '',
-        imagenes: ''
+        imagenes: '',
+        fechaCreacion: date
     })
 
-    const { nombre, descripcion, categoria, imagenes } = values
+    const { nombre, descripcion, categoria, imagenes, fechaCreacion } = values
 
 
 
@@ -63,6 +60,15 @@ export default function AddEmprendimiento() {
                         ...values,
                         ['imagenes']: images
                     })
+
+                    Swal.fire({
+                        // icon: 'success',
+                        title: 'Cargando',
+                        showConfirmButton: false,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        }
+                    })
                 }).catch(err => {
                     console.log(err.message)
                 })
@@ -80,10 +86,9 @@ export default function AddEmprendimiento() {
             userId,
             displayName,
             fotoPerfil,
-            correo))
-
-            history.replace('/')
-
+            correo,
+            fechaCreacion))
+        history.replace('/')
     }
 
     return (
@@ -185,7 +190,7 @@ export default function AddEmprendimiento() {
 
 
                     </Box>
- 
+
                 </Box>
             </Container>
         </ThemeProvider>

@@ -1,10 +1,5 @@
-import { addDoc, collection, getDocs, updateDoc, doc, deleteDoc } from "@firebase/firestore";
-import { useSelector } from "react-redux";
+import { addDoc, collection } from "@firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
-import { typesEmprendimiento } from "../types/types"
-
-const date = new Date()
-
 
 export const crearEmprendimientos = (
     nombre,
@@ -14,7 +9,8 @@ export const crearEmprendimientos = (
     userId,
     displayName,
     fotoPerfil,
-    correo) => {
+    correo,
+    fechaCreacion) => {
 
     return async (dispatch) => {
         const newEmprendimientos = {
@@ -26,22 +22,14 @@ export const crearEmprendimientos = (
             displayName,
             fotoPerfil,
             correo,
-            fechaCreacion : new Date()
+            fechaCreacion
         }
         addDoc(collection(db, "Emprendimientos"), newEmprendimientos)
             .then(resp => {
-                dispatch(crear(newEmprendimientos))
                 console.log(newEmprendimientos)
             })
             .catch(err => {
                 console.log(err)
             })
-    }
-}
-
-export const crear = (emprendimiento) => {
-    return {
-        type: typesEmprendimiento.agregar,
-        payload: emprendimiento
     }
 }

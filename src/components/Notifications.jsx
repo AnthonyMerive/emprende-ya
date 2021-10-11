@@ -1,7 +1,6 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import { useSelector } from 'react-redux';
 import { Typography, Box,  } from '@mui/material';
 import Divider from '@mui/material/Divider';
 
@@ -10,9 +9,6 @@ import Divider from '@mui/material/Divider';
 
 
 export default function Notifications(props) {
-    // const user = useSelector(state => state.login)
-
-    // console.log(user)
 
     return (
         <Box>
