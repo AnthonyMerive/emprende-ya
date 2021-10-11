@@ -64,7 +64,7 @@ export const actualizarAsincrono = (nombre, descripcion, categoria, imagenes, us
 
 export const actualizarSincrono = (userEmp) => {
     return {    
-        type: typesUserEmp.actualiza,
+        type: typesUserEmp.actualizar,
         payload: userEmp
     }
 }

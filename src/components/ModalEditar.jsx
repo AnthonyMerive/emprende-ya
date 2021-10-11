@@ -9,6 +9,8 @@ import EditEmprendimiento from './EditEmprendimiento'
 
 export default function ModalEditar({ data, openModal, setOpenModal }) {
 
+    console.log(data)
+
     const style = {
         position: 'absolute',
         top: '50%',

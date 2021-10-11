@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { mostrarSincrono } from '../actions/actionEmprendimiento';
@@ -9,6 +9,8 @@ import 'moment/locale/es';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import ModalEditar from './ModalEditar';
+import EditEmprendimiento from './EditEmprendimiento';
+import Modal from '@mui/material/Modal';
 
 export default function MisEmprendimientos() {
     const dispatch = useDispatch();
@@ -18,17 +20,17 @@ export default function MisEmprendimientos() {
     const userEmp = useSelector(state => state.userEmp)
 
     const dataEmp = userEmp.userEmp
-    const [openModal, setOpenModal] = React.useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [dataEdit, setDataEdit] = useState(null);
 
-    console.log(dataEmp)
 
 
 
     useEffect(() => {
         // if (correo) {
-            dispatch(mostrarAsincrono(correo))
+        dispatch(mostrarAsincrono(correo))
         // } 
-        dispatch(mostrarSincrono())
+        // dispatch(mostrarSincrono())
     }, [dispatch, correo, openModal])
 
     const handleDelete = (data) => {
@@ -36,6 +38,24 @@ export default function MisEmprendimientos() {
         dispatch(mostrarAsincrono(correo))
         // console.log(data.id)
     }
+
+    const handleEdit = (data) => {
+        setOpenModal(true)
+        setDataEdit(data)
+        // console.log(data)
+    }
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: { xs: '90%', md: '60%', lg: '50%' }, height: 570,
+        background: 'white',
+        boxShadow: 24,
+        overflowY: 'scroll'
+
+    };
 
 
 
@@ -46,7 +66,7 @@ export default function MisEmprendimientos() {
             <Typography variant="h4" sx={{ p: 2 }}>Mis Emprendimientos</Typography>
             {
                 dataEmp.map((data, index) => (
-                    // console.log(data.nombre)
+
                     <>
                         <Box sx={{ marginBottom: 2 }}>
                             <Card key={index} sx={{ p: 2 }} >
@@ -54,7 +74,7 @@ export default function MisEmprendimientos() {
                                     <Grid item xs={12} md={8}><Typography>{data.nombre}</Typography></Grid>
                                     <Grid item xs={12} md={8}><Typography variant="caption">{moment(data.fechaCreacion.toDate()).calendar().toUpperCase()}</Typography></Grid>
                                     <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: 'flex-end' }} >
-                                        <Button variant="contained" onClick={() => { setOpenModal(true) }}><EditRoundedIcon /></Button>
+                                        <Button variant="contained" onClick={() => { handleEdit(data) }}><EditRoundedIcon /></Button>
                                         <Button variant="contained" data={data} onClick={() => { handleDelete(data) }}><DeleteForeverRoundedIcon /></Button>
                                     </Grid>
                                     <Grid item xs={12} md={8} sx={{ wordWrap: 'break-word' }}>
@@ -62,15 +82,24 @@ export default function MisEmprendimientos() {
                                         <Typography variant="body1">{data.descripcion}</Typography>
                                     </Grid>
                                 </Grid>
-                                {/*  */}
-                                {/*  */}
                             </Card>
                         </Box>
-                        <ModalEditar data={data} openModal={openModal} setOpenModal={setOpenModal} />
+
                     </>
                 ))
             }
+            <Modal
+                open={openModal}
+                onClose={() => { setOpenModal(false) }}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
 
+                    <EditEmprendimiento data={dataEdit} openModal={openModal} setOpenModal={setOpenModal} />
+
+                </Box>
+            </Modal>
         </Container>
     )
 }

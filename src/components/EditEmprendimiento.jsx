@@ -8,7 +8,7 @@ import { fileUpload } from '../helpers/FileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { crearEmprendimientos } from '../actions/actionAddEmp';
 import { useHistory } from 'react-router-dom'
-import { actualizarAsincrono } from '../actions/actionUserEmp';
+import { actualizarAsincrono, mostrarAsincrono } from '../actions/actionUserEmp';
 
 const date = new Date()
 
@@ -26,8 +26,6 @@ const theme = createTheme({
 
 
 export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
-    
-    
 
 
     const dispatch = useDispatch()
@@ -37,7 +35,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
         nombre: data.nombre,
         descripcion: data.descripcion,
         categoria: data.categoria,
-        imagenes: '',
+        imagenes: images,
         userId:data.userId,
         displayName: data.displayName,
         fotoPerfil: data.fotoPerfil,
@@ -48,7 +46,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
     let {nombre, descripcion, categoria, imagenes, userId, displayName, fotoPerfil, correo, id } = values
 
 
-
+    // console.log(values)
 
 
     const handleClickFiles = () => {
@@ -83,6 +81,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
         console.log('funcion')
         dispatch(actualizarAsincrono(nombre, descripcion, categoria, imagenes, userId, displayName, fotoPerfil, correo, id))
         setOpenModal(false)
+        dispatch(mostrarAsincrono(correo))
 
 
     }
@@ -119,6 +118,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
                             onChange={handleInputChange}
                             autoComplete={false}
                             autoFocus
+                            value={nombre}
                         />
                         <TextField
                             id="outlined-multiline-flexible"
@@ -129,13 +129,14 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
+                            value={descripcion}
                         />
 
                         <InputLabel id="categoria">Categorias</InputLabel>
                         <Select
                             labelId="categoria"
                             id="demo-simple-select"
-                            value={values.categoria}
+                            value={categoria}
                             name="categoria"
                             onChange={handleInputChange}
                             fullWidth
