@@ -10,7 +10,8 @@ export const crearEmprendimientos = (
     displayName,
     fotoPerfil,
     correo,
-    fechaCreacion) => {
+    fechaCreacion,
+    ubicacion) => {
 
     return async (dispatch) => {
         const newEmprendimientos = {
@@ -22,7 +23,8 @@ export const crearEmprendimientos = (
             displayName,
             fotoPerfil,
             correo,
-            fechaCreacion
+            fechaCreacion,
+            ubicacion
         }
         addDoc(collection(db, "Emprendimientos"), newEmprendimientos)
             .then(resp => {

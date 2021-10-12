@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material';
 import { Button, TextField, Typography, Container, Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import { useForm } from '../hooks/useForm'
+import { useLocation } from '../hooks/useLocation'
 import { fileUpload } from '../helpers/FileUpload';
 import { useDispatch, useSelector } from 'react-redux';
 import { crearEmprendimientos } from '../actions/actionAddEmp';
@@ -33,16 +34,38 @@ export default function AddEmprendimiento() {
     const dispatch = useDispatch()
     const [images, setImages] = useState({});
 
+    const [geoFind, country, state] = useLocation()
+
+    
+
+
+
+
     const [values, setValues, handleInputChange, reset] = useForm({
         nombre: '',
         descripcion: '',
         categoria: '',
         imagenes: '',
-        fechaCreacion: date
+        fechaCreacion: date,
+        ubicacion:''
     })
 
-    const { nombre, descripcion, categoria, imagenes, fechaCreacion } = values
+    const { nombre, descripcion, categoria, imagenes, fechaCreacion,ubicacion } = values
 
+    useEffect(() => {
+        geoFind()
+        console.log(state)
+        setValues({
+            ...values,
+            ['ubicacion']:`${state} , ${country}`
+        })
+    }, [])
+
+
+    console.log(values)
+
+
+    
 
 
     const handleClickFiles = () => {
@@ -77,7 +100,7 @@ export default function AddEmprendimiento() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('funcion')
+        console.log(values)
         dispatch(crearEmprendimientos(
             nombre,
             descripcion,
@@ -87,7 +110,8 @@ export default function AddEmprendimiento() {
             displayName,
             fotoPerfil,
             correo,
-            fechaCreacion))
+            fechaCreacion,
+            ubicacion))
         history.replace('/')
     }
 
@@ -122,7 +146,7 @@ export default function AddEmprendimiento() {
                             name="nombre"
                             onChange={handleInputChange}
                             autoComplete={false}
-                            // autoFocus
+                        // autoFocus
                         />
                         <TextField
                             id="outlined-multiline-flexible"

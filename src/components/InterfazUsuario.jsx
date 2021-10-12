@@ -21,6 +21,8 @@ import { addFoto } from '../actions/addFoto'
 import { IconButton } from '@mui/material';
 import { resetMensajes } from '../actions/actionMensajes';
 import { resetEmprendimientos } from '../actions/actionEmprendimiento';
+import { useCurrentLocation } from '../hooks/useCurrentLocation';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const theme = createTheme({
     palette: {
@@ -37,6 +39,14 @@ export default function Usuario(props) {
 
     const perfil = useSelector(store => store.login)
     const nuevoUsuario = useSelector(store => store.register)
+
+
+
+
+    const [currentGeoFind, currentLocation, watch, setWatch] = useCurrentLocation()
+
+    
+
 
     const dispatch = useDispatch()
 
@@ -150,6 +160,27 @@ export default function Usuario(props) {
                                     {`${perfil.correo}`}
                                 </Typography>
                             </Grid>
+
+                            {
+                                watch ?
+                                    <Grid item xs={12}>
+                                        <Typography
+                                            align='center'
+                                            component="h2"
+                                            variant="subtitle1">
+                                            {`${currentLocation}`}
+                                        </Typography>
+                                    </Grid>
+                                    :
+                                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                                        <IconButton onClick={() => { setWatch(true) }}>
+                                            <LocationOnOutlinedIcon />
+                                            Elige tu ubicacion
+                                        </IconButton>
+                                    </Grid>
+                            }
+
+
 
                         </Grid>
                         <Grid container justifyContent="center">
