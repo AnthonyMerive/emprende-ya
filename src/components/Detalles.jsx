@@ -45,7 +45,6 @@ export default function Detalles({ data }) {
 
     moment.locale('es');
 
-    console.log(moment(data.fechaCreacion.toDate()).calendar().toUpperCase())
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -80,8 +79,10 @@ export default function Detalles({ data }) {
                         avatar={avatar}
 
                         title={<Typography variant="h6"><strong>{data.nombre}</strong></Typography>}
+                        
                         subheader={<Typography variant="caption" sx={{ color: '#CAC8C8' }}>{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
                     />
+                    <Typography variant="body2">{data.ubicacion}</Typography>
 
                     <CardMedia
                         component="img"
@@ -102,7 +103,7 @@ export default function Detalles({ data }) {
                     </CardActions>
                 </Card>
 
-                <ModalDetalle openModal={openModal} setOpenModal={setOpenModal} data={data.imagenes} infoCard={data} />
+                <ModalDetalle openModal={openModal} setOpenModal={setOpenModal} data={data.imagenes} infoCard={data} ubicacion={data.ubicacion} />
             </Container>
         </ThemeProvider>
     );

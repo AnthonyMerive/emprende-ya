@@ -15,6 +15,8 @@ export default function Cards() {
   const correo = perfil.correo
   const { emprendimiento } = emprendimientos
 
+ 
+
   useEffect(() => {
     if (id) {
       dispatch(mostrarAsincronico())

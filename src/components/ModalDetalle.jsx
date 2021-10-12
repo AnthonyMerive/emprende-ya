@@ -27,6 +27,7 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
     const [currentImage, setCurrentImage] = useState('')
     const [showEnviar, setShowEnviar] = useState(false);
 
+
     useEffect(() => {
         if (currentImage === '') {
             setCurrentImage(Object.values(data)[0])
@@ -41,6 +42,7 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
         setOpenModal(!openModal)
         setShowEnviar(!showEnviar)
     }
+
 
 
 

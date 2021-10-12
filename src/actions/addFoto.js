@@ -2,7 +2,6 @@ import { types } from '../types/types'
 import { getAuth, updateProfile } from 'firebase/auth'
 
 export const addFoto = (foto) => {
-    console.log(foto)
 
     return (dispatch) => {
         const auth = getAuth();
