@@ -103,7 +103,7 @@ export default function Detalles({ data }) {
                     </CardActions>
                 </Card>
 
-                <ModalDetalle openModal={openModal} setOpenModal={setOpenModal} data={data.imagenes} infoCard={data} ubicacion={data.ubicacion} />
+                <ModalDetalle openModal={openModal} setOpenModal={setOpenModal} imagen={data.imagenes} infoCard={data} ubicacion={data.ubicacion} />
             </Container>
         </ThemeProvider>
     );

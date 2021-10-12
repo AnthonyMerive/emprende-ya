@@ -49,7 +49,6 @@ export default function NavBar(props) {
         
     }, [msj, setNotification, contador])
 
-
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
@@ -69,6 +68,7 @@ export default function NavBar(props) {
                                     edge="start"
                                     color="inherit"
                                     aria-label="menu"
+                                    onClick={()=>window.location.reload()}
                                 >
                                     <img  className="logo"src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY"/>
                                 </IconButton>
@@ -151,17 +151,19 @@ export default function NavBar(props) {
                             horizontal: 'right',
                         }}
                     >
-                        <Typography sx={{ p: 2 }}>
+                        <Typography>
                             {
                                     mensajes.mensajes.length > 0 ?
 
                                     mensajes.mensajes.map(msj =>
 
                                         <Notifications
+                                            id={msj.id}
                                             foto={msj.fotoEnvia}
                                             nombre={msj.nombreEnvia}
                                             emprendimiento={msj.emprendimiento}
                                             fechaEnvio={msj.fechaEnvio}
+                                            leido={msj.leido}
                                         />
                                     )
                                     :
@@ -176,6 +178,7 @@ export default function NavBar(props) {
             </Box>
 
             <OffCanvas
+                setNotification = {setNotification}
                 setShowLogin={setShowLogin}
                 showLogin={showLogin}
                 setShowRegister={setShowRegister}

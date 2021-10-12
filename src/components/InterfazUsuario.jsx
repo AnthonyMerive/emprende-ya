@@ -56,6 +56,7 @@ export default function Usuario(props) {
         dispatch(resetEmprendimientos())
         dispatch(resetMensajes())
         props.setShowInterfaz(false)
+        props.setNotification(0)
         localStorage.clear();
     }
 
@@ -175,7 +176,7 @@ export default function Usuario(props) {
                                     <Grid item xs={12} sx={{ textAlign: 'center' }}>
                                         <IconButton onClick={() => { setWatch(true) }}>
                                             <LocationOnOutlinedIcon />
-                                            Elige tu ubicacion
+                                            Confirma tu ubicacion
                                         </IconButton>
                                     </Grid>
                             }

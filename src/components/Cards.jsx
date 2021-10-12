@@ -15,17 +15,15 @@ export default function Cards() {
   const correo = perfil.correo
   const { emprendimiento } = emprendimientos
 
- 
 
   useEffect(() => {
-    if (id) {
+    if(id){
       dispatch(mostrarAsincronico())
       dispatch(mostrarMensajesAsincronico(correo))
     }
-  }, [dispatch,
-    correo,
-    id
-  ])
+  }, [dispatch,correo,id])
+
+  console.log(emprendimiento)
 
   return (
     <Container className="cardsGrid">

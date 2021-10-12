@@ -8,9 +8,9 @@ import M from 'materialize-css/dist/js/materialize.min.js'
 import CardMedia from '@mui/material/CardMedia';
 import OffCanvas from './Offcanvas'
 
+// { openModal, setOpenModal, data, infoCard }
 
-
-export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }) {
+export default function ModalDetalle(props) {
     const style = {
         position: 'absolute',
         top: '50%',
@@ -29,17 +29,17 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
 
 
     useEffect(() => {
-        if (currentImage === '') {
-            setCurrentImage(Object.values(data)[0])
-        } else {
+        // if (currentImage === '') {
+            setCurrentImage(Object.values(props.imagen)[0])
+        // } else {
             let imageAction = document.querySelectorAll('.materialboxed');
             M.Materialbox.init(imageAction, {});
-        }
+        // }
 
-    }, [currentImage,data])
+    }, [currentImage,props.imagen])
 
     const handleEnviar = () =>{
-        setOpenModal(!openModal)
+        props.setOpenModal(!props.openModal)
         setShowEnviar(!showEnviar)
     }
 
@@ -51,8 +51,8 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
     return (
         <>
             <Modal
-                open={openModal}
-                onClose={() => { setOpenModal(false) }}
+                open={props.openModal}
+                onClose={() => { props.setOpenModal(false) }}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -72,7 +72,7 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
                     }}>
 
                         {
-                            Object.values(data).map((item, index) => (
+                            Object.values(props.imagen).map((item, index) => (
                                 <img key={index} width="70" src={item} onClick={() => { setCurrentImage(item) }} alt=""/>
                             ))
                         }
@@ -83,16 +83,16 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
 
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'column' }}>
-                            <Tooltip title={`${infoCard.displayName} `} placement="bottom-start">
-                                <Avatar alt={`${infoCard.displayName} `} src={`${infoCard.fotoPerfil}`} sx={{ width: 40, height: 40, marginRight: 1 }} />
+                            <Tooltip title={`${props.infoCard.displayName} `} placement="bottom-start">
+                                <Avatar alt={`${props.infoCard.displayName} `} src={`${props.infoCard.fotoPerfil}`} sx={{ width: 40, height: 40, marginRight: 1 }} />
                             </Tooltip>
-                            <Typography variant="h6" >{infoCard.displayName}  </Typography>
-                            <Typography > ({infoCard.correo}) </Typography>
+                            <Typography variant="h6" >{props.infoCard.displayName}  </Typography>
+                            <Typography > ({props.infoCard.correo}) </Typography>
                         </Box>
                         <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
                         <Box sx={{ p: 2, wordWrap: 'break-word', textAling: 'center', display: 'flex', flexDirection: 'column' }}>
                             <Typography variant="h6">Descripcion del emprendimiento:</Typography> <br />
-                            <Typography variant="body1">{infoCard.descripcion}</Typography>
+                            <Typography variant="body1">{props.infoCard.descripcion}</Typography>
                             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', }}>
                                 <Button 
                                 variant="outlined" 
@@ -110,10 +110,10 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
 
 
             <OffCanvas
-                displayName={infoCard.displayName}
-                correo={infoCard.correo}
-                foto={infoCard.fotoPerfil}
-                emprendimiento={infoCard.nombre}
+                displayName={props.infoCard.displayName}
+                correo={props.infoCard.correo}
+                foto={props.infoCard.fotoPerfil}
+                emprendimiento={props.infoCard.nombre}
                 setShowEnviar={setShowEnviar}
                 showEnviar={showEnviar}
             />
