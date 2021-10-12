@@ -28,6 +28,10 @@ body {
   margin-top: auto
 }
 
+.cardsGrid{
+  margin-top: 64px;
+}
+
 .gradient-background {
   background: linear-gradient(#1976d2, #fff);
   background-size: cover;
@@ -57,7 +61,11 @@ body {
     position: relative;
     top: 64px
   }
+
+  
 }
+
+
 
 input:not([type]),
 input[type=text]:not(.browser-default),

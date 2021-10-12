@@ -26,7 +26,7 @@ export default function Cards() {
   ])
 
   return (
-    <Container>
+    <Container className="cardsGrid">
 
       <Grid container spacing={2} >
 
