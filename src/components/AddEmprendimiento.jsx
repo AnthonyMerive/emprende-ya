@@ -115,14 +115,14 @@ export default function AddEmprendimiento() {
                         width: '80%',
                     }}>
                         <TextField
-                            margin="normal"
+                            // margin="normal"
                             fullWidth
                             id="text"
                             label="Nombre del emprendimiento"
                             name="nombre"
                             onChange={handleInputChange}
                             autoComplete={false}
-                            autoFocus
+                            // autoFocus
                         />
                         <TextField
                             id="outlined-multiline-flexible"

@@ -1,17 +1,11 @@
 import {useState} from 'react'
-import { fileUpload } from '../Helpers/FileUpload'
+import { fileUpload } from '../helpers/FileUpload'
 
 export const useImages = (initialState) => {
     
-    const [images, setimages] = useState(initialState)
+    const [images, setImages] = useState(initialState)
 
     const handleFileChange = (e) => {
-        console.log(e.target.files.length)
-        if (e.target.files.length > 7) {
-            console.log('supero la cantidad')
-            return
-        } else {
-            console.log('cantidad permitida')
             const files = e.target.files
             for (let i = 0; i < files.length; i++) {
                 let file = files[i]
@@ -23,12 +17,11 @@ export const useImages = (initialState) => {
                     }).catch(err => {
                         console.log(err.message)
                     })
-            }
-            
-        }
+            }    
     }
+    console.log(images)
 
 
 
-    return [ images, handleFileChange ];
+    return [ images, handleFileChange, setImages ];
 }

@@ -101,6 +101,7 @@ export default function Login() {
               component="form"
               noValidate
               sx={{ mt: 1 }}
+              autoComplete="off"
             >
               <TextField
                 margin="normal"
@@ -111,7 +112,7 @@ export default function Login() {
                 autoComplete="email"
                 value={email}
                 onChange={handleInputChange}
-                autoFocus
+                autoFocus={true}
               />
               <TextField
                 margin="normal"

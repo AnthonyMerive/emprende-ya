@@ -70,7 +70,7 @@ export default function NavBar(props) {
                                     color="inherit"
                                     aria-label="menu"
                                 >
-                                    EmprendeYA
+                                    <img  className="logo"src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY"/>
                                 </IconButton>
 
 
@@ -107,7 +107,7 @@ export default function NavBar(props) {
                                     <Link to="/"><IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton></Link>
 
                                     {perfil.foto ?
-                                        <IconButton><Avatar sx={{ width: 30, height: 30 }} onClick={() => setShowInterfaz(true)} alt={perfil.displayName} src={`${perfil.foto}`} /></IconButton>
+                                        <IconButton onClick={() => setShowInterfaz(true)}><Avatar sx={{ width: 30, height: 30 }}  alt={perfil.displayName} src={`${perfil.foto}`} /></IconButton>
                                         :
                                         <IconButton onClick={() => setShowInterfaz(true)}><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
                                     }
@@ -125,7 +125,7 @@ export default function NavBar(props) {
                                         aria-label="menu"
                                         sx={{}}
                                     >
-                                        <MenuIcon />
+                                         <img  className="logo"src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY"/>
                                     </IconButton>
                                 </Box>
                                 <Box>
@@ -161,6 +161,7 @@ export default function NavBar(props) {
                                             foto={msj.fotoEnvia}
                                             nombre={msj.nombreEnvia}
                                             emprendimiento={msj.emprendimiento}
+                                            fechaEnvio={msj.fechaEnvio}
                                         />
                                     )
                                     :

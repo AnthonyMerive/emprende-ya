@@ -29,6 +29,7 @@ export default function EnviarMensaje(props) {
     const displayName = user.displayName;
     const fotoPerfil = user.foto;
     const correo = user.correo;
+    const date = new Date()
 
 
     const dispatch = useDispatch()
@@ -42,7 +43,7 @@ export default function EnviarMensaje(props) {
         correoRecibe: props.correo,
         emprendimiento: props.emprendimiento,
         leido: false,
-        // fechaEnvio: '',
+        fechaEnvio: date,
         titulo: '',
         mensaje: ''
     })
@@ -57,7 +58,8 @@ export default function EnviarMensaje(props) {
         titulo,
         mensaje,
         leido,
-        emprendimiento } = values
+        emprendimiento,
+        fechaEnvio } = values
 
     console.log(values)
 
@@ -72,7 +74,7 @@ export default function EnviarMensaje(props) {
             nombreRecibe,
             fotoRecibe,
             correoRecibe,
-            // fechaEnvio,
+            fechaEnvio,
             titulo,
             mensaje,
             leido,

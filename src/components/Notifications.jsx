@@ -3,12 +3,15 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { Typography, Box,  } from '@mui/material';
 import Divider from '@mui/material/Divider';
+import moment from 'moment';
+import 'moment/locale/es';
 
 
 
 
 
 export default function Notifications(props) {
+
 
     return (
         <Box>
@@ -19,7 +22,7 @@ export default function Notifications(props) {
                 </Box>
             </Stack>
             <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"` }</Typography>
-            <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end' }}>{'Hace 2 minutos'}</Typography>
+            <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end' }}>{moment(props.fechaEnvio.toDate()).calendar()}</Typography>
             <Divider />
         </Box>
     )

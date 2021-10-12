@@ -8,15 +8,12 @@ import Detalles from './Detalles'
 import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
 export default function Cards() {
-
   const dispatch = useDispatch();
   const emprendimientos = useSelector(state => state.Emprendimientos)
   const perfil = useSelector(store => store.login)
   const id = perfil.uid
   const correo = perfil.correo
   const { emprendimiento } = emprendimientos
-
-
 
   useEffect(() => {
     if (id) {

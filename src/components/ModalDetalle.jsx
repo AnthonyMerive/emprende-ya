@@ -71,7 +71,7 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
 
                         {
                             Object.values(data).map((item, index) => (
-                                <img width="70" src={item} onClick={() => { setCurrentImage(item) }} alt=""/>
+                                <img key={index} width="70" src={item} onClick={() => { setCurrentImage(item) }} alt=""/>
                             ))
                         }
                     </Box>
