@@ -42,7 +42,11 @@ export default function Notifications(props) {
                         <Typography variant="body2">{props.nombre}</Typography>
                     </Box>
                 </Stack>
-                <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
+                {props.emprendimiento !== null ?
+                    <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
+                    :
+                    <Typography variant="body1">{"Respondió tu mensaje"}</Typography>
+                }
                 <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end' }}>{moment(props.fechaEnvio.toDate()).calendar()}</Typography>
             </Box>
             :
@@ -56,7 +60,11 @@ export default function Notifications(props) {
                         <Typography variant="body2">{props.nombre}</Typography>
                     </Box>
                 </Stack>
-                <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
+                {props.emprendimiento !== null ?
+                    <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
+                    :
+                    <Typography variant="body1">{"Respondió tu mensaje"}</Typography>
+                }
                 <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end' }}>{moment(props.fechaEnvio.toDate()).calendar()}</Typography>
             </Box>
         }
