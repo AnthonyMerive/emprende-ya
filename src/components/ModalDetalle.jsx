@@ -7,6 +7,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import CardMedia from '@mui/material/CardMedia';
 
+// { openModal, setOpenModal, data, infoCard }
 
 
 

@@ -1,6 +1,6 @@
-import { addDoc, collection, getDocs, where, query } from "@firebase/firestore";
+import { addDoc, collection, getDocs, where, query, doc, updateDoc } from "@firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
-import { typesMensajes } from "../types/types"
+import { typesMensajes } from "../types/types";
 
 export const enviarMensajeAsincrono = (
     nombreEnvia,
@@ -48,6 +48,7 @@ export const mostrarMensajesAsincronico = (correo) => {
         const mensajes = [];
         result.forEach((document) => {
             mensajes.push({
+                id: document.id,
                 ...document.data()
             })
         })
@@ -69,7 +70,19 @@ export const resetMensajes = () => {
     }
 }
 
+export const actualizarMensajeAsincrono = (estado, id) => {
+    return async () => {
+        // const updmsj = {
+        //     leido: estado,
+        // }
+        console.log(estado, id)
+        const docRef = await doc(db, `Mensajes`, `${id}`);
 
+        await updateDoc(docRef, {
+            leido: estado
+        })
+    }
+}
 
 
 

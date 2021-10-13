@@ -59,7 +59,7 @@ export default function AddEmprendimiento() {
             ...values,
             ['ubicacion']:`${state} , ${country}`
         })
-    }, [state,country])
+    }, [state, country])
 
 
     console.log(values)

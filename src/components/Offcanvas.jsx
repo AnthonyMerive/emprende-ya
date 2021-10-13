@@ -50,7 +50,7 @@ export default function OffCanvas(props) {
                 </IconButton>
             </Box>
             {
-                <InterfazUsuario setShowInterfaz={props.setShowInterfaz} />
+                <InterfazUsuario setNotification={props.setNotification} setShowInterfaz={props.setShowInterfaz} />
             }
         </SwipeableDrawer>
 
