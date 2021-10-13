@@ -48,8 +48,6 @@ export default function NavBar(props) {
             }
             setNotification(contador)
         })
-
-        dispatch(mostrarMensajesAsincronico(correo))
         
     }, [msj, setNotification, contador])
 
