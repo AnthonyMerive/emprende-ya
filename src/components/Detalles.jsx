@@ -46,7 +46,6 @@ export default function Detalles({ data }) {
 
     moment.locale('es');
 
-
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };

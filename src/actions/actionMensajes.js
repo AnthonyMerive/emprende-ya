@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, where, query, doc, updateDoc } from "@firebase/firestore";
+import { addDoc, collection, getDocs, where, query, doc, updateDoc, deleteDoc } from "@firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { typesMensajes } from "../types/types";
 
@@ -83,6 +83,13 @@ export const actualizarMensajeAsincrono = (estado, id) => {
         })
     }
 }
+
+export const eliminarMensajeAsincrono = (id) => {
+    return  async () => {
+        await deleteDoc(doc(db, `Mensajes`, `${id}`));
+    }    
+}
+
 
 
 

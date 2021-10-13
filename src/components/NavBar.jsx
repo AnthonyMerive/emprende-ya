@@ -153,13 +153,13 @@ export default function NavBar(props) {
                             horizontal: 'right',
                         }}
                     >
-                        <Typography>
                             {
                                     mensajes.mensajes.length > 0 ?
 
                                     mensajes.mensajes.map(msj =>
 
                                         <Notifications
+                                            setAnchorEl= {setAnchorEl}
                                             id={msj.id}
                                             foto={msj.fotoEnvia}
                                             nombre={msj.nombreEnvia}
@@ -169,10 +169,9 @@ export default function NavBar(props) {
                                         />
                                     )
                                     :
-                                    <h5>Sin mensajes </h5>
+                                    <Typography sx={{m:2}} variant="body1">No tienes mensajes</Typography>
 
                             }
-                        </Typography>
                     </Popover>
 
                 </AppBar>

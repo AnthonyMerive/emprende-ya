@@ -1,11 +1,10 @@
-import { Container, Box, Grid, Typography, Link, Divider, Paper } from '@mui/material'
+import { Container, Box, Grid, Typography, Link, Divider } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { experimentalStyled as styled } from '@mui/material/styles';
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import Carousel from 'react-elastic-carousel'
 import youtube from '../helpers/youtube';
-import { mostrarAsincrono } from '../actions/actionTips';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -17,7 +16,6 @@ const Item = styled(Box)(({ theme }) => ({
 }));
 
 export const Tips = () => {
-    const dispatch = useDispatch()
     const tips = useSelector(store => store.tips)
     const [value, setValue] = useState('tipsEmprendimiento');
     const [videos, setVideos] = useState('')

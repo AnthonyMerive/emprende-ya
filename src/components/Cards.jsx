@@ -71,10 +71,6 @@ export default function Cards() {
     setDataModal(data)
   }
 
-  
-
-
-
   useEffect(() => {
     if(id){
       dispatch(mostrarAsincronico())
@@ -159,8 +155,6 @@ export default function Cards() {
           showEnviar={showEnviar}
         />
         }
-
-        
 
       </Grid>
 

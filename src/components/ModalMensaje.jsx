@@ -2,6 +2,7 @@ import { Avatar, Button, Container, Divider, Modal, TextField, Tooltip, Typograp
 import { Box } from '@mui/system'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2';
 import { enviarMensajeAsincrono } from '../actions/actionMensajes';
 import { useForm } from '../hooks/useForm';
 
@@ -74,7 +75,13 @@ export default function ModalMensaje(props) {
                 mensaje,
                 leido,
                 emprendimiento))
-    
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Mensaje enviado satisfactoriamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                props.setAnchorEl(null)
                 props.setOpenModal(false)
     
         }

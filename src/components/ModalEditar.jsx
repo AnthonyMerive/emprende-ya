@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Grid, Container, Tooltip, Avatar, Divider } from '@mui/material';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React from 'react'
+import { Box } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
 import EditEmprendimiento from './EditEmprendimiento'
 
 export default function ModalEditar({ data, openModal, setOpenModal }) {
-
-    console.log(data)
 
     const style = {
         position: 'absolute',

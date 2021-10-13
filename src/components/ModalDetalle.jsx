@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Box, Container, Tooltip, Avatar, Divider } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import CardMedia from '@mui/material/CardMedia';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 
-// { openModal, setOpenModal, data, infoCard }
-
-
-
-export default function ModalDetalle({ data,openModal,setOpenModal, setShowEnviar }) {
+export default function ModalDetalle({ data, openModal, setOpenModal, setShowEnviar }) {
     const style = {
         position: 'absolute',
         top: '50%',
@@ -28,7 +26,8 @@ export default function ModalDetalle({ data,openModal,setOpenModal, setShowEnvia
     console.log(data)
 
     const [currentImage, setCurrentImage] = useState(data.imagenes[0])
-   
+    const perfil = useSelector(store => store.login)
+    const correo = perfil.correo
 
 
     useEffect(() => {
@@ -41,7 +40,7 @@ export default function ModalDetalle({ data,openModal,setOpenModal, setShowEnvia
 
     }, [currentImage, data])
 
-    const handleEnviar = () => {        
+    const handleEnviar = () => {
         setShowEnviar(true)
         setOpenModal(false)
     }
@@ -87,12 +86,36 @@ export default function ModalDetalle({ data,openModal,setOpenModal, setShowEnvia
                         <Typography variant="h6">Descripcion del emprendimiento:</Typography> <br />
                         <Typography variant="body1">{data.descripcion}</Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', }}>
-                            <Button
-                                variant="outlined"
-                                sx={{ marginTop: 2, }}
-                                onClick={handleEnviar}
-                            >Contactar</Button>
+                            {!(correo === data.correo) ?
+                                <Button
+                                    variant="outlined"
+                                    sx={{ marginTop: 2 }}
+                                    onClick={handleEnviar}
+                                >Contactar</Button>
+                                :
+                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', }}>
+                                    <Typography variant="body1" sx={{ marginTop: 3 }}><strong>Este es tu emprendimiento</strong></Typography>
+                                    <Button
+                                        size="small"
+                                        type="submit"
+                                        variant="outlined"
+                                        sx={{
+                                            mt: 3,
+                                            color: '#7E8284'
+                                        }}
+                                        endIcon={<BusinessCenterIcon />}
+                                    >
+                                        <Link
+                                            to="/misProductos"
+                                            style={{ textDecoration: 'none', color: 'grey' }}
+                                        >
+                                            Mis Emprendimientos
+                                        </Link>
+                                    </Button>
+                                </Box>
+                            }
                         </Box>
+
                     </Box>
 
 
@@ -101,7 +124,7 @@ export default function ModalDetalle({ data,openModal,setOpenModal, setShowEnvia
             </Box>
 
 
-{/* 
+            {/* 
             <OffCanvas
                 displayName={data.displayName}
                 correo={data.correo}

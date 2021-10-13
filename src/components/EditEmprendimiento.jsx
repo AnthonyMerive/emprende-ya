@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material';
-import { Button, TextField, Typography, Container, Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import { Button, TextField, Typography, Container, Box, InputLabel, MenuItem, Select } from '@mui/material';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import { useForm } from '../hooks/useForm'
 import { fileUpload } from '../helpers/FileUpload';
-import { useDispatch, useSelector } from 'react-redux';
-import { crearEmprendimientos } from '../actions/actionAddEmp';
-import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
 import { actualizarAsincrono, mostrarAsincrono } from '../actions/actionUserEmp';
 
 const theme = createTheme({

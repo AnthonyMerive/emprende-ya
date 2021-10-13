@@ -40,14 +40,7 @@ export default function Usuario(props) {
 
     const perfil = useSelector(store => store.login)
     const nuevoUsuario = useSelector(store => store.register)
-
-
-
-
     const [currentGeoFind, currentLocation, watch, setWatch] = useCurrentLocation()
-
-
-
 
     const dispatch = useDispatch()
 
@@ -177,7 +170,7 @@ export default function Usuario(props) {
                                     <Grid item xs={12} sx={{ textAlign: 'center' }}>
                                         <IconButton onClick={() => { setWatch(true) }}>
                                             <LocationOnOutlinedIcon />
-                                            Confirma tu ubicacion
+                                            Verifica tu ubicacion
                                         </IconButton>
                                     </Grid>
                             }

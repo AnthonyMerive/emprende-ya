@@ -36,11 +36,6 @@ export default function AddEmprendimiento() {
 
     const [geoFind, country, state] = useLocation()
 
-    
-
-
-
-
     const [values, setValues, handleInputChange, reset] = useForm({
         nombre: '',
         descripcion: '',
@@ -60,13 +55,6 @@ export default function AddEmprendimiento() {
             ['ubicacion']:`${state} , ${country}`
         })
     }, [state, country])
-
-
-    console.log(values)
-
-
-    
-
 
     const handleClickFiles = () => {
         document.querySelector('#inputFileChanger').click()

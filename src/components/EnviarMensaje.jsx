@@ -5,6 +5,7 @@ import { useForm } from '../hooks/useForm'
 import { useDispatch, useSelector } from 'react-redux';
 import { enviarMensajeAsincrono } from '../actions/actionMensajes';
 import { styled } from '@mui/material/styles';
+import Swal from 'sweetalert2';
 
 
 const theme = createTheme({
@@ -67,7 +68,7 @@ export default function EnviarMensaje(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('funcion')
+
         dispatch(enviarMensajeAsincrono(
             nombreEnvia,
             fotoEnvia,
@@ -80,9 +81,14 @@ export default function EnviarMensaje(props) {
             mensaje,
             leido,
             emprendimiento))
-
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Mensaje enviado satisfactoriamente',
+                showConfirmButton: false,
+                timer: 1500
+              })
             props.setShowEnviar(false)
-
     }
 
 

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { mostrarSincrono } from '../actions/actionEmprendimiento';
 import { eliminarAsincrono, mostrarAsincrono } from '../actions/actionUserEmp';
 import { Card, Container, Typography, Box, Button, Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/es';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-import ModalEditar from './ModalEditar';
 import EditEmprendimiento from './EditEmprendimiento';
 import Modal from '@mui/material/Modal';
+import Swal from 'sweetalert2';
 
 export default function MisEmprendimientos() {
     const dispatch = useDispatch();
@@ -23,9 +22,6 @@ export default function MisEmprendimientos() {
     const [openModal, setOpenModal] = useState(false);
     const [dataEdit, setDataEdit] = useState(null);
 
-
-
-
     useEffect(() => {
         // if (correo) {
         dispatch(mostrarAsincrono(correo))
@@ -34,15 +30,25 @@ export default function MisEmprendimientos() {
     }, [dispatch, correo, openModal])
 
     const handleDelete = (data) => {
-        dispatch(eliminarAsincrono(data.id))
-        dispatch(mostrarAsincrono(correo))
-        // console.log(data.id)
+        Swal.fire({
+            icon: 'info',
+            title: '¿Desea eliminar el emprendimiento?',
+            // showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            // denyButtonText: `No`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(eliminarAsincrono(data.id))
+                dispatch(mostrarAsincrono(correo))
+                Swal.fire('¡Eliminado!', '', 'success')
+            }
+        })
     }
 
     const handleEdit = (data) => {
         setOpenModal(true)
         setDataEdit(data)
-        // console.log(data)
     }
 
     const style = {
@@ -56,9 +62,6 @@ export default function MisEmprendimientos() {
         overflowY: 'scroll'
 
     };
-
-
-
 
     return (
         <Container sx={{ mt: 5 }}>
@@ -75,7 +78,7 @@ export default function MisEmprendimientos() {
                                     <Grid item xs={12} md={8}><Typography variant="caption">{moment(data.fechaCreacion.toDate()).calendar().toUpperCase()}</Typography></Grid>
                                     <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: 'flex-end' }} >
                                         <Button variant="contained" onClick={() => { handleEdit(data) }}><EditRoundedIcon /></Button>
-                                        <Button variant="contained" data={data} onClick={() => { handleDelete(data) }}><DeleteForeverRoundedIcon /></Button>
+                                        <Button sx={{ ml: 1, bgcolor: "red" }} variant="contained" data={data} onClick={() => { handleDelete(data) }}><DeleteForeverRoundedIcon /></Button>
                                     </Grid>
                                     <Grid item xs={12} md={8} sx={{ wordWrap: 'break-word' }}>
                                         <Typography variant="h6">Descripcion del emprendimiento:</Typography>
