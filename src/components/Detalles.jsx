@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -39,9 +39,10 @@ const theme = createTheme({
 });
 
 export default function Detalles({ data }) {
-    const [expanded, setExpanded] = React.useState(false);
-    const [openModal, setOpenModal] = React.useState(false);
-    const [showEnviar, setShowEnviar] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [showEnviar, setShowEnviar] = useState(false);
+    const [dataModal, setDataModal] = useState('')
 
     moment.locale('es');
 

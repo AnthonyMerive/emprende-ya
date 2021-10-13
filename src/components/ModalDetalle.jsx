@@ -6,11 +6,11 @@ import Modal from '@mui/material/Modal';
 import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import CardMedia from '@mui/material/CardMedia';
-import OffCanvas from './Offcanvas'
 
 
 
-export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }) {
+
+export default function ModalDetalle({ data,openModal,setOpenModal, setShowEnviar }) {
     const style = {
         position: 'absolute',
         top: '50%',
@@ -24,99 +24,91 @@ export default function ModalDetalle({ openModal, setOpenModal, data, infoCard }
 
     };
 
-    const [currentImage, setCurrentImage] = useState('')
-    const [showEnviar, setShowEnviar] = useState(false);
+    console.log(data)
+
+    const [currentImage, setCurrentImage] = useState(data.imagenes[0])
+   
 
 
     useEffect(() => {
-        if (currentImage === '') {
-            setCurrentImage(Object.values(data)[0])
-        } else {
-            let imageAction = document.querySelectorAll('.materialboxed');
-            M.Materialbox.init(imageAction, {});
-        }
 
-    }, [currentImage,data])
+        // setCurrentImage(Object.values(data)[0])
 
-    const handleEnviar = () =>{
-        setOpenModal(!openModal)
-        setShowEnviar(!showEnviar)
+        let imageAction = document.querySelectorAll('.materialboxed');
+        M.Materialbox.init(imageAction, {});
+
+
+    }, [currentImage, data])
+
+    const handleEnviar = () => {        
+        setShowEnviar(true)
+        setOpenModal(false)
     }
-
-
-
-
-
 
     return (
         <>
-            <Modal
-                open={openModal}
-                onClose={() => { setOpenModal(false) }}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <CardMedia
-                        component="img"
-                        height="450"
-                        image={currentImage}
-                        alt="Paella dish"
-                        sx={{ objectFit: 'contain', padding: 2 }}
-                        className='materialboxed'
-                    />
-                    <Box sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center'
-                    }}>
 
-                        {
-                            Object.values(data).map((item, index) => (
-                                <img key={index} width="70" src={item} onClick={() => { setCurrentImage(item) }} alt=""/>
-                            ))
-                        }
+            <Box sx={style}>
+                <CardMedia
+                    component="img"
+                    height="450"
+                    image={currentImage}
+                    alt="Paella dish"
+                    sx={{ objectFit: 'contain', padding: 2 }}
+                    className='materialboxed'
+                />
+                <Box sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center'
+                }}>
+
+                    {
+                        Object.values(data.imagenes).map((item, index) => (
+                            <img key={index} width="70" src={item} onClick={() => { setCurrentImage(item) }} alt="" />
+                        ))
+                    }
+                </Box>
+                <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
+
+                <Container>
+
+
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'column' }}>
+                        <Tooltip title={`${data.displayName} `} placement="bottom-start">
+                            <Avatar alt={`${data.displayName} `} src={`${data.fotoPerfil}`} sx={{ width: 40, height: 40, marginRight: 1 }} />
+                        </Tooltip>
+                        <Typography variant="h6" >{data.displayName}  </Typography>
+                        <Typography > ({data.correo}) </Typography>
                     </Box>
                     <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
-
-                    <Container>
-
-
-                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'column' }}>
-                            <Tooltip title={`${infoCard.displayName} `} placement="bottom-start">
-                                <Avatar alt={`${infoCard.displayName} `} src={`${infoCard.fotoPerfil}`} sx={{ width: 40, height: 40, marginRight: 1 }} />
-                            </Tooltip>
-                            <Typography variant="h6" >{infoCard.displayName}  </Typography>
-                            <Typography > ({infoCard.correo}) </Typography>
-                        </Box>
-                        <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
-                        <Box sx={{ p: 2, wordWrap: 'break-word', textAling: 'center', display: 'flex', flexDirection: 'column' }}>
-                            <Typography variant="h6">Descripcion del emprendimiento:</Typography> <br />
-                            <Typography variant="body1">{infoCard.descripcion}</Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', }}>
-                                <Button 
-                                variant="outlined" 
+                    <Box sx={{ p: 2, wordWrap: 'break-word', textAling: 'center', display: 'flex', flexDirection: 'column' }}>
+                        <Typography variant="h6">Descripcion del emprendimiento:</Typography> <br />
+                        <Typography variant="body1">{data.descripcion}</Typography>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', }}>
+                            <Button
+                                variant="outlined"
                                 sx={{ marginTop: 2, }}
                                 onClick={handleEnviar}
-                                >Contactar</Button>
-                            </Box>
+                            >Contactar</Button>
                         </Box>
+                    </Box>
 
 
-                    </Container>
+                </Container>
 
-                </Box>
-            </Modal>
+            </Box>
 
 
+{/* 
             <OffCanvas
-                displayName={infoCard.displayName}
-                correo={infoCard.correo}
-                foto={infoCard.fotoPerfil}
-                emprendimiento={infoCard.nombre}
+                displayName={data.displayName}
+                correo={data.correo}
+                foto={data.fotoPerfil}
+                emprendimiento={data.nombre}
                 setShowEnviar={setShowEnviar}
                 showEnviar={showEnviar}
-            />
+            /> */}
         </>
     )
 }

@@ -23,6 +23,7 @@ import { resetMensajes } from '../actions/actionMensajes';
 import { resetEmprendimientos } from '../actions/actionEmprendimiento';
 import { useCurrentLocation } from '../hooks/useCurrentLocation';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import LightbulbTwoToneIcon from '@mui/icons-material/LightbulbTwoTone';
 
 const theme = createTheme({
     palette: {
@@ -45,7 +46,7 @@ export default function Usuario(props) {
 
     const [currentGeoFind, currentLocation, watch, setWatch] = useCurrentLocation()
 
-    
+
 
 
     const dispatch = useDispatch()
@@ -204,6 +205,29 @@ export default function Usuario(props) {
 
                             </Button>
 
+                        </Grid>
+                        <Grid container justifyContent="center">
+                            <Link
+                                onClick={() => props.setShowInterfaz(false)}
+                                to="/tips"
+                                style={{ textDecoration: 'none', color: 'grey' }}
+                            >
+                                <Button
+                                    size="small"
+                                    type="submit"
+                                    variant="outlined"
+                                    sx={{
+                                        mt: 3,
+                                        color: '#7E8284'
+                                    }}
+                                    startIcon={<LightbulbTwoToneIcon />}
+                                >
+
+                                    Tips
+
+
+                                </Button>
+                            </Link>
                         </Grid>
 
                         <Grid container justifyContent="center">

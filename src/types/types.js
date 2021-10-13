@@ -22,3 +22,7 @@ export const typesUserEmp = {
     actualizar:'actualizar',
     eliminar:'eliminar'
 }
+
+export const typesTips = {
+    mostrar : 'mostrar tips'
+}

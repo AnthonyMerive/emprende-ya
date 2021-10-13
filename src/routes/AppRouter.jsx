@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import BotonAddEmp from '../components/BotonAddEmp';
+import { Tips } from '../components/Tips';
 
 export default function AppRouter() {
 
@@ -42,6 +43,8 @@ export default function AppRouter() {
 
                 <PrivateRoute auth={auth} exact path="/misProductos" component={MisEmprendimientos} />
 
+                <PrivateRoute auth={auth} exact path="/tips" component={Tips} />
+
                 {auth ?
                     <Route exact path="/" component={Cards} />
                     :
@@ -55,7 +58,6 @@ export default function AppRouter() {
             }
 
         </Router>
-
 
     )
 }

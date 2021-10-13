@@ -42,6 +42,8 @@ export const useLocation = (initialState = '') => {
             });
     }
 
+    console.log(state)
+
     
 
 

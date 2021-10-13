@@ -12,12 +12,14 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Avatar, Button, Popover } from '@mui/material';
 import OffCanvas from './Offcanvas';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Notifications from './Notifications'
+import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
 export default function NavBar(props) {
-
+    const dispatch = useDispatch();
     const perfil = useSelector(store => store.login)
+    const correo = perfil.correo
     const mensajes = useSelector(store => store.Mensajes)
     const msj = mensajes.mensajes
     const autenticacion = props.auth
@@ -46,6 +48,8 @@ export default function NavBar(props) {
             }
             setNotification(contador)
         })
+
+        dispatch(mostrarMensajesAsincronico(correo))
         
     }, [msj, setNotification, contador])
 
