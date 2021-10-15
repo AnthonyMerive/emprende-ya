@@ -83,3 +83,10 @@ export const eliminarSincrono = (userEmp) => {
         payload: userEmp
     }
 }
+
+export const resetUserEmp = () => {
+    return {
+        type: typesUserEmp.reset,
+        payload: []
+    }
+}

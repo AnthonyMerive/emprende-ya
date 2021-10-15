@@ -18,6 +18,10 @@ export const userEmpReducer = (state = initialState, action) => {
             return {
                 userEmp: action.payload
             }
+        case typesUserEmp.reset:
+            return {
+                userEmp: action.payload
+            }
 
 
         default:

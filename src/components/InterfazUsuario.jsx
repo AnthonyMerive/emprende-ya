@@ -24,6 +24,8 @@ import { resetEmprendimientos } from '../actions/actionEmprendimiento';
 import { useCurrentLocation } from '../hooks/useCurrentLocation';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LightbulbTwoToneIcon from '@mui/icons-material/LightbulbTwoTone';
+import { resetLocation } from '../actions/interfazAction';
+import { resetUserEmp } from '../actions/actionUserEmp';
 
 const theme = createTheme({
     palette: {
@@ -40,7 +42,12 @@ export default function Usuario(props) {
 
     const perfil = useSelector(store => store.login)
     const nuevoUsuario = useSelector(store => store.register)
-    const [currentGeoFind, currentLocation, watch, setWatch] = useCurrentLocation()
+    const locacion = useSelector(store => store.location)
+    const { location } = locacion
+    const [setWatch, watch] = useCurrentLocation()
+
+    console.log(watch)
+    console.log(location)
 
     const dispatch = useDispatch()
 
@@ -49,6 +56,8 @@ export default function Usuario(props) {
         dispatch(resetRegister())
         dispatch(resetEmprendimientos())
         dispatch(resetMensajes())
+        dispatch(resetUserEmp())
+        dispatch(resetLocation())
         props.setShowInterfaz(false)
         props.setNotification(0)
         localStorage.clear();
@@ -157,21 +166,24 @@ export default function Usuario(props) {
                             </Grid>
 
                             {
-                                watch ?
+
+
+                                location === 'error' ?
+                                    <Grid item xs={12} sx={{ textAlign: 'center'}}>
+                                        <Typography>No ha autorizado los permisos de ubicacion</Typography>
+                                        <IconButton onClick={() => { setWatch(true) }}>
+                                            <LocationOnOutlinedIcon />
+                                            Verificar ubicacion
+                                        </IconButton>
+                                    </Grid>
+                                    :
                                     <Grid item xs={12}>
                                         <Typography
                                             align='center'
                                             component="h2"
                                             variant="subtitle1">
-                                            {`${currentLocation}`}
+                                            {`${location}`}
                                         </Typography>
-                                    </Grid>
-                                    :
-                                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                                        <IconButton onClick={() => { setWatch(true) }}>
-                                            <LocationOnOutlinedIcon />
-                                            Verifica tu ubicacion
-                                        </IconButton>
                                     </Grid>
                             }
 

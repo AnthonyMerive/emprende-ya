@@ -7,6 +7,7 @@ import { addEmpReducer } from '../reducers/addEmpReducer';
 import { mensajesReducer } from '../reducers/mensajesReducer';
 import { userEmpReducer } from '../reducers/userEmpReducer';
 import { tipsReducer } from '../reducers/tipsReducer';
+import { interfazReducer } from '../reducers/interfazReducer';
 // combina los reducer existentes
 const reducers = combineReducers({
 
@@ -15,7 +16,8 @@ const reducers = combineReducers({
     Emprendimientos:addEmpReducer,
     Mensajes: mensajesReducer,
     userEmp: userEmpReducer,
-    tips:tipsReducer
+    tips:tipsReducer,
+    location:interfazReducer
     //aca se agregarian los demas productos
     //como un objeto
 })

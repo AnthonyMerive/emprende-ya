@@ -1,9 +1,20 @@
+
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { guardarSincrono } from '../actions/interfazAction'
+
 
 export const useCurrentLocation = () => {
-    const [currentLocation, setCurrentLocation] = useState('')
-    const [watch, setWatch] = useState(false)
+    const locacion = useSelector(store => store.location)
+    const { location } = locacion
 
+
+    console.log(location)
+
+
+
+    const [watch, setWatch] = useState(false)
+    const dispatch = useDispatch()
 
 
 
@@ -15,6 +26,8 @@ export const useCurrentLocation = () => {
 
         const error = () => {
             console.log('error')
+            dispatch(guardarSincrono('error'))
+            setWatch(false)
         }
 
         let options = {
@@ -40,13 +53,12 @@ export const useCurrentLocation = () => {
             .then(response => response.json())
             .then(result => {
                 if (result.features.length) {
-                    setCurrentLocation(`${result.features[0].properties.city} , ${result.features[0].properties.state}`)
-
+                    dispatch(guardarSincrono(`${result.features[0].properties.city} , ${result.features[0].properties.state}`))
                 } else {
                     console.log("No address found");
                 }
             });
     }
 
-    return [currentGeoFind, currentLocation, watch, setWatch]
+    return [ setWatch, watch]
 }

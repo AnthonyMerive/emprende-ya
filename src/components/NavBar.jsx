@@ -4,17 +4,16 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import Badge from '@mui/material/Badge';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Avatar, Button, Popover } from '@mui/material';
 import OffCanvas from './Offcanvas';
-import { Link,useLocation  } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Notifications from './Notifications'
-import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
+import { useCurrentLocation } from '../hooks/useCurrentLocation';
 
 
 export default function NavBar(props) {
@@ -26,14 +25,16 @@ export default function NavBar(props) {
     const msj = mensajes.mensajes
     const autenticacion = props.auth
 
-    let contador=0
+    let contador = 0
+
     const [showLogin, setShowLogin] = useState(false)
     const [showRegister, setShowRegister] = useState(false)
     const [showInterfaz, setShowInterfaz] = useState(false)
     const [notification, setNotification] = useState(contador)
+    const [anchorEl, setAnchorEl] = useState(null);
 
-    const [anchorEl, setAnchorEl] = React.useState(null);   
-   
+    const [setWatch, watch] = useCurrentLocation()
+
     const handleOpen = (e) => {
         setAnchorEl(e.currentTarget);
     };
@@ -43,14 +44,18 @@ export default function NavBar(props) {
     };
 
     useEffect(() => {
+        if (autenticacion) { setWatch(true) }
+    }, [autenticacion])
 
-        msj.map(msjs=>{
-            if(!msjs.leido){
+    useEffect(() => {
+
+        msj.map(msjs => {
+            if (!msjs.leido) {
                 contador++
             }
             setNotification(contador)
         })
-        
+
     }, [msj, setNotification, contador])
 
     console.log(location.pathname)
@@ -65,32 +70,32 @@ export default function NavBar(props) {
                     position="fixed"
                     sx={{ boxShadow: 'none' }}
                 >
-                 
+
                     {
                         autenticacion ?
                             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                
+
                                 {
-                                    location.pathname === '/tips'?<IconButton
-                                    size="large"
-                                    edge="start"
-                                    color="inherit"
-                                    aria-label="menu"
-                                    onClick={()=>window.location.reload()}
-                                >
-                                    <img className="logo_tips" src="https://res.cloudinary.com/duaokxfsp/image/upload/v1634234027/emprende-ya/Logo/EyTips_fnzzun.png" alt="logo_eyTips" />
-                                </IconButton>:<IconButton
-                                    size="large"
-                                    edge="start"
-                                    color="inherit"
-                                    aria-label="menu"
-                                    onClick={()=>window.location.reload()}
-                                >
-                                    <img  className="logo"src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY"/>
-                                </IconButton>
+                                    location.pathname === '/tips' ? <IconButton
+                                        size="large"
+                                        edge="start"
+                                        color="inherit"
+                                        aria-label="menu"
+                                        onClick={() => window.location.reload()}
+                                    >
+                                        <img className="logo_tips" src="https://res.cloudinary.com/duaokxfsp/image/upload/v1634234027/emprende-ya/Logo/EyTips_fnzzun.png" alt="logo_eyTips" />
+                                    </IconButton> : <IconButton
+                                        size="large"
+                                        edge="start"
+                                        color="inherit"
+                                        aria-label="menu"
+                                        onClick={() => window.location.reload()}
+                                    >
+                                        <img className="logo" src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY" />
+                                    </IconButton>
                                 }
-                                
-                                
+
+
 
 
                                 <Box /* sx={{display:{xs:'none',md:'block'}}} */>
@@ -126,7 +131,7 @@ export default function NavBar(props) {
                                     <Link to="/"><IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton></Link>
 
                                     {perfil.foto ?
-                                        <IconButton onClick={() => setShowInterfaz(true)}><Avatar sx={{ width: 30, height: 30 }}  alt={perfil.displayName} src={`${perfil.foto}`} /></IconButton>
+                                        <IconButton onClick={() => setShowInterfaz(true)}><Avatar sx={{ width: 30, height: 30 }} alt={perfil.displayName} src={`${perfil.foto}`} /></IconButton>
                                         :
                                         <IconButton onClick={() => setShowInterfaz(true)}><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
                                     }
@@ -144,7 +149,7 @@ export default function NavBar(props) {
                                         aria-label="menu"
                                         sx={{}}
                                     >
-                                         <img  className="logo"src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY"/>
+                                        <img className="logo" src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY" />
                                     </IconButton>
                                 </Box>
                                 <Box>
@@ -170,26 +175,26 @@ export default function NavBar(props) {
                             horizontal: 'right',
                         }}
                     >
-                            {
-                                    mensajes.mensajes.length > 0 ?
+                        {
+                            mensajes.mensajes.length > 0 ?
 
-                                    mensajes.mensajes.map((msj,index) =>
+                                mensajes.mensajes.map((msj, index) =>
 
-                                        <Notifications
-                                            setAnchorEl= {setAnchorEl}
-                                            id={msj.id}
-                                            foto={msj.fotoEnvia}
-                                            nombre={msj.nombreEnvia}
-                                            emprendimiento={msj.emprendimiento}
-                                            fechaEnvio={msj.fechaEnvio}
-                                            leido={msj.leido}
-                                            key={index}
-                                        />
-                                    )
-                                    :
-                                    <Typography sx={{m:2}} variant="body1">No tienes mensajes</Typography>
+                                    <Notifications
+                                        setAnchorEl={setAnchorEl}
+                                        id={msj.id}
+                                        foto={msj.fotoEnvia}
+                                        nombre={msj.nombreEnvia}
+                                        emprendimiento={msj.emprendimiento}
+                                        fechaEnvio={msj.fechaEnvio}
+                                        leido={msj.leido}
+                                        key={index}
+                                    />
+                                )
+                                :
+                                <Typography sx={{ m: 2 }} variant="body1">No tienes mensajes</Typography>
 
-                            }
+                        }
                     </Popover>
 
                 </AppBar>
@@ -197,7 +202,7 @@ export default function NavBar(props) {
             </Box>
 
             <OffCanvas
-                setNotification = {setNotification}
+                setNotification={setNotification}
                 setShowLogin={setShowLogin}
                 showLogin={showLogin}
                 setShowRegister={setShowRegister}
