@@ -82,8 +82,6 @@ export default function Cards() {
     }
   }, [dispatch,correo,id])
 
-  console.log(emprendimiento)
-
   return (
     <Container className="cardsGrid">
 
@@ -142,7 +140,7 @@ export default function Cards() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={''}>
+          <Box >
 
             <ModalDetalle data={dataModal} openModal={openModal} setOpenModal={setOpenModal} setShowEnviar={setShowEnviar} />
 

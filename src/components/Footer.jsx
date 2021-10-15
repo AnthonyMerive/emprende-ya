@@ -21,7 +21,7 @@ export default function Footer() {
                                 <Typography variant="h6" color="text.secondary" align="center">
                                     {'Copyright © '}
                                     <Link color="inherit" href="https://github.com/AnthonyMerive/emprende-ya">
-                                        EmprendeYA
+                                        EmprendeYa
                                     </Link>{' '}
                                     {new Date().getFullYear()}
                                     {'.'}
