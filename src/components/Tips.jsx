@@ -6,6 +6,7 @@ import M from 'materialize-css/dist/js/materialize.min.js'
 import Carousel from 'react-elastic-carousel'
 import youtube from '../helpers/youtube';
 import { useDispatch, useSelector } from 'react-redux';
+import {mostrarAsincrono} from '../actions/actionTips'
 
 
 const Item = styled(Box)(({ theme }) => ({
