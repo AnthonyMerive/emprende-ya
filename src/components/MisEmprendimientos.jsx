@@ -9,6 +9,7 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import EditEmprendimiento from './EditEmprendimiento';
 import Modal from '@mui/material/Modal';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 export default function MisEmprendimientos() {
@@ -67,7 +68,9 @@ export default function MisEmprendimientos() {
         <Container sx={{ mt: 5 }}>
 
             <Typography variant="h4" sx={{ p: 2 }}>Mis Emprendimientos</Typography>
-            {
+            {dataEmp.length === 0 ?
+                <Typography variant="h6" sx={{ p: 2 }}>Sin emprendimientos, animate y publica uno dando <Link to="/agregarEmprendimiento">click aqui</Link></Typography>
+                :
                 dataEmp.map((data, index) => (
 
                     <>
@@ -90,6 +93,7 @@ export default function MisEmprendimientos() {
 
                     </>
                 ))
+
             }
             <Modal
                 open={openModal}

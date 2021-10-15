@@ -1,6 +1,7 @@
 import { types } from '../types/types'
 import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { googleAuth } from '../firebase/firebaseConfig'
+import Swal from 'sweetalert2';
 
 const auth = getAuth();
 
@@ -15,9 +16,20 @@ export const loginGoogle = () => {
                 console.log(user.providerData[0])
                 const data = user.providerData[0];
                 dispatch(loginSincrono(user.uid, data.displayName, data.photoURL, data.email))
+                Swal.fire({
+                    icon: 'success',
+                    title: `Ha sido reconocido`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             })
             .catch(error => {
-                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             })
     }
 }
@@ -33,7 +45,12 @@ export const loginEmailPassword = (email, password) => {
             const data = user.providerData[0];
             dispatch(loginSincrono(user.uid, data.displayName, data.photoURL, data.email))
         }).catch(error => {
-            console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: `${error}`,
+                showConfirmButton: false,
+                timer: 1500
+              })
         })
     }
 }

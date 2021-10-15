@@ -17,7 +17,7 @@ export default function BotonAddEmp() {
     };
 
     const handleEmprendimiento = () => {
-        history.replace('/agregarProducto')
+        history.replace('/agregarEmprendimiento')
     }
     
     return (<>

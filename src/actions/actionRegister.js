@@ -1,5 +1,6 @@
 import { types } from '../types/types'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import Swal from 'sweetalert2';
 
 export const registroEmailPasswordNombre = (name, email, password) => {
     return (dispatch) => {
@@ -14,9 +15,19 @@ export const registroEmailPasswordNombre = (name, email, password) => {
             })
 
             dispatch(registerSincrono(user.uid, user.displayName, user.email))
-            
+            Swal.fire({
+                icon: 'success',
+                title: `Ha sido registrado con exito`,
+                showConfirmButton: false,
+                timer: 1500
+              })
         }).catch(error => {
-            console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: `${error}`,
+                showConfirmButton: false,
+                timer: 1500
+              })
         })
 
     }

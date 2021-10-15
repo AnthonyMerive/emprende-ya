@@ -26,6 +26,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LightbulbTwoToneIcon from '@mui/icons-material/LightbulbTwoTone';
 import { resetLocation } from '../actions/interfazAction';
 import { resetUserEmp } from '../actions/actionUserEmp';
+import Swal from 'sweetalert2';
 
 const theme = createTheme({
     palette: {
@@ -70,7 +71,11 @@ export default function Usuario(props) {
 
     useEffect(() => {
         if (fotoPerfil === null) {
-            alert('cargue una foto de perfil')
+            Swal.fire({
+                icon: 'warning',
+                title: 'Cargue una foto de perfil',
+                showConfirmButton: true
+              })
         }
     }, [idPerfil, idNuevoUsuario, fotoPerfil])
 
@@ -83,10 +88,20 @@ export default function Usuario(props) {
         fileUpload(file)
             .then(resp => {
                 setImgUrl(resp)
+                Swal.fire({
+                    icon: 'success',
+                    title: `Su foto de perfil ha sido cargada`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             })
             .catch(error => {
-                console.log('Vuelva a cargar la imagen');
-                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             })
     }
 
