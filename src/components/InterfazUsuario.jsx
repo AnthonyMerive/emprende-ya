@@ -198,7 +198,7 @@ export default function Usuario(props) {
                             >
                                 <Link
                                     onClick={() => props.setShowInterfaz(false)}
-                                    to="/misProductos"
+                                    to="/misEmprendimientos"
                                     style={{ textDecoration: 'none', color: 'grey' }}
                                 >
                                     Mis Emprendimientos
