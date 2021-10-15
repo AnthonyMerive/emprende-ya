@@ -169,7 +169,7 @@ export default function Usuario(props) {
 
 
                                 location === 'error' ?
-                                    <Grid item xs={12} sx={{ textAlign: 'center'}}>
+                                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
                                         <Typography>No ha autorizado los permisos de ubicacion</Typography>
                                         <IconButton onClick={() => { setWatch(true) }}>
                                             <LocationOnOutlinedIcon />
@@ -191,25 +191,25 @@ export default function Usuario(props) {
 
                         </Grid>
                         <Grid container justifyContent="center">
-                            <Button
-                                size="small"
-                                type="submit"
-                                variant="outlined"
-                                sx={{
-                                    mt: 3,
-                                    color: '#7E8284'
-                                }}
-                                endIcon={<BusinessCenterIcon />}
+                            <Link
+                                onClick={() => props.setShowInterfaz(false)}
+                                to="/misEmprendimientos"
+                                style={{ textDecoration: 'none', color: 'grey' }}
                             >
-                                <Link
-                                    onClick={() => props.setShowInterfaz(false)}
-                                    to="/misEmprendimientos"
-                                    style={{ textDecoration: 'none', color: 'grey' }}
+                                <Button
+                                    size="small"
+                                    type="submit"
+                                    variant="outlined"
+                                    sx={{
+                                        mt: 3,
+                                        color: '#7E8284'
+                                    }}
+                                    endIcon={<BusinessCenterIcon />}
                                 >
                                     Mis Emprendimientos
-                                </Link>
 
-                            </Button>
+                                </Button>
+                            </Link>
 
                         </Grid>
                         <Grid container justifyContent="center">

@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux'
 import { registroEmailPasswordNombre } from '../actions/actionRegister'
 import { loginGoogle } from '../actions/actionLogin';
 
+
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -42,7 +43,6 @@ const theme = createTheme({
 });
 
 export default function Register() {
-
     const dispatch = useDispatch();
 
     const [values, setValues, handleInputChange, handleFileChange, reset] = useForm({

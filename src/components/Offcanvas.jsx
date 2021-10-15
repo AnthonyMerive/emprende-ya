@@ -10,6 +10,7 @@ import EnviarMensaje from './EnviarMensaje';
 
 export default function OffCanvas(props) {
 
+    console.log(props)
 
     const [register, setRegister] = useState(false)
     const [login, setLogin] = useState(false)
@@ -38,11 +39,30 @@ export default function OffCanvas(props) {
 
     }, [showRegister, showLogin, setShowRegister, setShowLogin, auth])
 
+    const handleClose = (open) => (event) => {
+        if (
+            event &&
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return;
+        }
+
+        props.setShowRegister(open);
+        props.setShowLogin(open)
+        if(props.showInterfaz){props.setShowInterfaz(open)}
+        if(props.showEnviar){props.setShowEnviar(open)}
+        // props.setShowEnviar(open)
+        // props.setShowInterfaz(open)
+    };
+
+
     return (<>
 
         <SwipeableDrawer
             anchor={'right'}
             open={props.showInterfaz}
+            onClose={handleClose(false)}
         >
             <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
                 <IconButton onClick={() => props.setShowInterfaz(false)} aria-label="delete">
@@ -57,6 +77,7 @@ export default function OffCanvas(props) {
         <SwipeableDrawer
             anchor={'left'}
             open={props.showEnviar}
+            onClose={handleClose(false)}
         >
             <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
                 <IconButton onClick={() => props.setShowEnviar(false)} aria-label="delete">
@@ -64,12 +85,12 @@ export default function OffCanvas(props) {
                 </IconButton>
             </Box>
             {
-                <EnviarMensaje 
-                displayName={props.displayName} 
-                correo={props.correo} 
-                foto={props.foto}
-                emprendimiento={props.emprendimiento}
-                setShowEnviar={props.setShowEnviar}
+                <EnviarMensaje
+                    displayName={props.displayName}
+                    correo={props.correo}
+                    foto={props.foto}
+                    emprendimiento={props.emprendimiento}
+                    setShowEnviar={props.setShowEnviar}
                 />
             }
         </SwipeableDrawer>
@@ -77,6 +98,7 @@ export default function OffCanvas(props) {
         <SwipeableDrawer
             anchor={'left'}
             open={props.showRegister || props.showLogin}
+            onClose={handleClose(false)}
         >
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <IconButton onClick={() => {

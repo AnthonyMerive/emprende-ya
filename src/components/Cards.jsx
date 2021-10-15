@@ -72,90 +72,84 @@ export default function Cards() {
   }
 
   useEffect(() => {
-    if(id){
+    if (id) {
       dispatch(mostrarAsincronico())
       dispatch(mostrarMensajesAsincronico(correo))
     }
-  }, [dispatch,correo,id])
+  }, [dispatch, correo, id])
 
   return (
-    <Container className="cardsGrid">
-
-      <Grid container spacing={2} >
-
-        {
-          emprendimiento.map((data, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}><ThemeProvider theme={theme}>
-              <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Card sx={{
-                  maxWidth: 345,
-                  marginTop: 5,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}>
-
-                  <CardHeader
-
-                    title={<Typography variant="h6"><strong>{data.nombre.toUpperCase()}</strong></Typography>}
-
-                    subheader={<Typography variant="caption" sx={{ color: '#CAC8C8' }}>{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
-                  />
-                  <Typography variant="body2">{data.ubicacion}</Typography>
-
-                  <CardMedia
-                    component="img"
-                    width="250"
-                    height="250"
-                    image={data.imagenes[0]}
-                    alt={data.nombre}
-                    sx={{ objectFit: 'contain', padding: 2 }}
-                  />
-
-                  <CardActions disableSpacing>
-                    <Typography variant="body2" color="text.secondary">
-                      Mas informacion
-                    </Typography>
-                    <IconButton onClick={() => { handleModal(data) }} >
-                      <AddIcon />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-
-
-              </Container>
-            </ThemeProvider>
-            </Grid>
-          ))
-        }
-
-        <Modal
-          open={openModal}
-          onClose={() => { setOpenModal(false) }}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box >
-
-            <ModalDetalle data={dataModal} openModal={openModal} setOpenModal={setOpenModal} setShowEnviar={setShowEnviar} />
-
-          </Box>
-        </Modal>
-
-        {
-          showEnviar && <OffCanvas
-          displayName={dataModal.displayName}
-          correo={dataModal.correo}
-          foto={dataModal.fotoPerfil}
-          emprendimiento={dataModal.nombre}
-          setShowEnviar={setShowEnviar}
-          showEnviar={showEnviar}
-        />
-        }
-
-      </Grid>
-
-    </Container>
+    <div className="gradient_layout">
+      <Container className="cardsGrid ">
+        <Grid container spacing={2} >
+          {
+            emprendimiento.map((data, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}><ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                  <CssBaseline />
+                  <Card
+                    sx={{
+                      maxWidth: 345,
+                      minHeight: 420,
+                      maxHeight: 420,
+                      marginTop: 5,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'space-around',
+                    }}
+                    className="cards"
+                    >
+                    <CardHeader
+                      sx={{ textAlign: 'center', }}
+                      title={<Typography variant="h6"><strong>{data.nombre.toUpperCase()}</strong></Typography>}
+                      subheader={<Typography variant="caption" sx={{ color: '#CAC8C8' }}>{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
+                    />
+                    <Typography variant="body2">{data.ubicacion}</Typography>
+                    <CardMedia
+                      component="img"
+                      width="250"
+                      height="250"
+                      image={data.imagenes[0]}
+                      alt={data.nombre}
+                      sx={{ objectFit: 'contain', padding: 2 }}
+                    />
+                    <CardActions disableSpacing>
+                      <Typography variant="body2" color="text.secondary">
+                        Mas informacion
+                      </Typography>
+                      <IconButton onClick={() => { handleModal(data) }} >
+                        <AddIcon />
+                      </IconButton>
+                    </CardActions>
+                  </Card>
+                </Container>
+              </ThemeProvider>
+              </Grid>
+            ))
+          }
+          <Modal
+            open={openModal}
+            onClose={() => { setOpenModal(false) }}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box >
+              <ModalDetalle data={dataModal} openModal={openModal} setOpenModal={setOpenModal} setShowEnviar={setShowEnviar} />
+            </Box>
+          </Modal>
+          {
+            showEnviar && <OffCanvas
+              displayName={dataModal.displayName}
+              correo={dataModal.correo}
+              foto={dataModal.fotoPerfil}
+              emprendimiento={dataModal.nombre}
+              setShowEnviar={setShowEnviar}
+              showEnviar={showEnviar}
+            />
+          }
+        </Grid>
+      </Container>
+    </div>
   );
 }

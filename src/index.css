@@ -33,7 +33,24 @@ body {
   margin-top: auto
 }
 
-.cardsGrid{
+.cards{
+  background: linear-gradient(#1976d29d, #1976d23a);
+  opacity: .8;
+  box-shadow: 0px 12px 30px 1px rgba(0, 0, 0, 0.2) !important;
+}
+.cards:hover{
+  transform: translateY(-20px);
+  border:2px solid gray;
+  background:rgb(235, 235, 235);
+  opacity:1
+  
+}
+
+
+
+.gradient_layout{
+  background: linear-gradient(#1976d2, #fff);
+  background-size: cover;
   margin-top: 64px;
 }
 
