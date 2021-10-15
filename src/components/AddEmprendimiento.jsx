@@ -73,13 +73,11 @@ export default function AddEmprendimiento() {
                     })
 
                     Swal.fire({
-                        // icon: 'success',
-                        title: 'Cargando',
+                        icon: 'success',
+                        title: 'Imagenes cargadas satisfactoriamente',
                         showConfirmButton: false,
-                        didOpen: () => {
-                            Swal.showLoading()
-                        }
-                    })
+                        timer: 1500
+                      })
                 }).catch(err => {
                     console.log(err.message)
                 })
@@ -100,6 +98,12 @@ export default function AddEmprendimiento() {
             correo,
             fechaCreacion,
             ubicacion))
+            Swal.fire({
+                icon: 'success',
+                title: 'Agregado satisfactoriamente',
+                showConfirmButton: false,
+                timer: 1500
+              })
         history.replace('/')
     }
 

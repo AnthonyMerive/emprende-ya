@@ -62,7 +62,7 @@ export default function AppRouter() {
 
             </Switch>
 
-            {auth &&
+            {(auth && usuarioLogeado.foto!==null)&&
                 <BotonAddEmp />
             }
 
