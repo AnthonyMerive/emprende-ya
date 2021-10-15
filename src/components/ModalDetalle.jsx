@@ -106,7 +106,7 @@ export default function ModalDetalle({ data, openModal, setOpenModal, setShowEnv
                                         endIcon={<BusinessCenterIcon />}
                                     >
                                         <Link
-                                            to="/misProductos"
+                                            to="/misEmprendimientos"
                                             style={{ textDecoration: 'none', color: 'grey' }}
                                         >
                                             Mis Emprendimientos
