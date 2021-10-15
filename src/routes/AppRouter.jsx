@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense, lazy, useState, useEffect } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,15 +11,17 @@ import Cards from '../components/Cards'
 import AddEmprendimiento from '../components/AddEmprendimiento'
 import MisEmprendimientos from '../components/MisEmprendimientos'
 import PrivateRoute from './PrivateRoute'
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import BotonAddEmp from '../components/BotonAddEmp';
 import { Tips } from '../components/Tips';
+import Loading from '../components/Loading';
+import { useSelector } from 'react-redux';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 export default function AppRouter() {
-
+    const authenticated = getAuth();
     const [auth, setAuth] = useState(false)
+    const [checking, setChecking] = useState(true)
 
 
     const usuarioLogeado = useSelector(store => store.login)
@@ -29,7 +31,14 @@ export default function AppRouter() {
             setAuth(true)
             :
             setAuth(false)
+        onAuthStateChanged(authenticated, async (user) => {
+            setChecking(false)
+        })
     }, [usuarioLogeado])
+
+    if (checking) {
+        return <Loading />;
+    }
 
     return (
 
@@ -39,9 +48,9 @@ export default function AppRouter() {
 
             <Switch>
 
-                <PrivateRoute auth={auth} exact path="/agregarProducto" component={AddEmprendimiento} />
+                <PrivateRoute auth={auth} exact path="/agregarEmprendimiento" component={AddEmprendimiento} />
 
-                <PrivateRoute auth={auth} exact path="/misProductos" component={MisEmprendimientos} />
+                <PrivateRoute auth={auth} exact path="/misEmprendimientos" component={MisEmprendimientos} />
 
                 <PrivateRoute auth={auth} exact path="/tips" component={Tips} />
 
@@ -50,7 +59,7 @@ export default function AppRouter() {
                     :
                     <Route exact path="/" component={LandingPage} />
                 }
-                
+
             </Switch>
 
             {auth &&

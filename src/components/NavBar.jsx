@@ -11,12 +11,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Avatar, Button, Popover } from '@mui/material';
 import OffCanvas from './Offcanvas';
-import { Link } from 'react-router-dom';
+import { Link,useLocation  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Notifications from './Notifications'
 import { mostrarMensajesAsincronico } from '../actions/actionMensajes';
 
+
 export default function NavBar(props) {
+    let location = useLocation()
     const dispatch = useDispatch();
     const perfil = useSelector(store => store.login)
     const correo = perfil.correo
@@ -51,6 +53,8 @@ export default function NavBar(props) {
         
     }, [msj, setNotification, contador])
 
+    console.log(location.pathname)
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
@@ -65,7 +69,17 @@ export default function NavBar(props) {
                     {
                         autenticacion ?
                             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <IconButton
+                                
+                                {
+                                    location.pathname === '/tips'?<IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    onClick={()=>window.location.reload()}
+                                >
+                                    <img className="logo_tips" src="https://res.cloudinary.com/duaokxfsp/image/upload/v1634234027/emprende-ya/Logo/EyTips_fnzzun.png" alt="logo_eyTips" />
+                                </IconButton>:<IconButton
                                     size="large"
                                     edge="start"
                                     color="inherit"
@@ -74,6 +88,9 @@ export default function NavBar(props) {
                                 >
                                     <img  className="logo"src="https://res.cloudinary.com/duaokxfsp/image/upload/v1633982365/emprende-ya/Logo/LogoEY2_ccjzin.png" alt="logoEY"/>
                                 </IconButton>
+                                }
+                                
+                                
 
 
                                 <Box /* sx={{display:{xs:'none',md:'block'}}} */>
@@ -156,7 +173,7 @@ export default function NavBar(props) {
                             {
                                     mensajes.mensajes.length > 0 ?
 
-                                    mensajes.mensajes.map(msj =>
+                                    mensajes.mensajes.map((msj,index) =>
 
                                         <Notifications
                                             setAnchorEl= {setAnchorEl}
@@ -166,6 +183,7 @@ export default function NavBar(props) {
                                             emprendimiento={msj.emprendimiento}
                                             fechaEnvio={msj.fechaEnvio}
                                             leido={msj.leido}
+                                            key={index}
                                         />
                                     )
                                     :
