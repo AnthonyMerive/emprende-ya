@@ -1,12 +1,14 @@
-import { collection, getDocs, } from "@firebase/firestore"
+import { collection, getDocs, orderBy, query, } from "@firebase/firestore"
 import { db } from "../firebase/firebaseConfig"
 import { typesEmprendimiento } from '../types/types'
 
 export const mostrarAsincronico = () => {
     return async (dispatch) => {
-        const datos = await getDocs(collection(db, "Emprendimientos"));
+        const coleccion = collection(db, "Emprendimientos")
+        const q = query(coleccion, orderBy("fechaCreacion", "desc"))
+        const result = await getDocs(q)
         const emprendimientos = [];
-        datos.forEach((document) => {
+        result.forEach((document) => {
             emprendimientos.push({
                 id: document.id,
                 ...document.data()

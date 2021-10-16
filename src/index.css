@@ -50,8 +50,6 @@ body {
   
 }
 
-
-
 .gradient_layout{
   background: linear-gradient(#1976d2, #fff);
   background-size: cover;
@@ -97,8 +95,6 @@ body {
 
   
 }
-
-
 
 input:not([type]),
 input[type=text]:not(.browser-default),
