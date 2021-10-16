@@ -29,6 +29,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
+import Swal from 'sweetalert2';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -70,8 +71,6 @@ export default function Cards() {
   const [dataModal, setDataModal] = useState(null);
   const [load, setLoad] = useState(false);
   const [busqueda, setBusqueda] = useState(null)
-  const [buscar, setBuscar] = useState(null)
-
   let emprend = {}
   moment.locale('es');
 
@@ -136,7 +135,16 @@ export default function Cards() {
 
   const handleBuscar = (e) => {
     e.preventDefault()
-    setBuscar(emprendimientos.find(data => data.nombre.toLowerCase() === busqueda.nombre.toLowerCase()))
+    if (busqueda === null) {
+      Swal.fire({
+        icon: 'error',
+        title: 'No hay coincidencias',
+        showConfirmButton: false,
+        timer: 1000
+      })
+    } else {
+      handleModal(busqueda)
+    }
   }
 
   const handleModal = (data) => {
@@ -148,25 +156,25 @@ export default function Cards() {
     <div className="gradient_layout">
       <Container className="cardsGrid ">
         {load &&
-          <Grid container sx={{ pt: "5px" }}>
-            <Grid item xs={4}>
-              <InputLabel sx={{ ml: 3, color: "white" }} id="categoria">Filtrar por categorias:</InputLabel>
-              <Select
-                sx={{ ml: 3, bgcolor: "rgb(235, 235, 235)" }}
-                labelId="categoria"
-                id="demo-simple-select"
-                value={values.categoria}
-                name="categoria"
-                onChange={handleInputChange}
-              >
-                <MenuItem value={'ver todos'}>Todos los emprendimientos</MenuItem>
-                <MenuItem value={'reparacion y mantenimiento'}>Reparacion y mantenimiento</MenuItem>
-                <MenuItem value={'tecnologia'}>Tecnologia</MenuItem>
-                <MenuItem value={'otros'}>Otros</MenuItem>
-              </Select>
+          <Grid container sx={{ pt: "12px" }}>
+            <Grid item xs={12} md={4}>   
+                <InputLabel sx={{ ml: 3, color: "white" }} id="categoria">Filtrar por categorias:</InputLabel>
+                <Select
+                  sx={{ ml: 3, bgcolor: "rgb(235, 235, 235)" }}
+                  labelId="categoria"
+                  id="demo-simple-select"
+                  value={values.categoria}
+                  name="categoria"
+                  onChange={handleInputChange}
+                >
+                  <MenuItem value={'ver todos'}>Todos los emprendimientos</MenuItem>
+                  <MenuItem value={'reparacion y mantenimiento'}>Reparacion y mantenimiento</MenuItem>
+                  <MenuItem value={'tecnologia'}>Tecnologia</MenuItem>
+                  <MenuItem value={'otros'}>Otros</MenuItem>
+                </Select>
             </Grid>
-            <Grid item xs={8}>
-              <Box onSubmit={handleBuscar} component="form" sx={{ display: 'flex', justifyContent: 'end' }}>
+            <Grid item xs={12} md={8}>
+              <Box onSubmit={handleBuscar} component="form" sx={{display: 'flex', justifyContent: 'end', mt: { xs: 3, md: 0 } }}>
                 <Autocomplete
                   id="asynchronous-demo"
                   sx={{ width: 400, mr: 2 }}
@@ -208,50 +216,7 @@ export default function Cards() {
 
         }
         <Grid container spacing={2} >
-          {buscar !== null ?
-            <Grid item xs={12} sm={6} md={4} ><ThemeProvider theme={theme}>
-              <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Card
-                  sx={{
-                    maxWidth: 345,
-                    minHeight: 420,
-                    maxHeight: 420,
-                    marginTop: 5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'space-around',
-                  }}
-                  className="cards"
-                >
-                  <CardHeader
-                    sx={{ textAlign: 'center', }}
-                    title={<Typography variant="h6"><strong>{buscar.nombre.toUpperCase()}</strong></Typography>}
-                    subheader={<Typography variant="caption">{moment(buscar.fechaCreacion.toDate()).calendar()}</Typography>}
-                  />
-                  <Typography variant="body2">{buscar.ubicacion}</Typography>
-                  <CardMedia
-                    component="img"
-                    width="250"
-                    height="250"
-                    image={buscar.imagenes[0]}
-                    alt={buscar.nombre}
-                    sx={{ objectFit: 'contain', padding: 2 }}
-                  />
-                  <CardActions disableSpacing>
-                    <Typography variant="body2" color="text.secondary">
-                      Mas informacion
-                    </Typography>
-                    <IconButton onClick={() => { handleModal(busqueda) }} >
-                      <AddIcon />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </Container>
-            </ThemeProvider>
-            </Grid>
-            :
+          {
             emprend.length > 0 &&
             emprend.map((data, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}><ThemeProvider theme={theme}>
