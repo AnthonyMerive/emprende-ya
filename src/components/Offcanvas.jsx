@@ -77,9 +77,9 @@ export default function OffCanvas(props) {
         <SwipeableDrawer
             anchor={'left'}
             open={props.showEnviar}
-            onClose={handleClose(false)}
+            // onClose={handleClose(false)}
         >
-            <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <IconButton onClick={() => props.setShowEnviar(false)} aria-label="delete">
                     <HighlightOffIcon />
                 </IconButton>
