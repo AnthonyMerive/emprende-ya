@@ -16,12 +16,6 @@ export const loginGoogle = () => {
                 console.log(user.providerData[0])
                 const data = user.providerData[0];
                 dispatch(loginSincrono(user.uid, data.displayName, data.photoURL, data.email))
-                Swal.fire({
-                    icon: 'success',
-                    title: `Ha sido reconocido`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
             })
             .catch(error => {
                 Swal.fire({

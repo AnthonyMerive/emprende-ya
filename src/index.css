@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nova+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nova+Round&display=swap");
 
 .swal2-container {
   z-index: 100000 !important;
@@ -9,13 +9,13 @@
   padding: 0;
   top: 0;
   box-sizing: border-box;
-  font-family: 'Nova Round', cursive;
+  font-family: "Nova Round", cursive;
 }
 
 html,
 body,
 #root {
-  height: 100%; 
+  height: 100%;
 }
 
 #root {
@@ -29,34 +29,30 @@ body {
   position: relative;
   /* Medida mínima */
   min-height: 100vh;
-  
 }
 
 .footer {
-  margin-top: auto
+  margin-top: auto;
 }
 
-.cards{
+.cards {
   background: linear-gradient(#1976d29d, #1976d23a);
-  opacity: .8;
+  opacity: 0.8;
   box-shadow: 0px 12px 30px 1px rgba(0, 0, 0, 0.2) !important;
 }
-.cards:hover{
+.cards:hover {
   transform: translateY(-20px);
-  border:2px solid gray;
-  background:rgb(235, 235, 235);
-  opacity:1
-  
+  border: 2px solid gray;
+  background: rgb(235, 235, 235);
+  opacity: 1;
 }
 
-#asynchronous-demo-label{
-  display: none;
-}
-
-.gradient_layout{
+.gradient_layout {
   background: linear-gradient(#1976d2, #fff);
-  background-size: cover;
-  margin-top: 64px;
+  /* background-size: cover; */
+  position: relative;
+  top: 64px;
+  margin-bottom: 64px;
 }
 
 .gradient-background {
@@ -83,61 +79,52 @@ body {
   height: 50px;
 }
 
-
-.logo_tips{
+.logo_tips {
   width: 100%;
   height: 50px;
 }
 
-
-@media (min-width:765px) {
+@media (min-width: 765px) {
   .landing {
     position: relative;
-    top: 64px
+    top: 64px;
   }
-
-  
 }
 
 input:not([type]),
-input[type=text]:not(.browser-default),
-input[type=password]:not(.browser-default),
-input[type=email]:not(.browser-default),
-input[type=url]:not(.browser-default),
-input[type=time]:not(.browser-default),
-input[type=date]:not(.browser-default),
-input[type=datetime]:not(.browser-default),
-input[type=datetime-local]:not(.browser-default),
-input[type=tel]:not(.browser-default),
-input[type=number]:not(.browser-default),
-input[type=search]:not(.browser-default),
+input[type="text"]:not(.browser-default),
+input[type="password"]:not(.browser-default),
+input[type="email"]:not(.browser-default),
+input[type="url"]:not(.browser-default),
+input[type="time"]:not(.browser-default),
+input[type="date"]:not(.browser-default),
+input[type="datetime"]:not(.browser-default),
+input[type="datetime-local"]:not(.browser-default),
+input[type="tel"]:not(.browser-default),
+input[type="number"]:not(.browser-default),
+input[type="search"]:not(.browser-default),
 textarea.materialize-textarea {
-  
-  border:none;
+  border: none;
   border-bottom: none;
-  margin:0 2px;
-  padding:5px 10px
-
-
+  margin: 0 2px;
+  padding: 5px 10px;
 }
 input:not([type]),
-input[type=text]:not(.browser-default):focus:not([readonly]),
-input[type=password]:not(.browser-default):focus:not([readonly]),
-input[type=email]:not(.browser-default):focus:not([readonly]),
-input[type=url]:not(.browser-default):focus:not([readonly]),
-input[type=time]:not(.browser-default):focus:not([readonly]),
-input[type=date]:not(.browser-default):focus:not([readonly]),
-input[type=datetime]:not(.browser-default):focus:not([readonly]),
-input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
-input[type=tel]:not(.browser-default):focus:not([readonly]),
-input[type=number]:not(.browser-default):focus:not([readonly]),
-input[type=search]:not(.browser-default):focus:not([readonly]),
+input[type="text"]:not(.browser-default):focus:not([readonly]),
+input[type="password"]:not(.browser-default):focus:not([readonly]),
+input[type="email"]:not(.browser-default):focus:not([readonly]),
+input[type="url"]:not(.browser-default):focus:not([readonly]),
+input[type="time"]:not(.browser-default):focus:not([readonly]),
+input[type="date"]:not(.browser-default):focus:not([readonly]),
+input[type="datetime"]:not(.browser-default):focus:not([readonly]),
+input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),
+input[type="tel"]:not(.browser-default):focus:not([readonly]),
+input[type="number"]:not(.browser-default):focus:not([readonly]),
+input[type="search"]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea {
-  box-shadow:none;
-  border:none;
+  box-shadow: none;
+  border: none;
   border-bottom: none;
-  margin:0 2px;
-  padding:5px 10px
-
-
+  margin: 0 2px;
+  padding: 5px 10px;
 }
