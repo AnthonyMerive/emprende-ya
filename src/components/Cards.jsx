@@ -25,8 +25,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField } from '@material-ui/core';
 import CircularProgress from '@mui/material/CircularProgress';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { letterSpacing } from '@material-ui/system';
-
 
 const theme = createTheme({
   palette: {
@@ -86,11 +84,11 @@ export default function Cards() {
 
   const handleBuscar = (e) => {
     e.preventDefault()
-    if(buscar === ''){
-      window.location.reload() 
-    }else{
-    setEmprend(emprendimientos.filter(data => data.nombre.toLowerCase() === buscar.toLowerCase()))
-    setBusqueda(true)
+    if (buscar === '') {
+      window.location.reload()
+    } else {
+      setEmprend(emprendimientos.filter(data => data.nombre.toLowerCase().includes(buscar.toLowerCase())))
+      setBusqueda(true)
     }
   }
 
@@ -194,11 +192,16 @@ export default function Cards() {
               <Box sx={{ fontSize: '50px', color: 'grey.500', width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} spacing={2} direction="row">
                 <img style={{ width: '30%' }} className="" src="https://res.cloudinary.com/duaokxfsp/image/upload/v1634148880/emprende-ya/Logo/LogoEY4_q4blu4.png" alt="logoEY" />
                 {busqueda ?
-                  <Typography sx={{display: 'flex', justifyContent: 'center', flexDirection: "column", mt:5 }} variant="h4" color="text.secondary">
+                  <Typography sx={{ display: 'flex', justifyContent: 'center', flexDirection: "column", mt: 5 }} variant="h4" color="text.secondary">
                     Sin coincidencias <br /><IconButton onClick={() => { window.location.reload() }} ><Typography variant="h4" color="#1976d29d">Regresar <ExitToAppIcon /> </Typography></IconButton>
                   </Typography>
                   :
-                  <CircularProgress />
+                  <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: "column", alignItems: 'center' }}>
+                    <Typography sx={{ textAlign: "center", mt: 2, mb: 1 }} variant="h4" color="text.secondary">
+                      Cargando Emprendimientos
+                    </Typography>
+                    <CircularProgress />
+                  </Box>
                 }
               </Box>
 
