@@ -58,33 +58,35 @@ export default function ModalMensaje(props) {
         emprendimiento,
         fechaEnvio } = values
 
-        console.log(values)
+    console.log(values)
 
-        const handleSubmit = () => {
+    const handleSubmit = () => {
 
-            console.log('funcion')
-            dispatch(enviarMensajeAsincrono(
-                nombreEnvia,
-                fotoEnvia,
-                correoEnvia,
-                nombreRecibe,
-                fotoRecibe,
-                correoRecibe,
-                fechaEnvio,
-                titulo,
-                mensaje,
-                leido,
-                emprendimiento))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Mensaje enviado satisfactoriamente',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                props.setAnchorEl(null)
-                props.setOpenModal(false)
-    
-        }
+        console.log('funcion')
+        dispatch(enviarMensajeAsincrono(
+            nombreEnvia,
+            fotoEnvia,
+            correoEnvia,
+            nombreRecibe,
+            fotoRecibe,
+            correoRecibe,
+            fechaEnvio,
+            titulo,
+            mensaje,
+            leido,
+            emprendimiento))
+        Swal.fire({
+            icon: 'success',
+            title: 'Mensaje enviado satisfactoriamente',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        props.setAnchorEl(null)
+        props.setOpenModal(false)
+
+    }
+
+    console.log(msj.correo)
 
     return (<>
 
@@ -102,7 +104,9 @@ export default function ModalMensaje(props) {
                             <Avatar alt={`${msj.nombreEnvia} `} src={`${msj.fotoEnvia}`} sx={{ width: 40, height: 40, marginRight: 1 }} />
                         </Tooltip>
                         <Typography variant="h6" >{msj.nombreEnvia}  </Typography>
-                        <Typography > ({msj.correoEnvia}) </Typography>
+                        {msj.correoEnvia &&
+                            <Typography > ({msj.correoEnvia}) </Typography>
+                        }
                     </Box>
                     <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
 
@@ -111,26 +115,34 @@ export default function ModalMensaje(props) {
                         <Typography variant="body1">{msj.mensaje}</Typography>
                     </Box>
 
-
                 </Container>
-                <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
-                <TextField
-                    id="outlined-multiline-flexible"
-                    label="Responder el mensaje"
-                    multiline
-                    minRows={8}
-                    name="mensaje"
-                    onChange={handleInputChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Button
-                        type="button"
-                        variant="contained"
-                    onClick={handleSubmit}
-                    >Enviar</Button>
-                </Box>
+                {msj.correoEnvia ?
+                    <Box>
+                        <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
+                        <TextField
+                            id="outlined-multiline-flexible"
+                            label="Responder el mensaje"
+                            multiline
+                            minRows={8}
+                            name="mensaje"
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <Button
+                                type="button"
+                                variant="contained"
+                                onClick={handleSubmit}
+                            >Enviar</Button>
+                        </Box>
+                    </Box>
+                    :
+                    <Box sx={{ mt: 2, textAlign: "justify", fontSize: "14px" }}>
+                        <br />
+                        El usuario que envio este mensaje no esta registrado, por tanto no puedes responderle.
+                    </Box>
+                }
             </Box>
         </Modal>
 

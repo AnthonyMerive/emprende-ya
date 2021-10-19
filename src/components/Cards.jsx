@@ -62,7 +62,7 @@ export default function Cards() {
   useEffect(() => {
     if (id) {
       dispatch(mostrarAsincronico())
-      
+      dispatch(mostrarMensajesAsincronico (correo))
     }
 
   }, [dispatch, correo, id])

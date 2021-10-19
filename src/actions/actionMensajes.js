@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, where, query, doc, updateDoc, deleteDoc } from "@firebase/firestore";
+import { addDoc, collection, getDocs, where, query, doc, updateDoc, deleteDoc, orderBy } from "@firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { typesMensajes } from "../types/types";
 
@@ -38,7 +38,6 @@ export const enviarMensajeAsincrono = (
             })
     }
 }
-
 
 export const mostrarMensajesAsincronico = (correo) => {
     return async (dispatch) => {
