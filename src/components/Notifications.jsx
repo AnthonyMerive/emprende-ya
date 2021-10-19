@@ -43,13 +43,14 @@ export default function Notifications(props) {
             if (result.isConfirmed) {
                 dispatch(eliminarMensajeAsincrono(props.id))
                 Swal.fire('¡Borrado!', '', 'success')
+                dispatch(mostrarMensajesAsincronico(correo))
             }
         })
     }
 
     useEffect(() => {
         dispatch(mostrarMensajesAsincronico(correo))
-    }, [])
+    }, [dispatch, correo])
 
     return (<>
         {props.leido ?
@@ -88,7 +89,7 @@ export default function Notifications(props) {
             </Box>
             :
             <Box
-                sx={{ bgcolor: "#E2F0FA", p: 2, cursor: "pointer" }}
+                sx={{ bgcolor: "#c2e1ff", p: 2, cursor: "pointer" }}
                 onClick={handleDetailNoLeido}
             >
                 <Stack direction="row">
