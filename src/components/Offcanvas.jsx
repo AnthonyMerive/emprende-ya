@@ -48,8 +48,8 @@ export default function OffCanvas(props) {
 
         props.setShowRegister(open);
         props.setShowLogin(open)
-        if(props.showInterfaz){props.setShowInterfaz(open)}
-        if(props.showEnviar){props.setShowEnviar(open)}
+        if (props.showInterfaz) { props.setShowInterfaz(open) }
+        if (props.showEnviar) { props.setShowEnviar(open) }
         // props.setShowEnviar(open)
         // props.setShowInterfaz(open)
     };
@@ -108,9 +108,9 @@ export default function OffCanvas(props) {
                 </IconButton>
             </Box>
             {register ?
-                <Register />
+                <Register setShowLogin={props.setShowLogin} setShowRegister={props.setShowRegister} />
                 : login &&
-                <Login />
+                <Login setShowLogin={props.setShowLogin} setShowRegister={props.setShowRegister} />
             }
         </SwipeableDrawer>
 

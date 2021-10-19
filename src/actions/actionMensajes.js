@@ -42,7 +42,7 @@ export const enviarMensajeAsincrono = (
 export const mostrarMensajesAsincronico = (correo) => {
     return async (dispatch) => {
         const coleccion = collection(db, "Mensajes")
-        const q = query(coleccion, where("correoRecibe", "==", correo))
+        const q = query(coleccion, where("correoRecibe", "==", correo), orderBy("fechaEnvio", "desc"))
         const result = await getDocs(q)
         const mensajes = [];
         result.forEach((document) => {

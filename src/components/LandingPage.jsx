@@ -96,7 +96,7 @@ export default function LandingPage() {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button sx={{mb:3}} onClick={()=>setShowLogin(true)} size="small" variant="contained">Publicar un proyecto</Button>
+                                <Button sx={{mb:3}} onClick={()=>setShowRegister(true)} size="small" variant="contained">Publicar un proyecto</Button>
                             </CardActions>
                         </Card>
                     </Grid>
