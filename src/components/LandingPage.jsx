@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import OffCanvas from './Offcanvas';
+import { useHistory } from 'react-router-dom';
 
 export default function LandingPage() {
 
@@ -24,6 +25,9 @@ export default function LandingPage() {
 
     const [showLogin, setShowLogin] = useState(false)
     const [showRegister, setShowRegister] = useState(false)
+    const history = useHistory();
+
+    
 
     return (
         <div className="landing">
@@ -69,7 +73,7 @@ export default function LandingPage() {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button sx={{mb:3}} onClick={()=>setShowRegister(true)} size="small" variant="contained">Explorar</Button>
+                                <Button sx={{mb:3}} onClick={()=>{history.replace("/publicaciones")}} size="small" variant="contained">Explorar</Button>
                             </CardActions>
                         </Card>
                     </Grid>
