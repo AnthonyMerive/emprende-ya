@@ -16,6 +16,7 @@ import { Tips } from '../components/Tips';
 import Loading from '../components/Loading';
 import { useSelector } from 'react-redux';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Publicaciones from '../components/Publicaciones';
 
 
 export default function AppRouter() {
@@ -60,9 +61,11 @@ export default function AppRouter() {
                     <Route exact path="/" component={LandingPage} />
                 }
 
+                <Route exact path="/publicaciones" component={Publicaciones} />
+
             </Switch>
 
-            {(auth && usuarioLogeado.foto!==null)&&
+            {(auth && usuarioLogeado.foto !== null) &&
                 <BotonAddEmp />
             }
 

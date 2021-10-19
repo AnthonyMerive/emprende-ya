@@ -42,7 +42,7 @@ const theme = createTheme({
     },
 });
 
-export default function Register() {
+export default function Register(props) {
     const dispatch = useDispatch();
 
     const [values, setValues, handleInputChange, handleFileChange, reset] = useForm({
@@ -53,8 +53,6 @@ export default function Register() {
 
     const { email, password, nombreCompleto } = values;
 
-    console.log(values)
-
     const handleRegister = (e) => {
         e.preventDefault();
         dispatch(registroEmailPasswordNombre(
@@ -62,12 +60,18 @@ export default function Register() {
             email,
             password))
 
-            reset()
+        reset()
     }
 
     const handleGoogle = () => {
         dispatch(loginGoogle())
     }
+
+    const handleLogin = () => {
+        props.setShowLogin(true)
+        props.setShowRegister(false)
+    }
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -175,6 +179,12 @@ export default function Register() {
                             Enviar
 
                         </Button>
+
+                        <Grid container justifyContent="flex-end">
+                            <Link sx={{ cursor: "pointer" }} onClick={handleLogin}>
+                                {"¿Tienes cuenta? Logueate"}
+                            </Link>
+                        </Grid>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                             </Grid>

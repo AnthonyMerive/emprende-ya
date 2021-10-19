@@ -10,8 +10,6 @@ import EnviarMensaje from './EnviarMensaje';
 
 export default function OffCanvas(props) {
 
-    console.log(props)
-
     const [register, setRegister] = useState(false)
     const [login, setLogin] = useState(false)
     const showRegister = props.showRegister
@@ -50,8 +48,8 @@ export default function OffCanvas(props) {
 
         props.setShowRegister(open);
         props.setShowLogin(open)
-        if(props.showInterfaz){props.setShowInterfaz(open)}
-        if(props.showEnviar){props.setShowEnviar(open)}
+        if (props.showInterfaz) { props.setShowInterfaz(open) }
+        if (props.showEnviar) { props.setShowEnviar(open) }
         // props.setShowEnviar(open)
         // props.setShowInterfaz(open)
     };
@@ -77,7 +75,10 @@ export default function OffCanvas(props) {
         <SwipeableDrawer
             anchor={'left'}
             open={props.showEnviar}
+<<<<<<< HEAD
             // onClose={handleClose(false)}
+=======
+>>>>>>> anthony
         >
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <IconButton onClick={() => props.setShowEnviar(false)} aria-label="delete">
@@ -111,9 +112,9 @@ export default function OffCanvas(props) {
                 </IconButton>
             </Box>
             {register ?
-                <Register />
+                <Register setShowLogin={props.setShowLogin} setShowRegister={props.setShowRegister} />
                 : login &&
-                <Login />
+                <Login setShowLogin={props.setShowLogin} setShowRegister={props.setShowRegister} />
             }
         </SwipeableDrawer>
 

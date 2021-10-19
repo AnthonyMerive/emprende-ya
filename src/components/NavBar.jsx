@@ -133,7 +133,7 @@ export default function NavBar(props) {
                                     {perfil.foto ?
                                         <IconButton onClick={() => setShowInterfaz(true)}><Avatar sx={{ width: 30, height: 30 }} alt={perfil.displayName} src={`${perfil.foto}`} /></IconButton>
                                         :
-                                        <IconButton onClick={() => setShowInterfaz(true)} sx={{border:"dotted 2px yellow"}}><AccountCircleIcon sx={{ color: 'white'}} /></IconButton>
+                                        <IconButton onClick={() => setShowInterfaz(true)} sx={{ border: "dotted 2px yellow" }}><AccountCircleIcon sx={{ color: 'white' }} /></IconButton>
                                     }
                                 </Box>
                             </Toolbar>
@@ -153,7 +153,7 @@ export default function NavBar(props) {
                                     </IconButton>
                                 </Box>
                                 <Box>
-
+                                    <Link to="/"><IconButton><HomeIcon sx={{ color: 'white' }} /></IconButton></Link>
                                     <Button onClick={() => setShowLogin(true)} sx={{ color: 'white' }} variant="outlined">Login</Button>
                                     <Button onClick={() => setShowRegister(true)} sx={{ color: 'white' }} variant="outlined">Registro</Button>
 
