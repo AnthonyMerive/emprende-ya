@@ -120,7 +120,7 @@ export default function AddEmprendimiento() {
                     component="form"
                 >
                     <AddBusinessIcon sx={{ fontSize: '60px', color: '#299ac1' }} />
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" sx={{fontFamily: "Nova Round"}}>
                         Agrega un nuevo emprendimiento
                     </Typography>
                     <Box component="form" noValidate sx={{

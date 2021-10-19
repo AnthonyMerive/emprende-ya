@@ -62,17 +62,17 @@ export default function Notifications(props) {
                         <Stack direction="row">
                             <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                                 <Avatar alt={props.nombre} src={props.foto} sx={{ marginRight: 2 }} />
-                                <Typography variant="body2">{props.nombre}</Typography>
+                                <Typography sx={{fontFamily: "Nova Round"}} variant="body2">{props.nombre}</Typography>
                             </Box>
                         </Stack>
                         {props.emprendimiento !== null ?
-                            <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
+                            <Typography sx={{fontFamily: "Nova Round"}} variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
                             :
-                            <Typography variant="body1">{"Respondió tu mensaje"}</Typography>
+                            <Typography sx={{fontFamily: "Nova Round"}} variant="body1">{"Respondió tu mensaje"}</Typography>
                         }
                     </Grid>
                     <Grid item xs={2}>
-                        <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} variant="body1">{"Borrar"}</Typography>
+                        <Typography sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: "Nova Round" }} variant="body1">{"Borrar"}</Typography>
                         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <IconButton
                                 aria-label="Example"
@@ -83,7 +83,7 @@ export default function Notifications(props) {
                         </Box>
                     </Grid>
                 </Grid>
-                <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end' }}>Recibido {moment(props.fechaEnvio.toDate()).calendar()}</Typography>
+                <Typography s variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end', fontFamily: "Nova Round" }}>Recibido {moment(props.fechaEnvio.toDate()).calendar()}</Typography>
 
             </Box>
             :
@@ -94,15 +94,15 @@ export default function Notifications(props) {
                 <Stack direction="row">
                     <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
                         <Avatar alt={props.nombre} src={props.foto} sx={{ marginRight: 2 }} />
-                        <Typography variant="body2">{props.nombre}</Typography>
+                        <Typography sx={{fontFamily: "Nova Round"}} variant="body2">{props.nombre}</Typography>
                     </Box>
                 </Stack>
                 {props.emprendimiento !== null ?
-                    <Typography variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
+                    <Typography sx={{fontFamily: "Nova Round"}} variant="body1">{`Desea contactarte por tu emprendimiento "${props.emprendimiento}"`}</Typography>
                     :
-                    <Typography variant="body1">{"Respondió tu mensaje"}</Typography>
+                    <Typography sx={{fontFamily: "Nova Round"}} variant="body1">{"Respondió tu mensaje"}</Typography>
                 }
-                <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end' }}>{moment(props.fechaEnvio.toDate()).calendar()}</Typography>
+                <Typography variant="caption" sx={{ display: 'flex', justifyContent: 'flex-end', fontFamily: "Nova Round" }}>{moment(props.fechaEnvio.toDate()).calendar()}</Typography>
             </Box>
         }
         <Divider />

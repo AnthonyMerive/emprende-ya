@@ -23,7 +23,6 @@ export default function ModalDetalle({ data, openModal, setOpenModal, setShowEnv
 
     };
 
-    console.log(data)
 
     const [currentImage, setCurrentImage] = useState(data.imagenes[0])
     const perfil = useSelector(store => store.login)
@@ -78,13 +77,13 @@ export default function ModalDetalle({ data, openModal, setOpenModal, setShowEnv
                         <Tooltip title={`${data.displayName} `} placement="bottom-start">
                             <Avatar alt={`${data.displayName} `} src={`${data.fotoPerfil}`} sx={{ width: 40, height: 40, marginRight: 1 }} />
                         </Tooltip>
-                        <Typography variant="h6" >{data.displayName}  </Typography>
-                        <Typography > ({data.correo}) </Typography>
+                        <Typography  sx={{fontFamily: "Nova Round"}}variant="h6" >{data.displayName}  </Typography>
+                        <Typography  sx={{fontFamily: "Nova Round"}}> ({data.correo}) </Typography>
                     </Box>
                     <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
                     <Box sx={{ p: 2, wordWrap: 'break-word', textAling: 'center', display: 'flex', flexDirection: 'column' }}>
-                        <Typography variant="h6">Descripcion del emprendimiento:</Typography> <br />
-                        <Typography variant="body1">{data.descripcion}</Typography>
+                        <Typography  sx={{fontFamily: "Nova Round"}}variant="h6">Descripcion del emprendimiento:</Typography> <br />
+                        <Typography  sx={{fontFamily: "Nova Round"}}variant="body1">{data.descripcion}</Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', }}>
                             {!(correo === data.correo) ?
                                 <Button
@@ -94,7 +93,7 @@ export default function ModalDetalle({ data, openModal, setOpenModal, setShowEnv
                                 >Contactar</Button>
                                 :
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', }}>
-                                    <Typography variant="body1" sx={{ marginTop: 3 }}><strong>Este es tu emprendimiento</strong></Typography>
+                                    <Typography  sx={{fontFamily: "Nova Round", mt:3}}variant="body1" ><strong>Este es tu emprendimiento</strong></Typography>
                                     <Button
                                         size="small"
                                         type="submit"
@@ -123,16 +122,6 @@ export default function ModalDetalle({ data, openModal, setOpenModal, setShowEnv
 
             </Box>
 
-
-            {/* 
-            <OffCanvas
-                displayName={data.displayName}
-                correo={data.correo}
-                foto={data.fotoPerfil}
-                emprendimiento={data.nombre}
-                setShowEnviar={setShowEnviar}
-                showEnviar={showEnviar}
-            /> */}
         </>
     )
 }

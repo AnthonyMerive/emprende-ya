@@ -40,12 +40,24 @@ body {
   opacity: 0.8;
   box-shadow: 0px 12px 30px 1px rgba(0, 0, 0, 0.2) !important;
 }
-.cards:hover {
-  transform: translateY(-20px);
-  border: 2px solid gray;
-  background: rgb(235, 235, 235);
-  opacity: 1;
+
+@media (max-width:899px) {
+  .cards{
+    transform: translateY(-20px);
+    border: 2px solid gray;
+    background: rgb(235, 235, 235);
+    opacity: 1;
+  }
 }
+@media (min-width:900px) {
+  .cards:hover {
+    transform: translateY(-20px);
+    border: 2px solid gray;
+    background: rgb(235, 235, 235);
+    opacity: 1;
+  }
+}
+
 
 .gradient_layout {
   background: linear-gradient(#1976d2, #fff);
@@ -109,6 +121,7 @@ textarea.materialize-textarea {
   margin: 0 2px;
   padding: 5px 10px;
 }
+
 input:not([type]),
 input[type="text"]:not(.browser-default):focus:not([readonly]),
 input[type="password"]:not(.browser-default):focus:not([readonly]),

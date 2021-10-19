@@ -57,7 +57,6 @@ export default function Login() {
 
   const { email, password } = values;
 
-  console.log(values)
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(loginEmailPassword(email, password))
@@ -90,7 +89,7 @@ export default function Login() {
 
             </Avatar>
 
-            <Typography component="h1" variant="h5">
+            <Typography sx={{fontFamily: "Nova Round"}} component="h1" variant="h5">
               LOGIN
             </Typography>
 

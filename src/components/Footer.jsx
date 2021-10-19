@@ -18,7 +18,7 @@ export default function Footer() {
                     <Grid container sx={{ textAlign: 'center', pb: 3 }}>
                         <Grid item xs={12} md={6}>
                             <Container sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
-                                <Typography variant="h6" color="text.secondary" align="center">
+                                <Typography variant="h6" color="text.secondary" align="center"  sx={{fontFamily: "Nova Round"}}>
                                     {'Copyright © '}
                                     <Link color="inherit" href="https://github.com/AnthonyMerive/emprende-ya">
                                         EmprendeYa

@@ -67,25 +67,25 @@ export default function MisEmprendimientos() {
     return (
         <Container sx={{ mt: 5 }}>
 
-            <Typography variant="h4" sx={{ p: 2 }}>Mis Emprendimientos</Typography>
+            <Typography variant="h4" sx={{fontFamily: "Nova Round",p: 2}} >Mis Emprendimientos</Typography>
             {dataEmp.length === 0 ?
-                <Typography variant="h6" sx={{ p: 2 }}>Sin emprendimientos, animate y publica uno dando <Link to="/agregarEmprendimiento">click aqui</Link></Typography>
+                <Typography variant="h6" sx={{fontFamily: "Nova Round",p: 2}}>Sin emprendimientos, animate y publica uno dando <Link to="/agregarEmprendimiento">click aqui</Link></Typography>
                 :
                 dataEmp.map((data, index) => (
 
                     <>
                         <Box sx={{ marginBottom: 2 }}>
-                            <Card key={index} sx={{ p: 2 }} >
+                            <Card key={index} sx={{fontFamily: "Nova Round",p: 2}} >
                                 <Grid container>
-                                    <Grid item xs={12} md={8}><Typography>{data.nombre}</Typography></Grid>
-                                    <Grid item xs={12} md={8}><Typography variant="caption">{moment(data.fechaCreacion.toDate()).calendar().toUpperCase()}</Typography></Grid>
+                                    <Grid item xs={12} md={8}><Typography sx={{fontFamily: "Nova Round"}}>{data.nombre}</Typography></Grid>
+                                    <Grid item xs={12} md={8}><Typography sx={{fontFamily: "Nova Round"}} variant="caption">{moment(data.fechaCreacion.toDate()).calendar().toUpperCase()}</Typography></Grid>
                                     <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: 'flex-end' }} >
                                         <Button variant="contained" onClick={() => { handleEdit(data) }}><EditRoundedIcon /></Button>
                                         <Button sx={{ ml: 1, bgcolor: "red" }} variant="contained" data={data} onClick={() => { handleDelete(data) }}><DeleteForeverRoundedIcon /></Button>
                                     </Grid>
                                     <Grid item xs={12} md={8} sx={{ wordWrap: 'break-word' }}>
-                                        <Typography variant="h6">Descripcion del emprendimiento:</Typography>
-                                        <Typography variant="body1">{data.descripcion}</Typography>
+                                        <Typography sx={{fontFamily: "Nova Round"}} variant="h6">Descripcion del emprendimiento:</Typography>
+                                        <Typography sx={{fontFamily: "Nova Round"}} variant="body1">{data.descripcion}</Typography>
                                     </Grid>
                                 </Grid>
                             </Card>

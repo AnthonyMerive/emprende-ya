@@ -58,8 +58,6 @@ export default function NavBar(props) {
 
     }, [msj, setNotification, contador])
 
-    console.log(location.pathname)
-
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
@@ -192,7 +190,7 @@ export default function NavBar(props) {
                                     />
                                 )
                                 :
-                                <Typography sx={{ m: 2 }} variant="body1">No tienes mensajes</Typography>
+                                <Typography  sx={{fontFamily: "Nova Round", m:2}} variant="body1">No tienes mensajes</Typography>
 
                         }
                     </Popover>

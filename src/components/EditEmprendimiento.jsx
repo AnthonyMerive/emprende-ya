@@ -120,7 +120,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
                     component="form"
                 >
                     <AddBusinessIcon sx={{ fontSize: '60px', color: '#299ac1' }} />
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5"  sx={{fontFamily: "Nova Round"}}>
                         Agrega un nuevo emprendimiento
                     </Typography>
                     <Box component="form" noValidate sx={{
@@ -208,7 +208,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
 
                                 </Box>
                                 <Box sx={{ width: '100%', m: 2, textAlign: 'center' }}>
-                                    <Typography>{`${progress}%`}</Typography>
+                                    <Typography  sx={{fontFamily: "Nova Round"}}>{`${progress}%`}</Typography>
                                     <progress max={fullProgress} value={progress}></progress>
                                 </Box>
                             </>
@@ -248,7 +248,7 @@ export default function EditEmprendimiento({ data, openModal, setOpenModal }) {
 
                                 </Box>
                                 <Box sx={{ width: '100%', m: 2, textAlign: 'center' }}>
-                                    <Typography>{`${progress}%`}</Typography>
+                                    <Typography  sx={{fontFamily: "Nova Round"}}>{`${progress}%`}</Typography>
                                     <progress max={fullProgress} value={progress}></progress>
                                 </Box>
                             </>

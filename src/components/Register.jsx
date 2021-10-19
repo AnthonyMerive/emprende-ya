@@ -20,7 +20,7 @@ import { loginGoogle } from '../actions/actionLogin';
 
 function Copyright(props) {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        <Typography sx={{fontFamily: "Nova Round"}} variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="https://github.com/AnthonyMerive/emprende-ya">
                 EmprendeYA
@@ -52,8 +52,6 @@ export default function Register() {
     })
 
     const { email, password, nombreCompleto } = values;
-
-    console.log(values)
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -92,7 +90,8 @@ export default function Register() {
 
                     <Typography
                         component="h1"
-                        variant="h5">
+                        variant="h5"
+                        sx={{fontFamily: "Nova Round"}}>
                         REGISTRO
                     </Typography>
 

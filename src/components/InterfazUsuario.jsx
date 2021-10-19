@@ -47,9 +47,6 @@ export default function Usuario(props) {
     const { location } = locacion
     const [setWatch, watch] = useCurrentLocation()
 
-    console.log(watch)
-    console.log(location)
-
     const dispatch = useDispatch()
 
     const handleCerrarSesion = () => {
@@ -126,9 +123,8 @@ export default function Usuario(props) {
                     <Typography
                         component="h2"
                         variant="h5"
-                        sx={{
-                            mb: 4
-                        }}>
+                        sx={{fontFamily: "Nova Round",mb: 4}}
+                       >
                         Perfil
                     </Typography>
 
@@ -166,7 +162,8 @@ export default function Usuario(props) {
                                 <Typography
                                     align='center'
                                     component="h2"
-                                    variant="h6">
+                                    variant="h6"
+                                    sx={{fontFamily: "Nova Round"}}>
                                     {`${perfil.displayName}`}
                                 </Typography>
                             </Grid>
@@ -175,7 +172,8 @@ export default function Usuario(props) {
                                 <Typography
                                     align='center'
                                     component="h2"
-                                    variant="subtitle1">
+                                    variant="subtitle1"
+                                    sx={{fontFamily: "Nova Round"}}>
                                     {`${perfil.correo}`}
                                 </Typography>
                             </Grid>
@@ -185,7 +183,7 @@ export default function Usuario(props) {
 
                                 location === 'error' ?
                                     <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                                        <Typography>No ha autorizado los permisos de ubicacion</Typography>
+                                        <Typography sx={{fontFamily: "Nova Round"}}>No ha autorizado los permisos de ubicacion</Typography>
                                         <IconButton onClick={() => { setWatch(true) }}>
                                             <LocationOnOutlinedIcon />
                                             Verificar ubicacion
@@ -196,7 +194,8 @@ export default function Usuario(props) {
                                         <Typography
                                             align='center'
                                             component="h2"
-                                            variant="subtitle1">
+                                            variant="subtitle1"
+                                            sx={{fontFamily: "Nova Round"}}>
                                             {`${location}`}
                                         </Typography>
                                     </Grid>

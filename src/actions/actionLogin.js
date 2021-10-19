@@ -12,15 +12,13 @@ export const loginGoogle = () => {
             googleAuth
         )
             .then(({ user }) => {
-                console.log(user)
-                console.log(user.providerData[0])
                 const data = user.providerData[0];
                 dispatch(loginSincrono(user.uid, data.displayName, data.photoURL, data.email))
             })
             .catch(error => {
                 Swal.fire({
                     icon: 'error',
-                    title: `${error}`,
+                    title: `${error.message}`,
                     showConfirmButton: false,
                     timer: 1500
                   })

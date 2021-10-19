@@ -78,11 +78,11 @@ export default function Detalles({ data }) {
 
                         avatar={avatar}
 
-                        title={<Typography variant="h6"><strong>{data.nombre}</strong></Typography>}
+                        title={<Typography variant="h6" sx={{fontFamily: "Nova Round"}}><strong>{data.nombre}</strong></Typography>}
                         
-                        subheader={<Typography variant="caption" sx={{ color: '#CAC8C8' }}>{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
+                        subheader={<Typography variant="caption" sx={{ color: '#CAC8C8',fontFamily: "Nova Round" }}>{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
                     />
-                    <Typography variant="body2">{data.ubicacion}</Typography>
+                    <Typography variant="body2" sx={{fontFamily: "Nova Round"}}>{data.ubicacion}</Typography>
 
                     <CardMedia
                         component="img"
@@ -94,7 +94,7 @@ export default function Detalles({ data }) {
                     />
 
                     <CardActions disableSpacing>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" sx={{fontFamily: "Nova Round"}}>
                             Mas informacion
                         </Typography>
                         <IconButton onClick={handleModal} >

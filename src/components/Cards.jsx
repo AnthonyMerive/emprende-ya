@@ -120,13 +120,13 @@ export default function Cards() {
               </Select>
             </Grid>
             <Grid item xs={12} md={8}>
-              <Box onSubmit={handleBuscar} component="form" sx={{ display: 'flex', justifyContent: 'center', ml: { md: 40 }, mt: { md: 0.5 } }}>
+              <Box onSubmit={handleBuscar} component="form" sx={{ display: 'flex', justifyContent: 'center',alignItems: 'center', ml: { md: 40 }, mt: { md: 0.5 } }}>
                 <TextField
                   sx={{ bgcolor: "rgb(235, 235, 235)" }}
                   margin="normal"
                   fullWidth
                   id="buscar"
-                  label="Buscar por nombre del emprendimiento"
+                  placeholder="Buscar por nombre del emprendimiento"
                   name="buscar"
                   autoComplete="buscar"
                   value={buscar}
@@ -163,10 +163,10 @@ export default function Cards() {
                     >
                       <CardHeader
                         sx={{ textAlign: 'center', }}
-                        title={<Typography variant="h6"><strong>{data.nombre.toUpperCase()}</strong></Typography>}
-                        subheader={<Typography variant="caption">{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
+                        title={<Typography variant="h6" sx={{fontFamily: "Nova Round"}}><strong>{data.nombre.toUpperCase()}</strong></Typography>}
+                        subheader={<Typography variant="caption" sx={{fontFamily: "Nova Round"}}>{moment(data.fechaCreacion.toDate()).calendar()}</Typography>}
                       />
-                      <Typography variant="body2">{data.ubicacion}</Typography>
+                      <Typography variant="body2" sx={{fontFamily: "Nova Round"}}>{data.ubicacion}</Typography>
                       <CardMedia
                         component="img"
                         width="250"
@@ -176,7 +176,7 @@ export default function Cards() {
                         sx={{ objectFit: 'contain', padding: 2 }}
                       />
                       <CardActions disableSpacing>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" sx={{fontFamily: "Nova Round"}}>
                           Mas informacion
                         </Typography>
                         <IconButton onClick={() => { handleModal(data) }} >
@@ -192,12 +192,12 @@ export default function Cards() {
               <Box sx={{ fontSize: '50px', color: 'grey.500', width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} spacing={2} direction="row">
                 <img style={{ width: '30%' }} className="" src="https://res.cloudinary.com/duaokxfsp/image/upload/v1634148880/emprende-ya/Logo/LogoEY4_q4blu4.png" alt="logoEY" />
                 {busqueda ?
-                  <Typography sx={{ display: 'flex', justifyContent: 'center', flexDirection: "column", mt: 5 }} variant="h4" color="text.secondary">
+                  <Typography sx={{fontFamily: "Nova Round", display: 'flex', justifyContent: 'center', flexDirection: "column", mt: 5 }} variant="h4" color="text.secondary">
                     Sin coincidencias <br /><IconButton onClick={() => { window.location.reload() }} ><Typography variant="h4" color="#1976d29d">Regresar <ExitToAppIcon /> </Typography></IconButton>
                   </Typography>
                   :
                   <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: "column", alignItems: 'center' }}>
-                    <Typography sx={{ textAlign: "center", mt: 2, mb: 1 }} variant="h4" color="text.secondary">
+                    <Typography sx={{fontFamily: "Nova Round", textAlign: "center", mt: 2, mb: 1 }} variant="h4" color="text.secondary">
                       Cargando Emprendimientos
                     </Typography>
                     <CircularProgress />

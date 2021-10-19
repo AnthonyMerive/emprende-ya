@@ -58,7 +58,6 @@ export default function ModalMensaje(props) {
         emprendimiento,
         fechaEnvio } = values
 
-        console.log(values)
 
         const handleSubmit = () => {
 
@@ -101,14 +100,14 @@ export default function ModalMensaje(props) {
                         <Tooltip title={`${msj.nombreEnvia} `} placement="bottom-start">
                             <Avatar alt={`${msj.nombreEnvia} `} src={`${msj.fotoEnvia}`} sx={{ width: 40, height: 40, marginRight: 1 }} />
                         </Tooltip>
-                        <Typography variant="h6" >{msj.nombreEnvia}  </Typography>
-                        <Typography > ({msj.correoEnvia}) </Typography>
+                        <Typography sx={{fontFamily: "Nova Round"}} variant="h6" >{msj.nombreEnvia}  </Typography>
+                        <Typography sx={{fontFamily: "Nova Round"}} > ({msj.correoEnvia}) </Typography>
                     </Box>
                     <Divider sx={{ marginBottom: 2, marginTop: 2 }} />
 
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'column' }}>
-                        <Typography variant="h6">{msj.titulo}</Typography> <br />
-                        <Typography variant="body1">{msj.mensaje}</Typography>
+                        <Typography sx={{fontFamily: "Nova Round"}} variant="h6">{msj.titulo}</Typography> <br />
+                        <Typography sx={{fontFamily: "Nova Round"}} variant="body1">{msj.mensaje}</Typography>
                     </Box>
 
 

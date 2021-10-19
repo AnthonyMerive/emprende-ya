@@ -10,7 +10,6 @@ import EnviarMensaje from './EnviarMensaje';
 
 export default function OffCanvas(props) {
 
-    console.log(props)
 
     const [register, setRegister] = useState(false)
     const [login, setLogin] = useState(false)
@@ -77,7 +76,7 @@ export default function OffCanvas(props) {
         <SwipeableDrawer
             anchor={'left'}
             open={props.showEnviar}
-            onClose={handleClose(false)}
+            // onClose={handleClose(false)}
         >
             <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
                 <IconButton onClick={() => props.setShowEnviar(false)} aria-label="delete">

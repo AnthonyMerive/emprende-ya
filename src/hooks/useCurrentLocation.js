@@ -9,8 +9,6 @@ export const useCurrentLocation = () => {
     const { location } = locacion
 
 
-    console.log(location)
-
 
 
     const [watch, setWatch] = useState(false)

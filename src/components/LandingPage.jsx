@@ -33,7 +33,7 @@ export default function LandingPage() {
                 <Grid container spacing={2} sx={{ alignItems: 'center', marginTop:{xs:-10, sm:0,md:-20,lg:-20}, textAlign:'center' }}>
                     <Grid item xs={12} md={6}>
                         <Container>
-                            <Typography variant="h4" sx={{marginBottom:5, marginTop:{xs:5,md:0}}} >
+                            <Typography  variant="h4" sx={{fontFamily: "Nova Round",marginBottom:5, marginTop:{xs:5,md:0}}} >
                                 {text}
                                 <Cursor />
                             </Typography>
@@ -48,23 +48,23 @@ export default function LandingPage() {
             </div>
 
             <Container>
-                <Typography gutterBottom variant="h3" component="div" sx={{ marginBottom: -5 }}>
+                <Typography gutterBottom variant="h3" component="div" sx={{fontFamily: "Nova Round",marginBottom: -5}}>
                     ¿Qué puedes hacer en emprendeYA?
                 </Typography>
                 <Grid container spacing={2} sx={{ marginTop: 10, marginBottom: 5 }}>
                     <Grid item xs={12} md={6}>
-                        <Card sx={{ minHeight: '450px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Card sx={{ minHeight: '450px', maxHeight: '450px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
                             <CardMedia
                                 component="img"
                                 height="270"
                                 image="https://www.portafolio.co/files/article_multimedia/uploads/2018/02/26/5a948341c51ad.jpeg"
-                                alt="green iguana"
+                                alt="emprendedores"
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
+                                <Typography  sx={{fontFamily: "Nova Round"}} gutterBottom variant="h5" component="div">
                                     Encuentra ese emprendimiento que buscabas
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                <Typography  sx={{fontFamily: "Nova Round"}} variant="body2" color="text.secondary">
                                     Desde plomeria hasta creación de páginas web, en emprendeYA lo encuentras todo.
                                 </Typography>
                             </CardContent>
@@ -80,13 +80,13 @@ export default function LandingPage() {
                                 component="img"
                                 height="270"
                                 image="https://coworkingfy.com/wp-content/uploads/2020/04/emprendedores-felices-exitosos-1024x612.jpg"
-                                alt="green iguana"
+                                alt="emprendedores"
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="div">
+                                <Typography sx={{fontFamily: "Nova Round"}} gutterBottom variant="h5" component="div">
                                     Publica tu emprendimiento
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                <Typography sx={{fontFamily: "Nova Round"}} variant="body2" color="text.secondary">
                                     Da a conocer tu emprendimiento y logra impulsar tu proyecto
 
                                 </Typography>

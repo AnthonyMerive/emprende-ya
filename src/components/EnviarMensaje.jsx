@@ -63,8 +63,6 @@ export default function EnviarMensaje(props) {
         emprendimiento,
         fechaEnvio } = values
 
-    console.log(values)
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -106,7 +104,7 @@ export default function EnviarMensaje(props) {
                 >
                     <Avatar sx={{ mb: 2 }} alt={`${props.displayName}`} src={`${props.foto}`} />
 
-                    <Typography component="h1" variant="h6">
+                    <Typography component="h1" variant="h6"  sx={{fontFamily: "Nova Round"}}>
                         Contactar a {props.displayName}
                     </Typography>
                     <Box component="form" noValidate sx={{
